@@ -1,0 +1,9 @@
+{
+  "_description": "Example response from GET https://api.dasch.swiss/health (live, public)",
+  "response": {
+    "name": "AppState",
+    "severity": "non fatal",
+    "status": true,
+    "message": "Application is healthy"
+  }
+}

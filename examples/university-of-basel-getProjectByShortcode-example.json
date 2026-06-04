@@ -1,0 +1,37 @@
+{
+  "_description": "Representative response shape for GET https://api.dasch.swiss/admin/projects/shortcode/{shortcode} (single project; derived from live GET /admin/projects)",
+  "response": {
+    "project": {
+      "id": "http://rdfh.ch/projects/eO6sHBvNTJOvD9vqFY4WCA",
+      "shortname": "gotthelf",
+      "shortcode": "0862",
+      "longname": "(digitale) Historisch-Kritische Gesamtausgabe der Werke und Briefe von Jeremias Gotthelf, HKG und dHKG",
+      "description": [
+        {
+          "value": "(digitale) Historisch-Kritische Gesamtausgabe der Werke und Briefe von Jeremias Gotthelf",
+          "language": "de"
+        }
+      ],
+      "keywords": [
+        "Digitale Edition",
+        "Digitale Philologie",
+        "Editionsphilologie",
+        "Gesamtedition",
+        "Geschichte des 19. Jahrhunderts",
+        "Jeremias Gotthelf",
+        "Kirchengeschichte",
+        "Korrespondenz",
+        "Literaturgeschichte",
+        "Schweizerdeutsche Literatur",
+        "Textgenetik",
+        "Textquellen"
+      ],
+      "logo": null,
+      "ontologies": [
+        "http://api.dasch.swiss/ontology/0862/gotthelf/v2"
+      ],
+      "status": true,
+      "selfjoin": false
+    }
+  }
+}

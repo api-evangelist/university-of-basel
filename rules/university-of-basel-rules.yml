@@ -1,0 +1,65 @@
+# Spectral ruleset for the University of Basel / DaSCH DSP-API.
+# Encodes patterns observed in the live OpenAPI 3.1 description published at
+# https://api.dasch.swiss/api/docs/docs.yaml (DSP-API v35.10.0).
+formats:
+  - oas3
+rules:
+  basel-info-contact:
+    description: API info should declare a contact (DSP-API declares DaSCH as contact).
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  basel-info-version-present:
+    description: API info must declare a version (DSP-API uses a vNN.NN.NN scheme).
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+  basel-server-https:
+    description: All servers must use HTTPS (DSP-API is served over TLS only).
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+  basel-operation-tags:
+    description: Every operation should be tagged (DSP-API groups by Admin/Management/API v2/API v3/Ontology Mappings).
+    severity: warn
+    given: $.paths[*][get,put,post,delete,patch]
+    then:
+      field: tags
+      function: truthy
+  basel-operation-description:
+    description: Operations should carry a human description (DSP-API documents each endpoint).
+    severity: warn
+    given: $.paths[*][get,put,post,delete,patch]
+    then:
+      field: description
+      function: truthy
+  basel-known-tags:
+    description: Tags should come from the DSP-API tag vocabulary.
+    severity: info
+    given: $.paths[*][get,put,post,delete,patch].tags[*]
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - Admin API
+          - Management API
+          - API v2
+          - API v3
+          - Ontology Mappings
+  basel-error-response:
+    description: Operations should document at least one non-2xx response (DSP-API returns typed error bodies).
+    severity: info
+    given: $.paths[*][get,put,post,delete,patch].responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1

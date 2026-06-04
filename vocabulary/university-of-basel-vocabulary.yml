@@ -1,0 +1,80 @@
+vocabulary:
+  name: University of Basel DaSCH DSP-API Vocabulary
+  description: >-
+    Controlled vocabulary of the core domain terms exposed by the DaSCH Service
+    Platform API (DSP-API), the RDF-based humanities research-data API operated by
+    the Swiss National Data and Service Center for the Humanities at the University
+    of Basel. Terms and definitions are derived from the live OpenAPI 3.1
+    description at https://api.dasch.swiss/api/docs/docs.yaml (DSP-API v35.10.0).
+  version: v35.10.0
+  terms:
+    - term: Project
+      definition: >-
+        A research project in DSP, identified by an IRI, a shortname and a
+        hexadecimal shortcode, owning ontologies and data.
+      tags: [ core, admin ]
+    - term: Shortcode
+      definition: A hexadecimal code that uniquely identifies a project.
+      tags: [ identifier, project ]
+    - term: Shortname
+      definition: A short human-readable identifier for a project.
+      tags: [ identifier, project ]
+    - term: Ontology
+      definition: >-
+        An RDF data model defining resource classes and properties used within a
+        project.
+      tags: [ rdf, modeling ]
+    - term: Resource
+      definition: >-
+        An RDF graph node representing a unit of humanities research data, the
+        primary content object queried and annotated through DSP-API v2.
+      tags: [ rdf, content ]
+    - term: Gravsearch
+      definition: >-
+        The SPARQL-derived graph search language used to query DSP resources via
+        the v2 search endpoints.
+      tags: [ search, query ]
+    - term: Group
+      definition: >-
+        A collection of users within a project to which permissions can be
+        assigned; supports self-join and status flags.
+      tags: [ admin, permissions ]
+    - term: User
+      definition: >-
+        An account identified by IRI, username and email, with group and project
+        memberships and a permissions profile.
+      tags: [ admin, identity ]
+    - term: AdministrativePermission
+      definition: >-
+        A permission granting administrative capabilities to a group within a
+        project.
+      tags: [ permissions, admin ]
+    - term: DefaultObjectAccessPermission
+      definition: >-
+        A permission that defines default access rights on objects created within
+        a project, group, resource class or property.
+      tags: [ permissions, admin ]
+    - term: List
+      definition: >-
+        A hierarchical controlled vocabulary (root node and child nodes) used to
+        constrain property values within a project.
+      tags: [ vocabulary, modeling ]
+    - term: StringLiteralV2
+      definition: >-
+        A language-tagged string value used for multilingual labels, descriptions
+        and comments.
+      tags: [ i18n, value ]
+    - term: CopyrightHolder
+      definition: >-
+        A named rights holder that may be associated with project assets under the
+        licensing model.
+      tags: [ licensing, metadata ]
+    - term: License
+      definition: >-
+        A license enabled for a project, governing reuse of its data and media.
+      tags: [ licensing, metadata ]
+    - term: RestrictedViewSettings
+      definition: >-
+        Project-level settings (watermark and size) controlling restricted display
+        of media representations.
+      tags: [ media, permissions ]

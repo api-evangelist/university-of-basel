@@ -1,0 +1,12 @@
+{
+  "_description": "Example response from GET https://api.dasch.swiss/version (live, public)",
+  "response": {
+    "webapi": "v35.10.0",
+    "buildCommit": "5aac2e073",
+    "buildTime": "2026-06-01T14:27:01Z",
+    "fuseki": "6.1.0-0",
+    "scala": "3.3.7",
+    "sipi": "v4.1.1",
+    "name": "version"
+  }
+}

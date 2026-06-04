@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-basel/main/json-structure/university-of-basel-project-structure.json",
+  "name": "Project",
+  "description": "JSON Structure for a DaSCH Service Platform (DSP-API) research project, derived from the live OpenAPI 3.1 description at https://api.dasch.swiss/api/docs/docs.yaml",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "IRI identifying the project."
+    },
+    "shortname": {
+      "type": "string",
+      "description": "Project shortname."
+    },
+    "shortcode": {
+      "type": "string",
+      "description": "Project shortcode (hexadecimal)."
+    },
+    "longname": {
+      "type": "string",
+      "description": "Human-readable project name."
+    },
+    "description": {
+      "type": "array",
+      "items": {
+        "type": {
+          "$ref": "#/definitions/StringLiteral"
+        }
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "logo": {
+      "type": "string"
+    },
+    "ontologies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "boolean",
+      "description": "Whether the project is active."
+    },
+    "selfjoin": {
+      "type": "boolean",
+      "description": "Whether users may self-join the project."
+    },
+    "allowedCopyrightHolders": {
+      "type": "set",
+      "items": {
+        "type": "string"
+      }
+    },
+    "enabledLicenses": {
+      "type": "set",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "shortname",
+    "shortcode",
+    "status",
+    "selfjoin"
+  ],
+  "definitions": {
+    "StringLiteral": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string",
+          "description": "Optional ISO language tag."
+        }
+      },
+      "required": [
+        "value"
+      ]
+    }
+  }
+}

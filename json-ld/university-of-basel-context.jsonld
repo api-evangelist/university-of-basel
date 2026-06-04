@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "dsp": "https://api.dasch.swiss/ontology/",
+    "@vocab": "https://api.dasch.swiss/ontology/",
+
+    "institution": {
+      "@id": "schema:CollegeOrUniversity",
+      "@type": "@id"
+    },
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "logo": { "@id": "schema:logo", "@type": "@id" },
+    "keywords": "schema:keywords",
+
+    "Project": "dsp:Project",
+    "Group": "dsp:Group",
+    "User": "dsp:User",
+    "Ontology": "dsp:Ontology",
+    "Resource": "dsp:Resource",
+    "List": "dsp:List",
+
+    "id": "@id",
+    "shortname": "dsp:shortname",
+    "shortcode": "dsp:shortcode",
+    "longname": "dsp:longname",
+    "ontologies": { "@id": "dsp:ontologies", "@type": "@id", "@container": "@set" },
+    "status": "dsp:status",
+    "selfjoin": "dsp:selfjoin",
+    "enabledLicenses": { "@id": "dsp:enabledLicenses", "@type": "schema:CreativeWork", "@container": "@set" },
+    "allowedCopyrightHolders": { "@id": "dsp:allowedCopyrightHolders", "@container": "@set" },
+
+    "username": "dsp:username",
+    "email": { "@id": "schema:email" },
+    "givenName": "schema:givenName",
+    "familyName": "schema:familyName",
+    "groups": { "@id": "dsp:groups", "@type": "@id", "@container": "@set" },
+    "projects": { "@id": "dsp:projects", "@type": "@id", "@container": "@set" },
+
+    "providerName": "University of Basel",
+    "providerUrl": "https://www.unibas.ch/en"
+  },
+  "@type": "CollegeOrUniversity",
+  "name": "University of Basel",
+  "url": "https://www.unibas.ch/en",
+  "description": "The oldest university in Switzerland (founded 1460); operator, via the Swiss National Data and Service Center for the Humanities (DaSCH), of the DSP-API humanities research-data API described in this catalog."
+}

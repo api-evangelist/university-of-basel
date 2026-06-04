@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-basel/main/json-structure/university-of-basel-group-structure.json",
+  "name": "Group",
+  "description": "JSON Structure for a DaSCH Service Platform (DSP-API) user group, derived from the live OpenAPI 3.1 description at https://api.dasch.swiss/api/docs/docs.yaml",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "IRI identifying the group."
+    },
+    "name": {
+      "type": "string"
+    },
+    "descriptions": {
+      "type": "array",
+      "items": {
+        "type": {
+          "$ref": "#/definitions/StringLiteral"
+        }
+      }
+    },
+    "project": {
+      "type": {
+        "$ref": "#/definitions/ProjectRef"
+      }
+    },
+    "status": {
+      "type": "boolean"
+    },
+    "selfjoin": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "status",
+    "selfjoin"
+  ],
+  "definitions": {
+    "StringLiteral": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ProjectRef": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "shortname": {
+          "type": "string"
+        },
+        "shortcode": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "shortname",
+        "shortcode"
+      ]
+    }
+  }
+}

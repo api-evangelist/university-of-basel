@@ -1,0 +1,49 @@
+{
+  "_description": "Example (trimmed) response from GET https://api.dasch.swiss/admin/projects (live, public; descriptions removed for brevity)",
+  "response": {
+    "projects": [
+      {
+        "id": "http://rdfh.ch/projects/eO6sHBvNTJOvD9vqFY4WCA",
+        "shortname": "gotthelf",
+        "shortcode": "0862",
+        "longname": "(digitale) Historisch-Kritische Gesamtausgabe der Werke und Briefe von Jeremias Gotthelf, HKG und dHKG",
+        "status": true,
+        "selfjoin": false,
+        "keywords": [
+          "Digitale Edition",
+          "Digitale Philologie",
+          "Editionsphilologie",
+          "Gesamtedition",
+          "Geschichte des 19. Jahrhunderts",
+          "Jeremias Gotthelf",
+          "Kirchengeschichte",
+          "Korrespondenz",
+          "Literaturgeschichte",
+          "Schweizerdeutsche Literatur",
+          "Textgenetik",
+          "Textquellen"
+        ]
+      },
+      {
+        "id": "http://rdfh.ch/projects/ONaIjCzpTYGHOF1At1ph_Q",
+        "shortname": "glaubenmachenlassen",
+        "shortcode": "0869",
+        "longname": "Moi un Afrop\u00e9en",
+        "status": true,
+        "selfjoin": false,
+        "keywords": [
+          "Afropean",
+          "Audio",
+          "Cameroon",
+          "Documentary",
+          "Film Ethnography",
+          "Identity",
+          "Photography",
+          "Switzerland",
+          "Video",
+          "Visual Anthropology"
+        ]
+      }
+    ]
+  }
+}

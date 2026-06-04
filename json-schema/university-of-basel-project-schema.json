@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/university-of-basel/main/json-schema/university-of-basel-project-schema.json",
+  "title": "Project",
+  "description": "JSON Schema for the DSP-API (DaSCH Service Platform) Project object, derived from the live OpenAPI 3.1 description published at https://api.dasch.swiss/api/docs/docs.yaml",
+  "type": "object",
+  "required": [
+    "id",
+    "shortname",
+    "shortcode",
+    "status",
+    "selfjoin"
+  ],
+  "properties": {
+    "id": {
+      "description": "IRI for a project.",
+      "type": "string"
+    },
+    "shortname": {
+      "$ref": "#/$defs/Shortname"
+    },
+    "shortcode": {
+      "$ref": "#/$defs/Shortcode"
+    },
+    "longname": {
+      "$ref": "#/$defs/Longname"
+    },
+    "description": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/StringLiteralV2"
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "logo": {
+      "$ref": "#/$defs/Logo"
+    },
+    "ontologies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "$ref": "#/$defs/Status"
+    },
+    "selfjoin": {
+      "$ref": "#/$defs/SelfJoin"
+    },
+    "allowedCopyrightHolders": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "enabledLicenses": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "Active": {
+      "title": "Active",
+      "type": "object"
+    },
+    "CanJoin": {
+      "title": "CanJoin",
+      "type": "object"
+    },
+    "CannotJoin": {
+      "title": "CannotJoin",
+      "type": "object"
+    },
+    "Inactive": {
+      "title": "Inactive",
+      "type": "object"
+    },
+    "LanguageTaggedStringLiteralV2": {
+      "title": "LanguageTaggedStringLiteralV2",
+      "type": "object",
+      "required": [
+        "value",
+        "language"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
+      }
+    },
+    "Logo": {
+      "title": "Logo",
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Longname": {
+      "title": "Longname",
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "PlainStringLiteralV2": {
+      "title": "PlainStringLiteralV2",
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "SelfJoin": {
+      "title": "SelfJoin",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/CanJoin"
+        },
+        {
+          "$ref": "#/$defs/CannotJoin"
+        }
+      ]
+    },
+    "Shortcode": {
+      "title": "Shortcode",
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Shortname": {
+      "title": "Shortname",
+      "type": "object",
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "Status": {
+      "title": "Status",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/Active"
+        },
+        {
+          "$ref": "#/$defs/Inactive"
+        }
+      ]
+    },
+    "StringLiteralV2": {
+      "title": "StringLiteralV2",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/LanguageTaggedStringLiteralV2"
+        },
+        {
+          "$ref": "#/$defs/PlainStringLiteralV2"
+        }
+      ]
+    }
+  }
+}

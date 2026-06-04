@@ -1,0 +1,51 @@
+---
+name: University of Basel
+description: University of Basel public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/university-of-basel/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 3
+    summary: >-
+      University of Basel has no single central developer portal, but multiple
+      real, standards-based public APIs were verified live. The edoc institutional
+      repository (DSpace-CRIS 7.6.2) exposes a working DSpace REST API and OAI-PMH
+      2.0 interface (both HTTP 200). The DaSCH Service Platform API (DSP-API),
+      developed at the university, has public docs, open-source GitHub code, and a
+      live service endpoint. The SLSP swisscovery (Alma) SRU interface for the
+      Basel zone resolves. GitHub organizations (ITS-Unibas, dasch-swiss) are
+      confirmed. No endpoints or properties were fabricated; LinkedIn returned the
+      standard 999 anti-bot status and the DSP-API v2 path returned 405 on GET
+      (POST/verb required), both of which confirm the resources exist.
+    endpoints:
+      - url: https://edoc.unibas.ch/server/api
+        status: 200
+        note: DSpace REST API root; reports DSpace 7.6.2 / cris-2023.02.06.
+      - url: https://edoc.unibas.ch/server/oai/request?verb=Identify
+        status: 200
+        note: OAI-PMH 2.0 Identify; repo "edoc Open Access Repository University of Basel".
+      - url: https://docs.dasch.swiss/latest/DSP-API/
+        status: 200
+        note: DSP-API public documentation, developed by DaSCH at University of Basel.
+      - url: https://github.com/dasch-swiss/dsp-api
+        status: 200
+        note: Open-source DSP-API repository (Scala, RDF/Knora).
+      - url: https://api.dasch.swiss/v2/ontologies
+        status: 405
+        note: Live DSP-API endpoint; 405 on GET confirms it exists (verb/method required).
+      - url: https://swisscovery.slsp.ch/view/sru/41SLSP_UBS
+        status: 200
+        note: SLSP Alma SRU interface for Basel institution zone (41SLSP_UBS).
+      - url: https://universe.unibas.ch/
+        status: 200
+        note: UNIverse research portal (research information system); no documented public API.
+      - url: https://github.com/ITS-Unibas
+        status: 200
+        note: University of Basel IT Services GitHub org (~23 repos).
+      - url: https://www.unibas.ch/en
+        status: 200
+        note: Official university website.
+      - url: https://www.linkedin.com/school/university-of-basel/
+        status: 999
+        note: LinkedIn school page; 999 is standard anti-bot status, page exists.

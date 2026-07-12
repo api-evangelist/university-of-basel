@@ -89,6 +89,10 @@ apis:
       - type: Documentation
         url: https://ub.unibas.ch/en/search-find/library-catalogues/swisscovery-registration-and-help/
 common:
+  - type: DomainSecurity
+    url: security/university-of-basel-domain-security.yml
+  - type: Authentication
+    url: authentication/university-of-basel-authentication.yml
   - type: Website
     url: https://www.unibas.ch/en
   - type: DeveloperPortal

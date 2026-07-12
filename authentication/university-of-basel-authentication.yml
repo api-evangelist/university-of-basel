@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/university-of-basel-dsp-api.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: httpAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/university-of-basel-dsp-api.yaml
+- name: httpAuth1
+  type: http
+  scheme: basic
+  sources:
+  - openapi/university-of-basel-dsp-api.yaml

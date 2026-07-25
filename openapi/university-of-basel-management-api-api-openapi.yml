@@ -1,0 +1,304 @@
+openapi: 3.1.0
+info:
+  title: DSP Admin API Management API API
+  version: v35.10.0
+  summary: DSP-API is part of the DaSCH Service Platform, a repository for the long-term preservation and reuse of data in the humanities.
+  contact:
+    name: DaSCH
+    url: https://www.dasch.swiss/
+servers:
+- url: https://api.dasch.swiss:443
+  description: The dsp-api server
+tags:
+- name: Management API
+paths:
+  /version:
+    get:
+      tags:
+      - Management API
+      description: Get version information. Publicly accessible.
+      operationId: getVersion
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionResponse'
+              example:
+                webapi: v35.10.0
+                buildCommit: 5aac2e073
+                buildTime: '2026-06-01T14:27:01Z'
+                fuseki: 6.1.0-0
+                scala: 3.3.7
+                sipi: v4.1.1
+                name: version
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OntologyConstraintException'
+                - $ref: '#/components/schemas/DuplicateValueException'
+                - $ref: '#/components/schemas/ValidationException'
+                - $ref: '#/components/schemas/BadRequestException'
+                - $ref: '#/components/schemas/GravsearchException'
+                - $ref: '#/components/schemas/EditConflictException'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadCredentialsException'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundException'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /health:
+    get:
+      tags:
+      - Management API
+      description: Get health status. Publicly accessible.
+      operationId: getHealth
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OntologyConstraintException'
+                - $ref: '#/components/schemas/DuplicateValueException'
+                - $ref: '#/components/schemas/ValidationException'
+                - $ref: '#/components/schemas/BadRequestException'
+                - $ref: '#/components/schemas/GravsearchException'
+                - $ref: '#/components/schemas/EditConflictException'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadCredentialsException'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundException'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /start-compaction:
+    post:
+      tags:
+      - Management API
+      description: Start triplestore compaction. Requires SystemAdmin permissions.
+      operationId: postStart-compaction
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OntologyConstraintException'
+                - $ref: '#/components/schemas/DuplicateValueException'
+                - $ref: '#/components/schemas/ValidationException'
+                - $ref: '#/components/schemas/BadRequestException'
+                - $ref: '#/components/schemas/GravsearchException'
+                - $ref: '#/components/schemas/EditConflictException'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadCredentialsException'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundException'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - httpAuth: []
+      - httpAuth1: []
+components:
+  schemas:
+    EditConflictException:
+      title: EditConflictException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    ValidationException:
+      title: ValidationException
+      type: object
+      required:
+      - msg
+      properties:
+        msg:
+          type: string
+    NotFoundException:
+      title: NotFoundException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    VersionResponse:
+      title: VersionResponse
+      type: object
+      required:
+      - webapi
+      - buildCommit
+      - buildTime
+      - fuseki
+      - scala
+      - sipi
+      - name
+      properties:
+        webapi:
+          type: string
+        buildCommit:
+          type: string
+        buildTime:
+          type: string
+        fuseki:
+          type: string
+        scala:
+          type: string
+        sipi:
+          type: string
+        name:
+          type: string
+    HealthResponse:
+      title: HealthResponse
+      type: object
+      required:
+      - name
+      - severity
+      - status
+      - message
+      properties:
+        name:
+          type: string
+        severity:
+          type: string
+        status:
+          type: boolean
+        message:
+          type: string
+    OntologyConstraintException:
+      title: OntologyConstraintException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    ForbiddenException:
+      title: ForbiddenException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    BadRequestException:
+      title: BadRequestException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    BadCredentialsException:
+      title: BadCredentialsException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    GravsearchException:
+      title: GravsearchException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    DuplicateValueException:
+      title: DuplicateValueException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+  securitySchemes:
+    httpAuth:
+      type: http
+      scheme: bearer
+    httpAuth1:
+      type: http
+      scheme: basic

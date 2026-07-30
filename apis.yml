@@ -16,9 +16,22 @@ description: >-
   Source code is published across multiple verified GitHub organizations including
   IT Services (ITS-Unibas) and DaSCH (dasch-swiss).
 type: Index
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-basel.png
 url: https://raw.githubusercontent.com/api-evangelist/university-of-basel/refs/heads/main/apis.yml
 tags:
   - Education
@@ -31,63 +44,130 @@ tags:
   - Library
   - Digital Humanities
 apis:
-  - aid: university-of-basel:edoc-rest
-    name: edoc DSpace REST API
-    description: >-
-      Public DSpace REST API for "edoc", the open-access institutional repository
-      of the University of Basel, running DSpace-CRIS 7.6.2. The API root reports
-      the repository name and server endpoints and exposes items, collections,
-      communities, and metadata. Verified live (HTTP 200).
-    humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
-    baseURL: https://edoc.unibas.ch/server/api
-    tags: [ Institutional Repository, Open Access, DSpace, Research Data, REST ]
-    properties:
-      - type: Documentation
-        url: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
-  - aid: university-of-basel:edoc-oai
-    name: edoc OAI-PMH
-    description: >-
-      OAI-PMH 2.0 metadata harvesting interface for the University of Basel edoc
-      repository. The Identify verb reports repositoryName "edoc: Open Access
-      Repository University of Basel" and adminEmail openaccess@unibas.ch.
-      Includes an OpenAIRE-CRIS metadata stream. Verified live (HTTP 200).
-    humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
-    baseURL: https://edoc.unibas.ch/server/oai/request
-    tags: [ OAI-PMH, Metadata, Open Access, Institutional Repository, Harvesting ]
-    properties:
-      - type: Documentation
-        url: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
-  - aid: university-of-basel:dsp-api
-    name: DaSCH DSP-API
-    description: >-
-      The DaSCH Service Platform API (DSP-API, formerly Knora), an open-source
-      HTTP API for long-term preservation, querying, annotation and linking of
-      humanities research data as RDF graphs, with the Gravsearch search language.
-      Developed and operated by the Swiss National Data and Service Center for
-      the Humanities (DaSCH) at the University of Basel. Public documentation,
-      open-source code on GitHub, and a live service endpoint (HTTP 405 on GET to
-      the v2 ontologies path confirms the endpoint exists).
-    humanURL: https://docs.dasch.swiss/latest/DSP-API/
-    baseURL: https://api.dasch.swiss
-    tags: [ Research Data, Digital Humanities, RDF, Linked Data, Open Source ]
-    properties:
-      - type: Documentation
-        url: https://docs.dasch.swiss/latest/DSP-API/
-      - type: GitHub
-        url: https://github.com/dasch-swiss/dsp-api
-  - aid: university-of-basel:swisscovery-sru
-    name: swisscovery (SLSP Alma) SRU
-    description: >-
-      Standards-based SRU (Search/Retrieve via URL) interface to the SLSP
-      swisscovery / Alma discovery system for the University of Basel institution
-      zone (41SLSP_UBS). Allows programmatic search and retrieval of library
-      catalogue records for the Basel library network. Verified live (HTTP 200).
-    humanURL: https://ub.unibas.ch/en/basel-library-network/
-    baseURL: https://swisscovery.slsp.ch/view/sru/41SLSP_UBS
-    tags: [ Library, Catalogue, SRU, Discovery, Alma ]
-    properties:
-      - type: Documentation
-        url: https://ub.unibas.ch/en/search-find/library-catalogues/swisscovery-registration-and-help/
+- aid: university-of-basel:edoc-rest
+  name: edoc DSpace REST API
+  description: >-
+    Public DSpace REST API for "edoc", the open-access institutional repository of the University of Basel,
+    running DSpace-CRIS 7.6.2. The API root reports the repository name and server endpoints and exposes
+    items, collections, communities, and metadata. Verified live (HTTP 200).
+  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+  baseURL: https://edoc.unibas.ch/server/api
+  tags:
+  - Institutional Repository
+  - Open Access
+  - DSpace
+  - Research Data
+  - REST
+  properties:
+  - type: Documentation
+    url: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+- aid: university-of-basel:edoc-oai
+  name: edoc OAI-PMH
+  description: >-
+    OAI-PMH 2.0 metadata harvesting interface for the University of Basel edoc repository. The Identify
+    verb reports repositoryName "edoc: Open Access Repository University of Basel" and adminEmail openaccess@unibas.ch.
+    Includes an OpenAIRE-CRIS metadata stream. Verified live (HTTP 200).
+  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+  baseURL: https://edoc.unibas.ch/server/oai/request
+  tags:
+  - OAI-PMH
+  - Metadata
+  - Open Access
+  - Institutional Repository
+  - Harvesting
+  properties:
+  - type: Documentation
+    url: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+- aid: university-of-basel:dsp-api
+  name: DaSCH DSP-API
+  description: >-
+    The DaSCH Service Platform API (DSP-API, formerly Knora), an open-source HTTP API for long-term preservation,
+    querying, annotation and linking of humanities research data as RDF graphs, with the Gravsearch search
+    language. Developed and operated by the Swiss National Data and Service Center for the Humanities
+    (DaSCH) at the University of Basel. Public documentation, open-source code on GitHub, and a live service
+    endpoint (HTTP 405 on GET to the v2 ontologies path confirms the endpoint exists).
+  humanURL: https://docs.dasch.swiss/latest/DSP-API/
+  baseURL: https://api.dasch.swiss
+  tags:
+  - Research Data
+  - Digital Humanities
+  - RDF
+  - Linked Data
+  - Open Source
+  properties:
+  - type: Documentation
+    url: https://docs.dasch.swiss/latest/DSP-API/
+  - type: GitHub
+    url: https://github.com/dasch-swiss/dsp-api
+- aid: university-of-basel:swisscovery-sru
+  name: swisscovery (SLSP Alma) SRU
+  description: >-
+    Standards-based SRU (Search/Retrieve via URL) interface to the SLSP swisscovery / Alma discovery system
+    for the University of Basel institution zone (41SLSP_UBS). Allows programmatic search and retrieval
+    of library catalogue records for the Basel library network. Verified live (HTTP 200).
+  humanURL: https://ub.unibas.ch/en/basel-library-network/
+  baseURL: https://swisscovery.slsp.ch/view/sru/41SLSP_UBS
+  tags:
+  - Library
+  - Catalogue
+  - SRU
+  - Discovery
+  - Alma
+  properties:
+  - type: Documentation
+    url: >-
+      https://ub.unibas.ch/en/search-find/library-catalogues/swisscovery-registration-and-help/
+- aid: university-of-basel:university-of-basel-admin-api-api
+  name: University of Basel Admin API API
+  description: The Admin API API from University of Basel — 66 operation(s) for admin api.
+  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+  baseURL: https://edoc.unibas.ch/server/api
+  tags:
+  - Admin API
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-basel-admin-api-api-openapi.yml
+- aid: university-of-basel:university-of-basel-api-v2-api
+  name: University of Basel API v2 API
+  description: The API v2 API from University of Basel — 56 operation(s) for api v2.
+  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+  baseURL: https://edoc.unibas.ch/server/api
+  tags:
+  - API v2
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-basel-api-v2-api-openapi.yml
+- aid: university-of-basel:university-of-basel-api-v3-api
+  name: University of Basel API v3 API
+  description: The API v3 API from University of Basel — 10 operation(s) for api v3.
+  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+  baseURL: https://edoc.unibas.ch/server/api
+  tags:
+  - API v3
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-basel-api-v3-api-openapi.yml
+- aid: university-of-basel:university-of-basel-management-api-api
+  name: University of Basel Management API API
+  description: The Management API API from University of Basel — 3 operation(s) for management api.
+  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+  baseURL: https://edoc.unibas.ch/server/api
+  tags:
+  - Management API
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-basel-management-api-api-openapi.yml
+- aid: university-of-basel:university-of-basel-ontology-mappings-api
+  name: University of Basel Ontology Mappings API
+  description: >-
+    The Ontology Mappings API from University of Basel — 2 operation(s) for ontology mappings.
+  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+  baseURL: https://edoc.unibas.ch/server/api
+  tags:
+  - Ontology Mappings
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-basel-ontology-mappings-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/university-of-basel-agentic-access.yml

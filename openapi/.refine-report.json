@@ -1,0 +1,22 @@
+{
+  "provider": "university-of-basel",
+  "sources": [
+    "university-of-basel-admin-api-api-openapi.yml",
+    "university-of-basel-api-v2-api-openapi.yml",
+    "university-of-basel-api-v3-api-openapi.yml",
+    "university-of-basel-management-api-api-openapi.yml",
+    "university-of-basel-ontology-mappings-api-openapi.yml"
+  ],
+  "outputs": [
+    "university-of-basel-admin-api-api-openapi.yml",
+    "university-of-basel-api-v2-api-openapi.yml",
+    "university-of-basel-api-v3-api-openapi.yml",
+    "university-of-basel-management-api-api-openapi.yml",
+    "university-of-basel-ontology-mappings-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

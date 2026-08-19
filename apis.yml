@@ -16,6 +16,7 @@ description: >-
   Source code is published across multiple verified GitHub organizations including
   IT Services (ITS-Unibas) and DaSCH (dasch-swiss).
 type: Index
+specificationVersion: '0.23'
 accessModel:
   pricing: free
   onboarding: self-serve

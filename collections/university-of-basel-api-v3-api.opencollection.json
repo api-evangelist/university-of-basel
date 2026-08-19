@@ -1,0 +1,387 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "DSP Admin API API v3 API",
+    "version": "v35.10.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "API v3",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getV3ProjectsProjectiriResourcesperontology",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dasch.swiss:443/v3/projects/:projectIri/resourcesPerOntology",
+            "params": [
+              {
+                "name": "projectIri",
+                "value": "http://rdfh.ch/projects/0001",
+                "type": "path",
+                "description": "The IRI of a project. Must be URL-encoded."
+              }
+            ]
+          },
+          "docs": "This endpoint returns all ontologies in a project along with their resource classes and the count of resource instances for each class. Note that the `itemCount` includes only non-deleted resources and it includes resources even if the current user may not be permitted to see some of them, for performance reasons."
+        },
+        {
+          "info": {
+            "name": "postV3ExportResources",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dasch.swiss:443/v3/export/resources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export resources to CSV format. Publicly accessible. Requires appropriate object access permissions on the resources."
+        },
+        {
+          "info": {
+            "name": "postV3ExportResourcesOai",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dasch.swiss:443/v3/export/resources/oai",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export resources to CSV format. Publicly accessible. Requires appropriate object access permissions on the resources."
+        },
+        {
+          "info": {
+            "name": "putV3OntologiesOntologyiriClassesClassiriMapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.dasch.swiss:443/v3/ontologies/:ontologyIri/classes/:classIri/mapping",
+            "params": [
+              {
+                "name": "ontologyIri",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "classIri",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Adds rdfs:subClassOf triples from the given class to the listed external IRIs. Existing external super-class mappings are not removed - use DELETE first to replace them."
+        },
+        {
+          "info": {
+            "name": "deleteV3OntologiesOntologyiriClassesClassiriMapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dasch.swiss:443/v3/ontologies/:ontologyIri/classes/:classIri/mapping",
+            "params": [
+              {
+                "name": "ontologyIri",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "classIri",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "mapping",
+                "value": "",
+                "type": "query",
+                "description": "The external IRI to remove from rdfs:subClassOf. Must be URL-encoded."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Removes a single rdfs:subClassOf triple from the given class to the specified external IRI. Idempotent: deleting an absent triple is a no-op."
+        },
+        {
+          "info": {
+            "name": "putV3OntologiesOntologyiriPropertiesPropertyiriMapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.dasch.swiss:443/v3/ontologies/:ontologyIri/properties/:propertyIri/mapping",
+            "params": [
+              {
+                "name": "ontologyIri",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "propertyIri",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Adds rdfs:subPropertyOf triples from the given property to the listed external IRIs. Existing external super-property mappings are not removed - use DELETE first to replace them."
+        },
+        {
+          "info": {
+            "name": "deleteV3OntologiesOntologyiriPropertiesPropertyiriMapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dasch.swiss:443/v3/ontologies/:ontologyIri/properties/:propertyIri/mapping",
+            "params": [
+              {
+                "name": "ontologyIri",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "propertyIri",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "mapping",
+                "value": "",
+                "type": "query",
+                "description": "The external IRI to remove from rdfs:subPropertyOf. Must be URL-encoded."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Removes a single rdfs:subPropertyOf triple from the given property to the specified external IRI. Idempotent: deleting an absent triple is a no-op."
+        },
+        {
+          "info": {
+            "name": "postV3ProjectsProjectiriExports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dasch.swiss:443/v3/projects/:projectIri/exports",
+            "params": [
+              {
+                "name": "projectIri",
+                "value": "http://rdfh.ch/projects/0001",
+                "type": "path",
+                "description": "The IRI of a project. Must be URL-encoded."
+              },
+              {
+                "name": "skipAssets",
+                "value": "",
+                "type": "query",
+                "description": "When true, binary assets are not included in the export."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiates an export of the project. The export will be performed asynchronously, and the response will contain an export ID that can be used to check the status of the export. An export can only be triggered when no other export exists."
+        },
+        {
+          "info": {
+            "name": "getV3ProjectsProjectiriExportsExportid",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dasch.swiss:443/v3/projects/:projectIri/exports/:exportId",
+            "params": [
+              {
+                "name": "projectIri",
+                "value": "http://rdfh.ch/projects/0001",
+                "type": "path",
+                "description": "The IRI of a project. Must be URL-encoded."
+              },
+              {
+                "name": "exportId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Checks the status of an export. The response will indicate whether the export is still in progress, has completed successfully, or has failed."
+        },
+        {
+          "info": {
+            "name": "deleteV3ProjectsProjectiriExportsExportid",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dasch.swiss:443/v3/projects/:projectIri/exports/:exportId",
+            "params": [
+              {
+                "name": "projectIri",
+                "value": "http://rdfh.ch/projects/0001",
+                "type": "path",
+                "description": "The IRI of a project. Must be URL-encoded."
+              },
+              {
+                "name": "exportId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes an export irrevocably. Only exports in state failed or completed can be deleted."
+        },
+        {
+          "info": {
+            "name": "getV3ProjectsProjectiriExportsExportidDownload",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dasch.swiss:443/v3/projects/:projectIri/exports/:exportId/download",
+            "params": [
+              {
+                "name": "projectIri",
+                "value": "http://rdfh.ch/projects/0001",
+                "type": "path",
+                "description": "The IRI of a project. Must be URL-encoded."
+              },
+              {
+                "name": "exportId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download an export. An export can only be downloaded when it has completed successfully. If it is still in progress or has failed, the response will be 409 Conflict."
+        },
+        {
+          "info": {
+            "name": "postV3ProjectsProjectiriImports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.dasch.swiss:443/v3/projects/:projectIri/imports",
+            "params": [
+              {
+                "name": "projectIri",
+                "value": "http://rdfh.ch/projects/0001",
+                "type": "path",
+                "description": "The IRI of a project. Must be URL-encoded."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiates an import of a project from an export zip file. The import will be performed asynchronously, and the response will indicate that the import has been accepted. An import can only be triggered when no other import exists."
+        },
+        {
+          "info": {
+            "name": "getV3ProjectsProjectiriImportsImportid",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.dasch.swiss:443/v3/projects/:projectIri/imports/:importId",
+            "params": [
+              {
+                "name": "projectIri",
+                "value": "http://rdfh.ch/projects/0001",
+                "type": "path",
+                "description": "The IRI of a project. Must be URL-encoded."
+              },
+              {
+                "name": "importId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Checks the status of an import. The response will indicate whether the import is still in progress, has completed successfully, or has failed."
+        },
+        {
+          "info": {
+            "name": "deleteV3ProjectsProjectiriImportsImportid",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dasch.swiss:443/v3/projects/:projectIri/imports/:importId",
+            "params": [
+              {
+                "name": "projectIri",
+                "value": "http://rdfh.ch/projects/0001",
+                "type": "path",
+                "description": "The IRI of a project. Must be URL-encoded."
+              },
+              {
+                "name": "importId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Deletes an import. Only imports in state failed or completed can be deleted. If it is still in progress, the response will be 409 Conflict."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

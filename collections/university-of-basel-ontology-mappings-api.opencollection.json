@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "DSP Admin API Ontology Mappings API",
+    "version": "v35.10.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ontology Mappings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "putV3OntologiesOntologyiriClassesClassiriMapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.dasch.swiss:443/v3/ontologies/:ontologyIri/classes/:classIri/mapping",
+            "params": [
+              {
+                "name": "ontologyIri",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "classIri",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Adds rdfs:subClassOf triples from the given class to the listed external IRIs. Existing external super-class mappings are not removed - use DELETE first to replace them."
+        },
+        {
+          "info": {
+            "name": "deleteV3OntologiesOntologyiriClassesClassiriMapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dasch.swiss:443/v3/ontologies/:ontologyIri/classes/:classIri/mapping",
+            "params": [
+              {
+                "name": "ontologyIri",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "classIri",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "mapping",
+                "value": "",
+                "type": "query",
+                "description": "The external IRI to remove from rdfs:subClassOf. Must be URL-encoded."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Removes a single rdfs:subClassOf triple from the given class to the specified external IRI. Idempotent: deleting an absent triple is a no-op."
+        },
+        {
+          "info": {
+            "name": "putV3OntologiesOntologyiriPropertiesPropertyiriMapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.dasch.swiss:443/v3/ontologies/:ontologyIri/properties/:propertyIri/mapping",
+            "params": [
+              {
+                "name": "ontologyIri",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "propertyIri",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Adds rdfs:subPropertyOf triples from the given property to the listed external IRIs. Existing external super-property mappings are not removed - use DELETE first to replace them."
+        },
+        {
+          "info": {
+            "name": "deleteV3OntologiesOntologyiriPropertiesPropertyiriMapping",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.dasch.swiss:443/v3/ontologies/:ontologyIri/properties/:propertyIri/mapping",
+            "params": [
+              {
+                "name": "ontologyIri",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "propertyIri",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "mapping",
+                "value": "",
+                "type": "query",
+                "description": "The external IRI to remove from rdfs:subPropertyOf. Must be URL-encoded."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Removes a single rdfs:subPropertyOf triple from the given property to the specified external IRI. Idempotent: deleting an absent triple is a no-op."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

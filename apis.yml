@@ -94,6 +94,12 @@ apis:
   - Digital Humanities
   - RDF
   - Linked Data
+  - Open-Source
+  tags_raw:
+  - Research Data
+  - Digital Humanities
+  - RDF
+  - Linked Data
   - Open Source
   properties:
   - type: Documentation

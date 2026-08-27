@@ -78,41 +78,6 @@ apis:
     url: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
   - type: APIReference
     url: https://edoc.unibas.ch/server/oai/request?verb=Identify
-- aid: university-of-basel:dsp-api
-  name: DaSCH DSP-API
-  description: >-
-    The DaSCH Service Platform API (DSP-API, formerly Knora), an open-source HTTP API for long-term preservation,
-    querying, annotation and linking of humanities research data as RDF graphs, with the Gravsearch search
-    language. Developed and operated by the Swiss National Data and Service Center for the Humanities
-    (DaSCH) at the University of Basel. Public documentation, open-source code on GitHub, and a live service
-    endpoint (HTTP 405 on GET to the v2 ontologies path confirms the endpoint exists).
-  humanURL: https://docs.dasch.swiss/latest/DSP-API/
-  baseURL: https://api.dasch.swiss
-  tags:
-  - Research Data
-  - Digital Humanities
-  - RDF
-  - Linked Data
-  - Open-Source
-  tags_raw:
-  - Research Data
-  - Digital Humanities
-  - RDF
-  - Linked Data
-  - Open Source
-  properties:
-  - type: Documentation
-    url: https://docs.dasch.swiss/latest/DSP-API/
-  - type: GitHub
-    url: https://github.com/dasch-swiss/dsp-api
-  - type: OpenAPI
-    url: openapi/_original/university-of-basel-dsp-api.yaml
-  - type: APIReference
-    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/openapi/
-  - type: StatusPage
-    url: https://status.dasch.swiss/
-  - type: ChangeLog
-    url: https://github.com/dasch-swiss/dsp-api/releases
 - aid: university-of-basel:swisscovery-sru
   name: swisscovery (SLSP Alma) SRU
   description: >-
@@ -129,7 +94,8 @@ apis:
   - Alma
   properties:
   - type: Documentation
-    url: https://ub.unibas.ch/en/search-find/library-catalogues/swisscovery-registration-and-help/
+    url: >-
+      https://ub.unibas.ch/en/search-find/library-catalogues/swisscovery-registration-and-help/
 - aid: university-of-basel:university-of-basel-admin-api-api
   name: DaSCH DSP-API — Admin API
   description: >-

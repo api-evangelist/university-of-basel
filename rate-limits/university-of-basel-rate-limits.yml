@@ -3,33 +3,94 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: University of Basel
 providerId: university-of-basel
+generated: '2026-08-27'
+method: probed
+source: >-
+  Live header inspection of every published surface on 2026-08-27, plus a full-text search of the
+  DSP documentation (https://docs.dasch.swiss/, mkdocs search index, 4,075 documents) and the
+  DSP-API OpenAPI 3.1 contract.
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-27'
 reconciled: false
 tags:
 - Education
 - Higher Education
 - University
+- Research Data
 - Rate Limiting
+limit_count: 0
 description: >-
-  University of Basel does not publish a unified public rate-limit table across its APIs. Open
-  metadata and harvesting endpoints (OAI-PMH, IIIF, library) may throttle large-scale
-  or automated harvesting; clients should harvest politely, honor Retry-After, and
-  contact the relevant service for bulk access.
-notes: Confirm per-service limits with each API's documentation; harvest responsibly.
-sources:
-- https://raw.githubusercontent.com/api-evangelist/university-of-basel/refs/heads/main/apis.yml
+  No rate limit is published, declared or signalled anywhere in the University of Basel API estate.
+  This is a measured zero, not an unchecked one: the contract declares no RateLimit or Retry-After
+  header, no 429 response is defined on any of the 180 DSP-API operations, and live responses from
+  all three API hosts carry no rate-limit header of any kind. An agent therefore has no runtime
+  signal telling it how hard it may push, and no documented number telling it in advance.
+notes: >-
+  The absence matters most on the harvesting surfaces. OAI-PMH and SRU exist to be walked in bulk,
+  and both are served here without a stated ceiling or a documented backoff contract — so a client
+  must self-throttle on courtesy alone. The one adjacent runtime signal that DOES exist is a 503
+  SearchTimeoutException on the two full-text search operations, which is a per-request budget
+  rather than a rate limit.
+probes:
+- url: https://api.dasch.swiss/version
+  status: 200
+  rate_limit_headers: []
+- url: https://edoc.unibas.ch/server/api
+  status: 200
+  rate_limit_headers: []
+  observed_headers:
+  - 'strict-transport-security: max-age=31536000 ; includeSubDomains'
+  - 'cache-control: no-cache, no-store, max-age=0, must-revalidate'
+- url: https://edoc.unibas.ch/server/oai/request?verb=Identify
+  status: 200
+  rate_limit_headers: []
+- url: https://swisscovery.slsp.ch/view/sru/41SLSP_UBS?version=1.2&operation=explain
+  status: 200
+  rate_limit_headers: []
 responseCodes:
-  throttled: 429
-limits:
-- name: Default
-  scope: client
-  metric: requests-per-minute
-  limit: see service documentation
-  notes: No published global limit; large harvests may be rate-limited.
+  throttled: null
+  note: No 429 response is declared on any operation in the DSP-API contract.
+headers:
+  published: []
+  checked:
+  - RateLimit-Limit
+  - RateLimit-Remaining
+  - RateLimit-Reset
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  - Retry-After
+limits: []
+related_budgets:
+- name: Search timeout
+  scope: per-request
+  surface: DSP-API v2
+  operations:
+  - getV2SearchSearchterm
+  - getV2SearchCountSearchterm
+  status: 503
+  schema: SearchTimeoutException
+  note: >-
+    A full-text search that exceeds the server's time budget returns 503, not 429. Treat it as a
+    signal to narrow the query, not to back off globally.
+- name: Local stack upload ceiling
+  scope: per-file
+  surface: dsp-tools start-stack (local only)
+  limit: 2000 MB default, 100000 MB maximum
+  source: https://docs.dasch.swiss/latest/DSP-TOOLS/local-stack/#start-stack
 policies:
-- name: Backoff Strategy
-  description: Exponential backoff with jitter; honor Retry-After; harvest during off-peak hours.
+- name: Recommended client behaviour
+  description: >-
+    Because nothing is published, harvest politely: serialise OAI-PMH and SRU walks, respect
+    resumptionToken pacing, prefer the count endpoints before materialising large result sets, and
+    contact info@dasch.swiss or openaccess@unibas.ch before a bulk pull. This is our recommendation,
+    not a provider-stated policy.
+  provider_stated: false
+gaps:
+- No published rate-limit numbers for any surface.
+- No RateLimit-* or Retry-After headers on any live response.
+- No 429 defined in the contract.
+- No documented bulk-harvesting or fair-use policy for OAI-PMH or SRU.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

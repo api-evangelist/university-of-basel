@@ -1,19 +1,15 @@
----
 aid: university-of-basel
 name: University of Basel
 description: >-
-  The University of Basel (Universität Basel) is the oldest university in
-  Switzerland, founded in 1460, and is ranked #85 in the QS World University
-  Rankings 2025. Its public, machine-readable developer footprint is concentrated
-  in scholarly and research infrastructure rather than a single central developer
-  portal. The university operates "edoc", its open-access institutional repository
-  running DSpace-CRIS 7.6.2, which exposes a public DSpace REST API and an
-  OAI-PMH 2.0 metadata interface. The Swiss National Data and Service Center for
-  the Humanities (DaSCH), hosted at the University of Basel, develops and operates
-  the DSP-API, an open-source RDF-based humanities research data API. Library
-  discovery is delivered through the SLSP swisscovery (Alma/Primo) platform, which
-  offers a standards-based SRU search interface for the Basel institution zone.
-  Source code is published across multiple verified GitHub organizations including
+  The University of Basel (Universität Basel) is the oldest university in Switzerland, founded in 1460,
+  and is ranked #85 in the QS World University Rankings 2025. Its public, machine-readable developer footprint
+  is concentrated in scholarly and research infrastructure rather than a single central developer portal.
+  The university operates "edoc", its open-access institutional repository running DSpace-CRIS 7.6.2,
+  which exposes a public DSpace REST API and an OAI-PMH 2.0 metadata interface. The Swiss National Data
+  and Service Center for the Humanities (DaSCH), hosted at the University of Basel, develops and operates
+  the DSP-API, an open-source RDF-based humanities research data API. Library discovery is delivered through
+  the SLSP swisscovery (Alma/Primo) platform, which offers a standards-based SRU search interface for
+  the Basel institution zone. Source code is published across multiple verified GitHub organizations including
   IT Services (ITS-Unibas) and DaSCH (dasch-swiss).
 type: Index
 specificationVersion: '0.23'
@@ -33,17 +29,18 @@ accessModel:
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-basel.png
-url: https://raw.githubusercontent.com/api-evangelist/university-of-basel/refs/heads/main/apis.yml
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/university-of-basel/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
-  - University
-  - Switzerland
-  - Research Data
-  - Open Access
-  - Institutional Repository
-  - Library
-  - Digital Humanities
+- Education
+- Higher Education
+- University
+- Switzerland
+- Research Data
+- Open Access
+- Institutional Repository
+- Library
+- Digital Humanities
 apis:
 - aid: university-of-basel:edoc-rest
   name: edoc DSpace REST API
@@ -79,6 +76,8 @@ apis:
   properties:
   - type: Documentation
     url: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+  - type: APIReference
+    url: https://edoc.unibas.ch/server/oai/request?verb=Identify
 - aid: university-of-basel:dsp-api
   name: DaSCH DSP-API
   description: >-
@@ -106,6 +105,14 @@ apis:
     url: https://docs.dasch.swiss/latest/DSP-API/
   - type: GitHub
     url: https://github.com/dasch-swiss/dsp-api
+  - type: OpenAPI
+    url: openapi/_original/university-of-basel-dsp-api.yaml
+  - type: APIReference
+    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/openapi/
+  - type: StatusPage
+    url: https://status.dasch.swiss/
+  - type: ChangeLog
+    url: https://github.com/dasch-swiss/dsp-api/releases
 - aid: university-of-basel:swisscovery-sru
   name: swisscovery (SLSP Alma) SRU
   description: >-
@@ -122,84 +129,187 @@ apis:
   - Alma
   properties:
   - type: Documentation
-    url: >-
-      https://ub.unibas.ch/en/search-find/library-catalogues/swisscovery-registration-and-help/
+    url: https://ub.unibas.ch/en/search-find/library-catalogues/swisscovery-registration-and-help/
 - aid: university-of-basel:university-of-basel-admin-api-api
-  name: University of Basel Admin API API
-  description: The Admin API API from University of Basel — 66 operation(s) for admin api.
-  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
-  baseURL: https://edoc.unibas.ch/server/api
+  name: DaSCH DSP-API — Admin API
+  description: >-
+    The DSP-API Admin API: projects, users, groups, lists, permissions and per-project legal information.
+    66 operations, split by tag from the first-party DSP-API OpenAPI 3.1 contract published at https://api.dasch.swiss/api/docs/docs.yaml.
+    Served at api.dasch.swiss, the host named in the contract’s own servers[] block.
+  humanURL: https://docs.dasch.swiss/latest/DSP-API/
+  baseURL: https://api.dasch.swiss
   tags:
   - Admin API
   properties:
   - type: OpenAPI
     url: openapi/university-of-basel-admin-api-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-admin/overview/
+  - type: Overlay
+    url: overlays/university-of-basel-admin-api-overlay.yaml
 - aid: university-of-basel:university-of-basel-api-v2-api
-  name: University of Basel API v2 API
-  description: The API v2 API from University of Basel — 56 operation(s) for api v2.
-  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
-  baseURL: https://edoc.unibas.ch/server/api
+  name: DaSCH DSP-API — API v2
+  description: >-
+    The DSP-API v2 content surface: reading, searching, creating and editing RDF resources and values,
+    the Gravsearch graph query language, ontology management, standoff text markup, TEI rendering, IIIF
+    manifests and ARK permalinks. 56 operations, split by tag from the first-party DSP-API OpenAPI 3.1
+    contract.
+  humanURL: https://docs.dasch.swiss/latest/DSP-API/
+  baseURL: https://api.dasch.swiss
   tags:
   - API v2
   properties:
   - type: OpenAPI
     url: openapi/university-of-basel-api-v2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/introduction/
+  - type: Overlay
+    url: overlays/university-of-basel-api-v2-overlay.yaml
 - aid: university-of-basel:university-of-basel-api-v3-api
-  name: University of Basel API v3 API
-  description: The API v3 API from University of Basel — 10 operation(s) for api v3.
-  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
-  baseURL: https://edoc.unibas.ch/server/api
+  name: DaSCH DSP-API — API v3
+  description: >-
+    The emerging DSP-API v3 surface of client-optimized endpoints (ADR-0009): project export, import and
+    data-graph migration. 10 operations. Carries the estate’s only machine-readable error-code enum (V3ErrorCode).
+  humanURL: https://docs.dasch.swiss/latest/DSP-API/
+  baseURL: https://api.dasch.swiss
   tags:
   - API v3
   properties:
   - type: OpenAPI
     url: openapi/university-of-basel-api-v3-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v3/project-migration/
+  - type: Overlay
+    url: overlays/university-of-basel-api-v3-overlay.yaml
 - aid: university-of-basel:university-of-basel-management-api-api
-  name: University of Basel Management API API
-  description: The Management API API from University of Basel — 3 operation(s) for management api.
-  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
-  baseURL: https://edoc.unibas.ch/server/api
+  name: DaSCH DSP-API — Management API
+  description: >-
+    The DSP-API instrumentation surface: GET /health, GET /version and the Prometheus metrics endpoint.
+    3 operations, all anonymous. GET /version returns the running webapi, Fuseki, Scala and Sipi versions
+    — a machine-readable runtime version signal.
+  humanURL: https://docs.dasch.swiss/latest/DSP-API/
+  baseURL: https://api.dasch.swiss
   tags:
   - Management API
   properties:
   - type: OpenAPI
     url: openapi/university-of-basel-management-api-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/instrumentation/introduction/
+  - type: Overlay
+    url: overlays/university-of-basel-management-api-overlay.yaml
 - aid: university-of-basel:university-of-basel-ontology-mappings-api
-  name: University of Basel Ontology Mappings API
+  name: DaSCH DSP-API — Ontology Mappings
   description: >-
-    The Ontology Mappings API from University of Basel — 2 operation(s) for ontology mappings.
-  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
-  baseURL: https://edoc.unibas.ch/server/api
+    DSP-API v3 ontology mapping operations: add or remove a single rdfs:subClassOf or rdfs:subPropertyOf
+    triple linking a project class or property to an external IRI. 2 operations, both documented as idempotent.
+  humanURL: https://docs.dasch.swiss/latest/DSP-API/
+  baseURL: https://api.dasch.swiss
   tags:
   - Ontology Mappings
   properties:
   - type: OpenAPI
     url: openapi/university-of-basel-ontology-mappings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v3/project-migration/
+  - type: Overlay
+    url: overlays/university-of-basel-ontology-mappings-overlay.yaml
 common:
-  - type: AgenticAccess
-    url: agentic-access/university-of-basel-agentic-access.yml
-  - type: DomainSecurity
-    url: security/university-of-basel-domain-security.yml
-  - type: Authentication
-    url: authentication/university-of-basel-authentication.yml
-  - type: Website
-    url: https://www.unibas.ch/en
-  - type: DeveloperPortal
-    url: https://docs.dasch.swiss/latest/DSP-API/
-  - type: GitHub
-    url: https://github.com/ITS-Unibas
-  - type: SourceCode
-    url: https://github.com/dasch-swiss
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/university-of-basel/
-  - type: Plans
-    url: plans/university-of-basel-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/university-of-basel-rate-limits.yml
-  - type: FinOps
-    url: finops/university-of-basel-finops.yml
-  - type: Review
-    url: review.yml
+- type: AgenticAccess
+  url: agentic-access/university-of-basel-agentic-access.yml
+- type: DomainSecurity
+  url: security/university-of-basel-domain-security.yml
+- type: Authentication
+  url: authentication/university-of-basel-authentication.yml
+- type: Website
+  url: https://www.unibas.ch/en
+- type: DeveloperPortal
+  url: https://docs.dasch.swiss/latest/DSP-API/
+- type: GitHub
+  url: https://github.com/ITS-Unibas
+- type: SourceCode
+  url: https://github.com/dasch-swiss
+- type: LinkedIn
+  url: https://www.linkedin.com/school/university-of-basel/
+- type: Plans
+  url: plans/university-of-basel-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/university-of-basel-rate-limits.yml
+- type: FinOps
+  url: finops/university-of-basel-finops.yml
+- type: Review
+  url: review.yml
+- type: Packages
+  url: packages/university-of-basel-packages.yml
+- type: SDKs
+  url: packages/university-of-basel-packages.yml
+- type: CLI
+  url: cli/university-of-basel-cli.yml
+- type: Conformance
+  url: conformance/university-of-basel-conformance.yml
+- type: ErrorCatalog
+  url: errors/university-of-basel-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/university-of-basel-lifecycle.yml
+- type: Conventions
+  url: conventions/university-of-basel-conventions.yml
+- type: Sandbox
+  url: sandbox/university-of-basel-sandbox.yml
+- type: ChangeLog
+  url: changelog/university-of-basel-changelog.yml
+- type: DataModel
+  url: data-model/university-of-basel-data-model.yml
+- type: LLMsTxt
+  url: llms/university-of-basel-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Security
+  url: security/university-of-basel-vulnerability-disclosure.yml
+- type: VulnerabilityDisclosure
+  url: security/university-of-basel-vulnerability-disclosure.yml
+- type: Vocabulary
+  url: vocabulary/university-of-basel-vocabulary.yml
+- type: JSONSchema
+  url: json-schema/university-of-basel-project-schema.json
+- type: JSONStructure
+  url: json-structure/university-of-basel-project-structure.json
+- type: JSONLDContext
+  url: json-ld/university-of-basel-context.jsonld
+- type: SpectralRules
+  url: rules/university-of-basel-rules.yml
+- type: Examples
+  url: examples/university-of-basel-getProjects-example.json
+- type: StatusPage
+  url: https://status.dasch.swiss/
+- type: APIReference
+  url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/openapi/
+- type: Documentation
+  url: https://docs.dasch.swiss/latest/DSP-API/
+- type: GettingStarted
+  url: https://docs.dasch.swiss/latest/DSP-API/01-introduction/what-is-dsp/
+- type: Support
+  url: https://www.dasch.swiss/contact
+- type: Blog
+  url: https://www.dasch.swiss/news
+- type: GitHubOrganization
+  url: https://github.com/dasch-swiss
+- type: Pricing
+  url: https://www.dasch.swiss/services/pricing
+- type: TermsOfService
+  url: https://www.dasch.swiss/legal-notice
+- type: PrivacyPolicy
+  url: https://www.dasch.swiss/privacy-policy-en
+- type: Roadmap
+  url: https://www.dasch.swiss/about-us/platform-2025-2028
+- type: FAQ
+  url: https://www.dasch.swiss/faq
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+modified: '2026-08-27'
+created: '2026-06-03'
+x-enrichment:
+  date: '2026-08-27'
+  status: enriched
+  artifacts_added: 23
+  pass: local-v1

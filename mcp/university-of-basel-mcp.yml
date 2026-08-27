@@ -1,0 +1,131 @@
+generated: '2026-08-27'
+method: derived
+status: candidate
+source: >-
+  Derived from the publicly-accessible read operations of the DSP-API OpenAPI 3.1 contract
+  (https://api.dasch.swiss/api/docs/docs.yaml, v37.8.0) held in openapi/. No MCP server was found.
+searched:
+- url: https://api.dasch.swiss/mcp
+  status: 404
+- url: https://api.github.com/search/repositories?q=org:dasch-swiss+mcp
+  status: 200
+  result: 0 repositories
+- source: https://docs.dasch.swiss/ (mkdocs search index, 4,075 documents)
+  result: no occurrence of "MCP" or "Model Context Protocol"
+- url: https://raw.githubusercontent.com/dasch-swiss/dsp-api/main/.mcp.json
+  status: 200
+  result: >-
+    The only MCP declaration in the DSP-API repository is a checked-in `metals` stdio server
+    (`metals-mcp --workspace ... --transport stdio`, added in release v37.0.0, 2026-07-06) that
+    gives contributors' coding agents Scala language-server tooling. It is developer tooling for
+    building DSP-API, NOT a server that exposes the DSP-API surface to agents, and it is recorded
+    here so a later pass does not mistake it for one.
+description: >-
+  Neither the University of Basel nor DaSCH publishes an MCP server for any surface in this estate.
+  This is a CANDIDATE tool list only — a derivation of what a server would expose if one existed,
+  built from operationIds that genuinely exist in the DSP-API contract. Nothing here is callable by
+  an agent today, which is why no `type: MCPServer` pointer is wired into apis.yml.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: none
+  verified: derived
+  note: >-
+    No remote endpoint and no stdio package exists. api.dasch.swiss/mcp returns 404 and the
+    dasch-swiss GitHub organization contains no MCP repository. DSP-API itself needs no credential
+    for the operations listed below — the DSP-API docs mark them "Publicly accessible" — so a
+    candidate server would be anonymous for reads and bearer-JWT for writes.
+server:
+  name: dsp-api
+  transport: http
+  url: null
+tools:
+- name: get_health
+  rest: getHealth
+  description: Report DSP-API application health.
+  consequence: read
+- name: get_version
+  rest: getVersion
+  description: Report the running DSP-API, Sipi, Fuseki and Scala versions.
+  consequence: read
+- name: list_projects
+  rest: getAdminProjects
+  description: List all research projects on the DSP server.
+  consequence: read
+- name: get_project_by_shortcode
+  rest: getAdminProjectsShortcodeProjectshortcode
+  description: Retrieve one project by its 4-digit hexadecimal shortcode.
+  consequence: read
+- name: get_project_by_shortname
+  rest: getAdminProjectsShortnameProjectshortname
+  description: Retrieve one project by its shortname.
+  consequence: read
+- name: list_project_keywords
+  rest: getAdminProjectsKeywords
+  description: List the keywords declared across all projects.
+  consequence: read
+- name: list_project_licenses
+  rest: getAdminProjectsShortcodeProjectshortcodeLegal-infoLicenses
+  description: List the licenses enabled for a project.
+  consequence: read
+- name: search_fulltext
+  rest: getV2SearchSearchterm
+  description: Full-text search across resources.
+  consequence: read
+- name: count_fulltext
+  rest: getV2SearchCountSearchterm
+  description: Count full-text search hits without materialising them.
+  consequence: read
+- name: search_by_label
+  rest: getV2SearchbylabelSearchterm
+  description: Search resources by label.
+  consequence: read
+- name: search_gravsearch
+  rest: getV2SearchextendedP1
+  description: Run a Gravsearch (SPARQL-derived) graph query against project data.
+  consequence: read
+- name: count_gravsearch
+  rest: getV2SearchextendedCountP1
+  description: Count Gravsearch results.
+  consequence: read
+- name: get_resource_preview
+  rest: getV2Resourcespreview
+  description: Retrieve preview representations of resources.
+  consequence: read
+- name: get_resource_graph
+  rest: getV2GraphResourceiri
+  description: Retrieve the link graph surrounding a resource.
+  consequence: read
+- name: get_resource_history
+  rest: getV2ResourcesHistoryResourceiri
+  description: Retrieve the version history of a resource.
+  consequence: read
+- name: get_iiif_manifest
+  rest: getV2ResourcesIiifmanifestResourceiri
+  description: Retrieve the IIIF Presentation manifest for a resource.
+  consequence: read
+- name: get_tei_xml
+  rest: getV2TeiResourceiri
+  description: Retrieve a resource rendered as TEI XML.
+  consequence: read
+- name: list_ontologies
+  rest: getV2OntologiesMetadata
+  description: List ontology metadata across projects.
+  consequence: read
+- name: get_ontology_entities
+  rest: getV2OntologiesAllentitiesOntologyiri
+  description: Retrieve every class and property of one ontology.
+  consequence: read
+- name: get_ontology_class
+  rest: getV2OntologiesClassesClassiri
+  description: Retrieve one resource class definition.
+  consequence: read
+summary:
+  tools: 20
+  derived_from_operations: 20
+  server_published: false
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

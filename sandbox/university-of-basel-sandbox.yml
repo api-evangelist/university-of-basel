@@ -1,0 +1,71 @@
+generated: '2026-08-27'
+method: searched
+source: https://docs.dasch.swiss/latest/DSP-TOOLS/local-stack/
+provider: University of Basel
+providerId: university-of-basel
+api: university-of-basel:dsp-api
+mode: local-stack
+hosted_sandbox: false
+description: >-
+  DaSCH publishes no hosted test tenant or test-mode key for api.dasch.swiss. What it publishes
+  instead is a REPRODUCIBLE LOCAL STACK: `dsp-tools start-stack` runs DSP-API, DSP-APP, Sipi and
+  Fuseki in Docker on the developer's own machine, seeded with test data, so an integration can be
+  written and exercised end to end without touching the production archive. For an archival
+  repository this is arguably the safer shape — there is no live tenant whose long-term-preserved
+  data a mistaken write could reach — but it does mean an agent cannot rehearse against a remote
+  sandbox URL.
+stack:
+  start: dsp-tools start-stack
+  stop: dsp-tools stop-stack
+  seed: just stack-init-test
+  seed_source: https://raw.githubusercontent.com/dasch-swiss/dsp-api/main/CLAUDE.md
+  components:
+  - DSP-API (webapi)
+  - DSP-APP (web client)
+  - Sipi (IIIF media server)
+  - Apache Jena Fuseki (triplestore)
+  options:
+  - flag: --max_file_size=int
+    default: 2000
+    unit: MB
+    max: 100000
+    description: Maximum multimedia file size accepted by the local stack; larger uploads are rejected.
+  - flag: --prune
+    description: >-
+      Run `docker system prune` without prompting. DSP-TOOLS asks for permission interactively and
+      skips the prune in a non-interactive session (CI or a shell without a terminal) unless this
+      flag is passed.
+published_test_credentials:
+- scope: local DSP-APP system administrator
+  username: root@example.com
+  password: test
+  verbatim: true
+  source: https://docs.dasch.swiss/latest/DSP-TOOLS/local-stack/#start-stack
+  note: >-
+    Published verbatim by DaSCH for the LOCAL stack only. These are not credentials on
+    api.dasch.swiss and grant nothing there.
+test_data:
+  projects:
+  - shortcode: '0001'
+    note: >-
+      The example project shortcode used throughout the DSP-API contract's own parameter examples
+      (`example: '0001'` on every projectShortcode path parameter).
+  reference: https://docs.dasch.swiss/latest/DSP-API/01-introduction/example-project/
+key_prefixes:
+  test_vs_live: false
+  note: >-
+    DSP-API has no test-key / live-key distinction. Authentication is a JWT minted from a real user
+    account by POST /v2/authentication; the environment is chosen by base URL, not by key prefix.
+time_simulation: false
+fixtures_and_triggers:
+  note: >-
+    Integration and end-to-end suites ship in the dsp-api repository (`just test-it`, `just
+    test-e2e`) and run against the same containerised stack, so the published fixtures are the
+    project's own test data rather than a separate fixture catalogue.
+gaps:
+- No hosted sandbox host and no documented test tenant on api.dasch.swiss.
+- No test-mode credential an agent could obtain self-serve.
+- Rehearsal requires Docker and a local install of dsp-tools.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

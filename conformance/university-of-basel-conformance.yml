@@ -1,0 +1,211 @@
+generated: '2026-08-27'
+method: probed
+source: >-
+  Live anonymous probes of the four University of Basel API surfaces on 2026-08-27, plus the
+  DSP-API OpenAPI 3.1 contract (https://api.dasch.swiss/api/docs/docs.yaml, v37.8.0) and the DSP
+  documentation (https://docs.dasch.swiss/).
+provider: University of Basel
+providerId: university-of-basel
+description: >-
+  Cross-cutting and domain-standard conformance for the University of Basel API estate. The estate is
+  scholarly-infrastructure shaped, so its standards are the ones the research-library and digital-
+  humanities markets actually speak — OAI-PMH, SRU, IIIF, ARK, Handle, Dublin Core, TEI and RDF —
+  rather than the OAuth/FAPI/SCIM family. Every `conforms: true` row below carries a URL that was
+  fetched, or an exact location in the contract.
+standards:
+- id: oai-pmh
+  name: OAI-PMH 2.0 (Open Archives Initiative Protocol for Metadata Harvesting)
+  domain_standard: true
+  conforms: true
+  evidence:
+    url: https://edoc.unibas.ch/server/oai/request?verb=Identify
+    status: 200
+    detail: >-
+      Identify response declares protocolVersion 2.0, repositoryName "edoc: Open Access Repository
+      University of Basel", adminEmail openaccess@unibas.ch, granularity YYYY-MM-DDThh:mm:ssZ,
+      deletedRecord "transient", and an oai-identifier description with repositoryIdentifier
+      edoc.unibas.ch and sampleIdentifier oai:edoc.unibas.ch:20.500.14716/1234.
+- id: openaire-cris
+  name: OpenAIRE Guidelines for CRIS Managers 1.1 (CERIF profile)
+  domain_standard: true
+  conforms: true
+  evidence:
+    url: https://edoc.unibas.ch/server/oai/request?verb=Identify
+    status: 200
+    detail: >-
+      Identify carries a second description block in namespace
+      https://www.openaire.eu/cerif-profile/1.1/ declaring Compatibility
+      OpenAIRE_Service_Compatibility#1.1 and an OAIPMHBaseURL of
+      https://edoc.unibas.ch/server/oai/openairecris.
+- id: dublin-core
+  name: Dublin Core / DCMI metadata terms
+  domain_standard: true
+  conforms: true
+  evidence:
+    url: https://edoc.unibas.ch/server/oai/request?verb=ListMetadataFormats
+    status: 200
+    detail: >-
+      Eleven metadata prefixes served — oai_dc, qdc, dim, mods, mets, marc, rdf, ore, didl,
+      etdms, uketd_dc. oai_dc records resolve against http://purl.org/dc/elements/1.1/.
+- id: sru
+  name: SRU 1.2 (Search/Retrieve via URL, Z39.50 successor)
+  domain_standard: true
+  conforms: true
+  evidence:
+    url: https://swisscovery.slsp.ch/view/sru/41SLSP_UBS?version=1.2&operation=explain
+    status: 200
+    detail: >-
+      explainResponse in namespace http://www.loc.gov/zing/srw/ returns version 1.2 and
+      recordSchema http://explain.z3950.org/dtd/2.1/ for the Basel institution zone 41SLSP_UBS.
+- id: handle-system
+  name: Handle System persistent identifiers
+  domain_standard: true
+  conforms: true
+  evidence:
+    url: https://edoc.unibas.ch/server/oai/request?verb=ListRecords&metadataPrefix=oai_dc
+    status: 200
+    detail: >-
+      Every edoc record identifier is Handle-prefixed — oai:edoc.unibas.ch:20.500.14716/199665 —
+      under Handle naming authority 20.500.14716.
+- id: ark
+  name: ARK (Archival Resource Key) identifiers
+  domain_standard: true
+  conforms: true
+  evidence:
+    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/permalinks/
+    status: 200
+    detail: >-
+      DSP-API mints and resolves ARK permalinks for both projects and resources under NAAN 72163;
+      the contract's own examples use the form ark:/72163/... . Sections "Obtaining ARK URLs",
+      "Knora ARK URL Format" and "Resolving Knora ARK URLs".
+- id: iiif
+  name: IIIF Image API 3.0 + IIIF Presentation manifests
+  domain_standard: true
+  conforms: true
+  evidence:
+    url: https://api.dasch.swiss/api/docs/docs.yaml
+    status: 200
+    detail: >-
+      Operation getV2ResourcesIiifmanifestResourceiri at GET /v2/resources/iiifmanifest/{resourceIri}
+      returns the IIIF manifest for a resource; the restricted-view settings schema cites
+      https://iiif.io/api/image/3.0/#42-size for its supported size forms. Media are served by
+      Sipi, DaSCH's open-source IIIF image server (github.com/dasch-swiss/sipi).
+- id: tei
+  name: TEI (Text Encoding Initiative) XML
+  domain_standard: true
+  conforms: true
+  evidence:
+    url: https://api.dasch.swiss/api/docs/docs.yaml
+    status: 200
+    detail: >-
+      Operation getV2TeiResourceiri at GET /v2/tei/{resourceIri} renders standoff-marked text as
+      TEI XML. Documented at DSP-API/03-endpoints/api-v2/text/custom-standoff/#tei-xml.
+- id: rdf
+  name: RDF 1.1 serialisations (Turtle, TriG, N-Quads, RDF/XML, JSON-LD)
+  domain_standard: true
+  conforms: true
+  evidence:
+    url: https://api.dasch.swiss/api/docs/docs.yaml
+    status: 200
+    detail: >-
+      DSP-API v2 negotiates five RDF media types across 56 operations each —
+      application/ld+json, text/turtle, application/trig, application/n-quads, application/rdf+xml.
+- id: json-ld
+  name: JSON-LD 1.1
+  domain_standard: true
+  conforms: true
+  evidence:
+    url: https://api.dasch.swiss/api/docs/docs.yaml
+    status: 200
+    detail: >-
+      application/ld+json is the default representation of DSP-API v2 resources, values and
+      ontologies (57 operations). A repo-local context is kept at json-ld/.
+- id: openapi
+  name: OpenAPI 3.1.0
+  conforms: true
+  evidence:
+    url: https://api.dasch.swiss/api/docs/docs.yaml
+    status: 200
+    detail: >-
+      DSP-API publishes a first-party OpenAPI 3.1.0 description of 145 paths / 180 operations at
+      its own API host, versioned in lockstep with the service (v37.8.0).
+- id: hal
+  name: HAL (Hypertext Application Language)
+  conforms: true
+  evidence:
+    url: https://edoc.unibas.ch/server/api
+    status: 200
+    detail: >-
+      The edoc DSpace REST API answers with Content-Type application/hal+json and a full _links
+      object; every collection is reachable by following links from the API root.
+- id: oauth2
+  name: OAuth 2.0
+  conforms: false
+  evidence:
+    detail: >-
+      No OAuth 2.0 flow anywhere in the estate. DSP-API issues an opaque-to-the-client JWT from
+      POST /v2/authentication and consumes it as an HTTP bearer token; the edoc DSpace REST API
+      advertises `WWW-Authenticate: password realm="DSpace REST API"`. No
+      /.well-known/oauth-authorization-server on any host (all 404).
+- id: oidc
+  name: OpenID Connect
+  conforms: false
+  evidence:
+    detail: No /.well-known/openid-configuration on any host in the estate (all 404).
+- id: rfc9457
+  name: RFC 9457 Problem Details for HTTP APIs
+  conforms: false
+  evidence:
+    url: https://api.dasch.swiss/api/docs/docs.yaml
+    status: 200
+    detail: >-
+      Zero application/problem+json responses in the contract. DSP-API returns a bespoke JSON
+      envelope — `{"message": "..."}` — typed per exception class. See
+      errors/university-of-basel-problem-types.yml.
+- id: idempotency
+  name: Idempotency keys
+  conforms: false
+  evidence:
+    url: https://api.dasch.swiss/api/docs/docs.yaml
+    status: 200
+    detail: >-
+      No Idempotency-Key header parameter and no idempotency language in the DSP-API contract or
+      docs. HTTP-level idempotence of PUT/DELETE is the only guarantee.
+- id: rfc8594
+  name: RFC 8594 Sunset / Deprecation headers
+  conforms: false
+  evidence:
+    detail: >-
+      No Sunset or Deprecation response header declared in the contract or observed on live
+      responses. Deprecation is communicated in prose and in the GitHub release notes.
+- id: rate-limit-headers
+  name: RateLimit header fields (draft-ietf-httpapi-ratelimit-headers)
+  conforms: false
+  evidence:
+    detail: >-
+      No RateLimit-*, X-RateLimit-* or Retry-After header observed on live responses from
+      api.dasch.swiss, edoc.unibas.ch or swisscovery.slsp.ch on 2026-08-27.
+- id: scim
+  name: SCIM 2.0
+  conforms: false
+  evidence:
+    detail: >-
+      DSP-API has an admin Users endpoint but no SCIM schema URN
+      (urn:ietf:params:scim:schemas:*) appears in the contract.
+- id: shibboleth-saml
+  name: Shibboleth / SAML federated identity
+  conforms: false
+  evidence:
+    url: https://edoc.unibas.ch/server/api/authn/status
+    status: 200
+    detail: >-
+      The edoc DSpace REST API advertises only `password` as an authentication method on
+      WWW-Authenticate; no Shibboleth authentication method is exposed on the public REST surface,
+      although the institution participates in the SWITCH federation for its web logins.
+summary:
+  asserted: 20
+  conforms: 12
+  domain_standards_confirmed: 10
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

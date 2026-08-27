@@ -1,0 +1,54 @@
+generated: '2026-08-27'
+method: generated
+provider: University of Basel
+providerId: university-of-basel
+source: >-
+  Authored by API Evangelist from the artifacts in this repository. Every DSP-API operationId cited
+  in these skills was verified present in openapi/*.yml before it was written; the edoc skill is
+  grounded in live anonymous probes of the OAI-PMH and DSpace REST endpoints rather than in a spec,
+  because edoc publishes none.
+provider_published: false
+provider_published_note: >-
+  DaSCH does publish a CLAUDE.md in the dsp-api repository
+  (https://raw.githubusercontent.com/dasch-swiss/dsp-api/main/CLAUDE.md, HTTP 200), but it is
+  contributor guidance for BUILDING DSP-API — Bazel targets, just recipes, Scala conventions — not
+  guidance for CALLING it. It is recorded here so a later pass does not mistake it for a consumer
+  agent skill. No AGENTS.md and no llms.txt is served by the provider (both 404).
+skills:
+- name: discover-projects-and-ontologies
+  file: university-of-basel-discover-projects-and-ontologies.md
+  api: university-of-basel:dsp-api
+  auth: none
+  description: >-
+    The mandatory first step. Find a project by shortcode, then read the ontology that defines the
+    shape of its data — there is no global content schema in DSP.
+  operations: 8
+- name: search-humanities-research-data
+  file: university-of-basel-search-humanities-research-data.md
+  api: university-of-basel:dsp-api
+  auth: none
+  description: >-
+    Full text, label search and Gravsearch graph queries over public humanities data, then pull the
+    resource, its link graph, its version history, its IIIF manifest or its TEI rendering.
+  operations: 14
+- name: delete-dsp-content-safely
+  file: university-of-basel-delete-dsp-content-safely.md
+  api: university-of-basel:dsp-api
+  auth: bearer JWT
+  description: >-
+    The order of operations for removing content from an archive: rehearse with the can-delete
+    checks, carry lastModificationDate, soft-delete with a comment, and never call erase without a
+    human.
+  operations: 12
+  consequence: write
+- name: harvest-edoc-open-access
+  file: university-of-basel-harvest-edoc-open-access.md
+  api: university-of-basel:edoc-oai, university-of-basel:edoc-rest
+  auth: none
+  description: >-
+    Harvest the institutional repository through OAI-PMH 2.0 (eleven metadata formats plus an
+    OpenAIRE-CRIS stream) or browse it through the DSpace 7 HAL+JSON REST API.
+  operations: 7
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

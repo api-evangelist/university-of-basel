@@ -3,31 +3,43 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
 provider: University of Basel
 providerId: university-of-basel
+generated: '2026-08-27'
+method: searched
+source: https://www.dasch.swiss/services/pricing
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-27'
 reconciled: false
 tags:
 - Education
 - Higher Education
 - University
+- Research Data
 - Plans
 description: >-
-  University of Basel is a non-commercial higher-education institution; its APIs are not sold
-  as a commercial product. Public APIs (library, repository, course, and open-metadata
-  interfaces) are offered free of charge, typically for non-commercial use. Most
-  administrative and identity APIs are not openly self-service and require institutional
-  affiliation, credentials, or federation membership rather than a paid plan.
+  No API in this estate is metered or sold. Every published surface — the edoc DSpace REST API, the
+  edoc OAI-PMH interface, the swisscovery SRU interface and the DaSCH DSP-API — is called free of
+  charge with no plan, no quota and no contract. What DaSCH DOES publish, and publishes precisely,
+  is a rate card for the human services around the platform: long-term archiving above a free tier,
+  and consulting above a free allowance. Those are recorded below because they are the only real
+  published prices attached to this estate, not because API calls are billed.
 notes: >-
-  No published per-seat or per-call commercial pricing. "Free / Open" reflects open
-  public endpoints; "Affiliation / Credentialed" reflects access gated by institutional
-  identity rather than payment.
+  Read live from https://www.dasch.swiss/services/pricing and
+  https://www.dasch.swiss/faq/costs-support on 2026-08-27 (both HTTP 200). DaSCH is funded by the
+  Swiss National Science Foundation (SNSF), which is why the repository service is free to Swiss
+  research. Currency is Swiss francs; VAT is stated by DaSCH where it applies.
 sources:
+- https://www.dasch.swiss/services/pricing
+- https://www.dasch.swiss/faq/costs-support
 - https://raw.githubusercontent.com/api-evangelist/university-of-basel/refs/heads/main/apis.yml
+plan_count: 5
 plans:
-- id: university-of-basel-free-open
-  name: Free / Open
+- id: university-of-basel-api-open
+  name: Open API Access
   type: free
-  description: Public open APIs (metadata, library, repository, course data) offered at no charge, generally for non-commercial use.
+  description: >-
+    All four published API surfaces are anonymous and free. 54 DSP-API GET operations are marked
+    "Publicly accessible" in the contract; edoc's DSpace REST and OAI-PMH interfaces and the
+    swisscovery SRU interface need no credential at all.
   entries:
   - label: Open API Access
     name: open_api_access
@@ -38,22 +50,128 @@ plans:
     geo: global
     unit: 1
     price: '0.00'
+    currency: CHF
     userMultiplied: false
-- id: university-of-basel-affiliation
-  name: Affiliation / Credentialed
+- id: university-of-basel-dsp-archiving-free
+  name: DSP Archiving — free tier
   type: free
-  description: Administrative and identity APIs gated behind institutional SSO, client certificates, or federation membership rather than payment.
+  description: >-
+    "The DaSCH repository service is free of charge for national research projects or those with
+    Swiss participation." Long-term archiving is free for data sets up to 500 GB. No fees apply to
+    project data stored in the DaSCH Service Platform before the beginning of 2025.
   entries:
-  - label: Credentialed Access
-    name: credentialed_access
+  - label: Long-term archiving up to 500 GB
+    name: archiving_free
     type: free
-    metric: requests
+    metric: storage
+    limit: 500
+    unitOfMeasure: GB
+    timeFrame: year
+    geo: CH
+    unit: 1
+    price: '0.00'
+    currency: CHF
+    userMultiplied: false
+- id: university-of-basel-dsp-archiving-cost-shared
+  name: DSP Archiving — cost sharing above 500 GB
+  type: negotiated
+  description: >-
+    "For data volumes exceeding 500 GB, annual cost sharing by the project or its hosting
+    institution may be required." DaSCH does not publish a per-GB figure; the amount is agreed with
+    the project.
+  entries:
+  - label: Annual hosting cost sharing
+    name: archiving_overage
+    type: negotiated
+    metric: storage
+    limit: -1
+    unitOfMeasure: GB
+    timeFrame: year
+    geo: CH
+    unit: 1
+    price: null
+    currency: CHF
+    userMultiplied: false
+- id: university-of-basel-consulting
+  name: Consulting
+  type: paid
+  description: >-
+    Workshops are free of charge, and consulting is free for members of research IT groups and
+    other research infrastructures. For research groups and individual scholars the first eight
+    hours are free; beyond that DaSCH publishes a day rate.
+  entries:
+  - label: PI at the University of Basel
+    name: consulting_unibas_pi
+    type: paid
+    metric: days
+    limit: -1
+    timeFrame: usage
+    geo: CH
+    unit: 1
+    price: '640.00'
+    currency: CHF
+    vat: none stated
+    userMultiplied: false
+  - label: Other Higher Education Institutions
+    name: consulting_other_hei
+    type: paid
+    metric: days
+    limit: -1
+    timeFrame: usage
+    geo: CH
+    unit: 1
+    price: '640.00'
+    currency: CHF
+    vat: '8.1%'
+    userMultiplied: false
+  - label: All other external institutions
+    name: consulting_external
+    type: paid
+    metric: days
     limit: -1
     timeFrame: usage
     geo: global
     unit: 1
-    price: '0.00'
+    price: '1280.00'
+    currency: CHF
+    vat: '8.1%'
     userMultiplied: false
+- id: university-of-basel-data-preparation
+  name: Data preparation
+  type: paid
+  description: >-
+    Hourly rate for help creating a data model, cleaning data and resolving inconsistencies. The
+    first eight working hours are free. Published on the Costs & Support FAQ.
+  entries:
+  - label: Member of a Swiss Higher Education Institution
+    name: data_prep_swiss_hei
+    type: paid
+    metric: hours
+    limit: -1
+    timeFrame: usage
+    geo: CH
+    unit: 1
+    price: '80.00'
+    currency: CHF
+    vat: '7.7%'
+    userMultiplied: false
+  - label: Non-member
+    name: data_prep_external
+    type: paid
+    metric: hours
+    limit: -1
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: '160.00'
+    currency: CHF
+    vat: '7.7%'
+    userMultiplied: false
+free_allowances:
+- 8 hours of data-preparation / consulting work per research group or scholar
+- All training sessions and workshops
+- 500 GB of long-term archiving
+- Unlimited anonymous API calls on all four published surfaces
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

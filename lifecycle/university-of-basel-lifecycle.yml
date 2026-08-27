@@ -1,0 +1,121 @@
+generated: '2026-08-27'
+method: searched
+source: >-
+  https://docs.dasch.swiss/latest/DSP-API/, the dsp-api GitHub releases feed
+  (https://github.com/dasch-swiss/dsp-api/releases), the live DSP-API contract
+  (https://api.dasch.swiss/api/docs/docs.yaml, v37.8.0) and https://status.dasch.swiss/, all read
+  2026-08-27.
+provider: University of Basel
+providerId: university-of-basel
+versioning:
+  scheme: >-
+    Two axes. The SERVICE is versioned semantically and released as a GitHub tag (currently
+    v37.8.0, 2026-08-24); the API SURFACE is versioned by URL path segment — /v2, /v3, /admin,
+    plus unversioned management routes (/health, /version).
+  current_service_version: v37.8.0
+  current_service_release_date: '2026-08-24'
+  surfaces:
+  - path_prefix: /v2
+    status: current
+    note: The DSP-API version that should be used, per the design documentation.
+  - path_prefix: /v3
+    status: emerging
+    note: >-
+      Client-optimized endpoints introduced by ADR-0009. Carries the estate's only machine-readable
+      error-code enum (V3ErrorCode). Currently 10 operations.
+  - path_prefix: /admin
+    status: current
+    note: Project, user, group, list and permission administration.
+  - path_prefix: /v1
+    status: removed
+    note: >-
+      "DSP-API v1: has been removed after a long period of deprecation." — DSP-API design overview.
+  version_endpoint:
+    operationId: getVersion
+    url: https://api.dasch.swiss/version
+    probed_status: 200
+    note: >-
+      Returns the running webapi, Fuseki, Scala and Sipi versions as JSON — a machine-readable
+      runtime version signal an agent can read before choosing a code path.
+release_cadence:
+  observed: >-
+    Weekly to twice-weekly minor releases. Twelve releases between 2026-06-29 (v36.4.0) and
+    2026-08-24 (v37.8.0).
+  breaking_change_signal: >-
+    Conventional-Commits release notes flag a "⚠ BREAKING CHANGES" section and bump the major.
+    Most recent: v37.0.0 (2026-07-06) — project legal-info `dataAuthorship` renamed to
+    `defaultDataAuthorship`.
+deprecation:
+  policy_published: false
+  mechanism: >-
+    Deprecation is announced in the operation description inside the OpenAPI contract itself, in the
+    prose form "*Deprecated*. Use <replacement> instead." — which is machine-discoverable but is not
+    an `deprecated: true` flag on every case, and is not accompanied by a dated removal schedule.
+  sunset_headers: false
+  rfc8594: false
+  note: >-
+    No Sunset or Deprecation response header, and no published deprecation policy page. The
+    precedent set by v1 — "removed after a long period of deprecation" — is the only stated norm.
+  deprecated_operations:
+  - operationId: getAdminListsInfosP1
+    path: GET /admin/lists/infos/{p1}
+    replacement: GET /admin/lists/{listIri}/info
+    flag: 'deprecated: true'
+  - operationId: getAdminListsNodesP1
+    path: GET /admin/lists/nodes/{p1}
+    replacement: GET /admin/lists/{listIri}/info
+    flag: 'deprecated: true'
+  - operationId: putAdminPermissionsPermissioniriProperty
+    path: PUT /admin/permissions/{permissionIri}/property
+    replacement: PUT /admin/permissions/doap/{permissionIri}
+    flag: 'deprecated: true'
+  - operationId: putAdminPermissionsPermissioniriResourceclass
+    path: PUT /admin/permissions/{permissionIri}/resourceClass
+    replacement: PUT /admin/permissions/doap/{permissionIri}
+    flag: 'deprecated: true'
+  experimental_operations:
+  - operationId: postV2StandoffCanonicalize
+    path: POST /v2/standoff/canonicalize
+    tag: Experimental
+    note: Tagged Experimental in the contract; no stability guarantee.
+status_page:
+  published: true
+  url: https://status.dasch.swiss/
+  probed_status: 200
+  provider: DaSCH Uptime Status
+  features:
+  - 90-day uptime history
+  - email subscription to status updates
+  note: >-
+    Covers the DaSCH Service Platform (api.dasch.swiss). There is no status page for the edoc
+    repository or for the swisscovery/SLSP surface.
+health:
+  operationId: getHealth
+  url: https://api.dasch.swiss/health
+  probed_status: 200
+  body: '{"name":"AppState","severity":"non fatal","status":true,"message":"Application is healthy"}'
+sla:
+  published: false
+  note: >-
+    No SLA is published. DaSCH states its long-term preservation commitment in its Preservation Plan
+    (https://www.dasch.swiss/preservation-plan) and Statutes rather than as an availability target.
+support:
+  helpdesk: >-
+    DaSCH runs a ticketed helpdesk for bugs and technical issues (stated at
+    https://www.dasch.swiss/faq/costs-support).
+  contact: info@dasch.swiss
+  repository_issues: https://github.com/dasch-swiss/dsp-api/issues
+other_surfaces:
+  edoc:
+    software: DSpace 7.6.2 / DSpace-CRIS cris-2023.02.06
+    versioning: Versioned by the upstream DSpace release; no institution-specific API version.
+    source: https://edoc.unibas.ch/server/api
+    probed_status: 200
+  swisscovery:
+    software: Ex Libris Alma / Primo VE, operated by SLSP
+    versioning: SRU protocol version 1.2
+    source: https://swisscovery.slsp.ch/view/sru/41SLSP_UBS?version=1.2&operation=explain
+    probed_status: 200
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

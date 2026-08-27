@@ -1,0 +1,130 @@
+generated: '2026-08-27'
+method: searched
+source: https://github.com/dasch-swiss/dsp-api/releases
+provider: University of Basel
+providerId: university-of-basel
+api: university-of-basel:dsp-api
+description: >-
+  DSP-API publishes a dated, per-release changelog generated from Conventional Commits and mirrored
+  into the documentation site at https://docs.dasch.swiss/latest/DSP-API/09-release-notes/. Sections
+  are typed — "⚠ BREAKING CHANGES", Enhancements, Bug Fixes, Performance Improvements,
+  Maintenances, Documentation, Tests — so a consumer can tell a breaking release from a routine one
+  without reading prose.
+scheme: semver
+format: conventional-commits
+feeds:
+- type: github-releases
+  url: https://github.com/dasch-swiss/dsp-api/releases
+- type: docs
+  url: https://docs.dasch.swiss/latest/DSP-API/09-release-notes/
+- type: subscription
+  url: https://www.dasch.swiss/release-notes-subscription
+  note: DaSCH offers an email subscription to release notes.
+current_version: v37.8.0
+current_version_date: '2026-08-24'
+window: 2026-06-29 to 2026-08-24
+entries:
+- version: v37.8.0
+  date: '2026-08-24'
+  breaking: false
+  sections:
+  - Maintenances
+  - Enhancements
+  - Bug Fixes
+  - Performance Improvements
+  highlights:
+  - Sipi bumped to v6.4.1.
+  - Grafana SIPI dashboard refreshed for two-lane admission control.
+  - Dead Sipi Lua scripts, routes and config removed.
+- version: v37.7.0
+  date: '2026-08-17'
+  breaking: false
+  sections:
+  - Maintenances
+  - Enhancements
+  - Bug Fixes
+- version: v37.6.0
+  date: '2026-08-10'
+  breaking: false
+  sections:
+  - Maintenances
+  - Enhancements
+- version: v37.5.2
+  date: '2026-08-04'
+  breaking: false
+  sections:
+  - Maintenances
+- version: v37.5.1
+  date: '2026-08-04'
+  breaking: false
+  sections:
+  - Maintenances
+  - Bug Fixes
+- version: v37.5.0
+  date: '2026-08-03'
+  breaking: false
+  sections:
+  - Maintenances
+  - Documentation
+  - Enhancements
+  - Bug Fixes
+- version: v37.4.0
+  date: '2026-07-27'
+  breaking: false
+  sections:
+  - Enhancements
+  - Bug Fixes
+- version: v37.3.0
+  date: '2026-07-27'
+  breaking: false
+  sections:
+  - Maintenances
+  - Documentation
+  - Enhancements
+  - Bug Fixes
+- version: v37.2.0
+  date: '2026-07-22'
+  breaking: false
+  sections:
+  - Maintenances
+  - Enhancements
+  - Bug Fixes
+  - Performance Improvements
+- version: v37.1.0
+  date: '2026-07-13'
+  breaking: false
+  sections:
+  - Maintenances
+  - Documentation
+  - Enhancements
+- version: v37.0.0
+  date: '2026-07-06'
+  breaking: true
+  sections:
+  - ⚠ BREAKING CHANGES
+  - Maintenances
+  - Documentation
+  - Enhancements
+  - Bug Fixes
+  - Tests
+  breaking_changes:
+  - >-
+    Project legal-info field `dataAuthorship` renamed to `defaultDataAuthorship`
+    (dasch-swiss/dsp-api#4174).
+- version: v36.4.0
+  date: '2026-06-29'
+  breaking: false
+  sections:
+  - Maintenances
+  - Documentation
+  - Enhancements
+related:
+- component: DSP-TOOLS
+  changelog: https://docs.dasch.swiss/latest/DSP-TOOLS/changelog/
+  current_version: 19.0.2
+  current_version_date: '2026-08-26'
+- component: DSP-APP
+  changelog: https://docs.dasch.swiss/latest/DSP-APP/contribution/release-notes/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

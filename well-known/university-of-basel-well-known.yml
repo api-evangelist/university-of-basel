@@ -1,0 +1,68 @@
+generated: '2026-08-27'
+method: probed
+source: >-
+  Direct anonymous GETs against every host named in apis.yml (baseURL, Website, DeveloperPortal)
+  and every OpenAPI servers[] host, 2026-08-27.
+note: >-
+  NO /.well-known/ document is served anywhere in the University of Basel API estate. Every path
+  returned 404 (or, on www.unibas.ch, a 503 from the Tomcat front end). edoc.unibas.ch answers every
+  /.well-known/* path with an HTTP 404 carrying the Angular single-page-app HTML shell, which is an
+  absence, not a document. No WellKnown or SecurityTxt pointer is emitted, because nothing was
+  served. Recorded as an honest negative probe.
+hosts:
+- host: api.dasch.swiss
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: edoc.unibas.ch
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    note: HTML SPA shell body, not a document
+  - path: /.well-known/openid-configuration
+    status: 404
+    note: HTML SPA shell body, not a document
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    note: HTML SPA shell body, not a document
+  - path: /.well-known/api-catalog
+    status: 404
+    note: HTML SPA shell body, not a document
+  - path: /.well-known/agent-card.json
+    status: 404
+    note: HTML SPA shell body, not a document
+  - path: /.well-known/agent.json
+    status: 404
+    note: HTML SPA shell body, not a document
+- host: www.unibas.ch
+  documents:
+  - path: /.well-known/security.txt
+    status: 503
+    note: Tomcat "HTTP Status 503 - Service Unavailable" page
+  - path: /.well-known/api-catalog
+    status: 503
+    note: Tomcat "HTTP Status 503 - Service Unavailable" page
+- host: ub.unibas.ch
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+- host: dasch.swiss
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+summary:
+  hosts_probed: 5
+  documents_found: 0
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

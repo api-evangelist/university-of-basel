@@ -1,17 +1,102 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/university-of-basel-dsp-api.yaml
+generated: '2026-08-27'
+method: searched
+source: >-
+  https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/authentication/ (HTTP 200) and
+  https://docs.dasch.swiss/latest/DSP-API/05-internals/design/principles/authentication/, read
+  against the securitySchemes of https://api.dasch.swiss/api/docs/docs.yaml (v37.8.0); plus live
+  probes of https://edoc.unibas.ch/server/api/authn/status.
+provider: University of Basel
+providerId: university-of-basel
+docs: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/authentication/
 summary:
   types:
   - http
+  oauth2: false
+  openid_connect: false
+  mtls: false
+  api_keys: false
+  anonymous_read: true
 schemes:
 - name: httpAuth
   type: http
   scheme: bearer
+  bearer_format: JWT
+  surface: university-of-basel:dsp-api
+  status: current
+  description: >-
+    The supported authentication method. A client POSTs credentials to /v2/authentication and
+    receives a JSON Web Token, then sends it on every secured request as
+    `Authorization: Bearer <token>`.
+  obtain:
+    method: POST
+    path: /v2/authentication
+    request: '{"identifier_type": "iri|email|username", "password": "<password>"}'
+    response: '{"token": "eyJ0eXAiOiJ..."}'
+  verify:
+    method: GET
+    path: /v2/authentication
+  revoke:
+    method: DELETE
+    path: /v2/authentication
+    effect: >-
+      Invalidates the access token server-side; a later request presenting the same token is
+      rejected. A genuine logout, not just a client-side discard.
   sources:
-  - openapi/university-of-basel-dsp-api.yaml
+  - https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/authentication/
+  - openapi/_original/university-of-basel-dsp-api.yaml
 - name: httpAuth1
   type: http
   scheme: basic
+  surface: university-of-basel:dsp-api
+  status: deprecated
+  description: >-
+    HTTP Basic is still declared as a securityScheme in the contract, but the documentation states
+    plainly: "Any other method of authentication is deprecated." Treat bearer JWT as the only
+    supported path.
   sources:
-  - openapi/university-of-basel-dsp-api.yaml
+  - openapi/_original/university-of-basel-dsp-api.yaml
+  - https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/authentication/
+anonymous:
+  supported: true
+  operations: 54
+  note: >-
+    54 GET operations in the DSP-API contract are marked "Publicly accessible" and need no
+    credential — including project listing, full-text search, Gravsearch, ontology reads, IIIF
+    manifests, TEI rendering, /health and /version. This is the single largest agent-reachable
+    surface in the estate.
+other_surfaces:
+- api: university-of-basel:edoc-rest
+  host: edoc.unibas.ch
+  scheme: password realm
+  evidence:
+    url: https://edoc.unibas.ch/server/api/authn/status
+    status: 200
+    header: 'www-authenticate: password realm="DSpace REST API"'
+    body_fragment: '{"authenticated": false, "authenticationMethod": null, "type": "status"}'
+  note: >-
+    DSpace 7 short-lived JWT obtained from POST /server/api/authn/login, with a
+    DSPACE-XSRF-TOKEN CSRF header. Reads of public items need no credential. Only `password` is
+    advertised on the public REST surface — no Shibboleth method is exposed there.
+- api: university-of-basel:edoc-oai
+  host: edoc.unibas.ch
+  scheme: none
+  note: OAI-PMH is anonymous by protocol.
+- api: university-of-basel:swisscovery-sru
+  host: swisscovery.slsp.ch
+  scheme: none
+  note: >-
+    The SRU explain and search operations for institution zone 41SLSP_UBS answer anonymously
+    (probed 200 on 2026-08-27).
+scopes:
+  published: false
+  note: >-
+    No OAuth scopes exist. Authorization is enforced by the DSP permissions system — administrative
+    permissions and default object access permissions bound to a group within a project — not by
+    token scope. See data-model/university-of-basel-data-model.yml.
+well_known:
+  openid_configuration: false
+  oauth_authorization_server: false
+  note: Both paths return 404 on every host in the estate. See well-known/.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

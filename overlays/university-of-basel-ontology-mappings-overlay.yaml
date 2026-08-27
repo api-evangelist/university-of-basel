@@ -1,0 +1,43 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — DSP Admin API Ontology Mappings API
+  version: 1.0.0
+x-generated: '2026-08-27'
+x-method: generated
+x-source: Enhancements over openapi/university-of-basel-ontology-mappings-api-openapi.yml, drawn from
+  https://docs.dasch.swiss/, https://github.com/dasch-swiss/dsp-api and live probes recorded in this repository.
+  Nothing here is invented — every value traces to a fetched source.
+extends: openapi/university-of-basel-ontology-mappings-api-openapi.yml
+actions:
+- target: $.info
+  description: Attach the license and contact the provider publishes outside the contract.
+  update:
+    license:
+      name: Apache License 2.0
+      identifier: Apache-2.0
+      url: https://github.com/dasch-swiss/dsp-api/blob/main/LICENSE
+    contact:
+      name: DaSCH
+      url: https://www.dasch.swiss/
+      email: info@dasch.swiss
+    x-provider: University of Basel
+    x-provider-id: university-of-basel
+    x-operator: DaSCH — Swiss National Data and Service Center for the Humanities, hosted at the University
+      of Basel
+- target: $
+  description: Point the contract at its own documentation and at the runtime signals a client needs.
+  update:
+    externalDocs:
+      description: DSP-API documentation
+      url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v3/project-migration/
+    x-status-page: https://status.dasch.swiss/
+    x-changelog: https://github.com/dasch-swiss/dsp-api/releases
+    x-rate-limits:
+      published: false
+      note: No RateLimit-*/Retry-After headers and no 429 declared; measured 2026-08-27.
+    x-idempotency:
+      keys: false
+      concurrency: knora-api:lastModificationDate optimistic concurrency; conflict returns 409.
+    x-sandbox:
+      hosted: false
+      local: dsp-tools start-stack

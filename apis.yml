@@ -203,6 +203,9 @@ apis:
   - type: OpenAPI
     url: openapi/university-of-basel-experimental-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/university-of-basel-capability-edges.yml
+  name: University of Basel Business Capability Map
 - type: AgenticAccess
   url: agentic-access/university-of-basel-agentic-access.yml
 - type: DomainSecurity

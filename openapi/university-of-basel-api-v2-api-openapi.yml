@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: DSP Admin API API v2 API
-  version: v35.10.0
+  title: DSP API v2 API
+  version: v37.8.0
   summary: DSP-API is part of the DaSCH Service Platform, a repository for the long-term preservation and reuse of data in the humanities.
   contact:
     name: DaSCH
@@ -61,6 +61,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -124,6 +130,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -184,6 +196,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -206,7 +224,14 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/lists/0001/FCIjX3J7R8SburI_yz7oeA
+        example: http://rdfh.ch/lists/0001/MK5zjenqSeKYAmqWz7XupQ
+      - name: allLanguages
+        in: query
+        description: If true, return rdfs:label and rdfs:comment as JSON-LD arrays of language-tagged objects (sorted alphabetically by tag). Default false preserves the legacy single-string shape.
+        required: false
+        schema:
+          default: false
+          type: boolean
       - name: x-knora-accept-schema
         in: header
         description: 'The ontology schema to be used for the request.
@@ -297,6 +322,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -319,7 +350,14 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/lists/0001/FCIjX3J7R8SburI_yz7oeA
+        example: http://rdfh.ch/lists/0001/MK5zjenqSeKYAmqWz7XupQ
+      - name: allLanguages
+        in: query
+        description: If true, return rdfs:label and rdfs:comment as JSON-LD arrays of language-tagged objects (sorted alphabetically by tag). Default false preserves the legacy single-string shape.
+        required: false
+        schema:
+          default: false
+          type: boolean
       - name: x-knora-accept-schema
         in: header
         description: 'The ontology schema to be used for the request.
@@ -410,6 +448,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -487,6 +531,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -497,7 +547,7 @@ paths:
     get:
       tags:
       - API v2
-      description: Get a value of a resource. Publicly accessible. Requires appropriate object access permissions on the resource. Find detailed documentation on <a href="https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
+      description: Get a value of a resource. Publicly accessible. Requires appropriate object access permissions on the resource. Find detailed documentation on <a href="https://docs.dasch.swiss/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
       operationId: getV2ValuesResourceiriValueuuid
       parameters:
       - name: resourceIri
@@ -595,6 +645,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -608,7 +664,7 @@ paths:
     put:
       tags:
       - API v2
-      description: Update a value of a resource. Requires appropriate object access permissions on the resource. Find detailed documentation on <a href="https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
+      description: Update a value of a resource. Requires appropriate object access permissions on the resource. Find detailed documentation on <a href="https://docs.dasch.swiss/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
       operationId: putV2Values
       requestBody:
         content:
@@ -668,6 +724,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -680,7 +742,7 @@ paths:
     post:
       tags:
       - API v2
-      description: Create a new value for a resource. Requires appropriate object access permissions on the resource. Find detailed documentation on <a href="https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
+      description: Create a new value for a resource. Requires appropriate object access permissions on the resource. Find detailed documentation on <a href="https://docs.dasch.swiss/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
       operationId: postV2Values
       requestBody:
         content:
@@ -739,6 +801,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -752,7 +820,7 @@ paths:
     put:
       tags:
       - API v2
-      description: Reorder values of a property on a resource. Requires modify permission on the resource. Find detailed documentation on <a href="https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
+      description: Reorder values of a property on a resource. Requires modify permission on the resource. Find detailed documentation on <a href="https://docs.dasch.swiss/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
       operationId: putV2ValuesOrder
       requestBody:
         content:
@@ -804,6 +872,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -817,7 +891,7 @@ paths:
     post:
       tags:
       - API v2
-      description: Mark a value as deleted. Requires appropriate object access permissions on the resource. Find detailed documentation on <a href="https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
+      description: Mark a value as deleted. Requires appropriate object access permissions on the resource. Find detailed documentation on <a href="https://docs.dasch.swiss/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
       operationId: postV2ValuesDelete
       requestBody:
         content:
@@ -876,6 +950,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -889,7 +969,7 @@ paths:
     post:
       tags:
       - API v2
-      description: Erase a Value and all of its old versions from the database completely. Requires SystemAdmin permissions. Find detailed documentation on <a href="https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
+      description: Erase a Value and all of its old versions from the database completely. Requires SystemAdmin permissions. Find detailed documentation on <a href="https://docs.dasch.swiss/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
       operationId: postV2ValuesErase
       requestBody:
         content:
@@ -948,6 +1028,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -961,7 +1047,7 @@ paths:
     post:
       tags:
       - API v2
-      description: Erase all old versions of a Value from the database completely and keep only the latest version. Requires SystemAdmin permissions. Find detailed documentation on <a href="https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
+      description: Erase all old versions of a Value from the database completely and keep only the latest version. Requires SystemAdmin permissions. Find detailed documentation on <a href="https://docs.dasch.swiss/DSP-API/03-endpoints/api-v2/editing-values/">docs.dasch.swiss</a>.
       operationId: postV2ValuesErasehistory
       requestBody:
         content:
@@ -1020,6 +1106,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1113,6 +1205,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1224,6 +1322,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1355,6 +1459,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1466,6 +1576,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1572,6 +1688,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1683,6 +1805,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1794,6 +1922,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1925,6 +2059,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2053,6 +2193,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2164,6 +2310,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2275,6 +2427,140 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - httpAuth: []
+      - httpAuth1: []
+  /v2/resources/batch:
+    post:
+      tags:
+      - API v2
+      description: 'Fetch one or more resources by IRI, supplied as a JSON body `{"resourceIris": [...]}`. A POST alternative to GET /v2/resources for large IRI sets that would exceed URL-length limits. Between 1 and 100 IRIs may be sent per request (this deployment''s configured limit; exceeding it is a 400). Publicly accessible. Requires appropriate object access permissions on the resources.'
+      operationId: postV2ResourcesBatch
+      parameters:
+      - name: x-knora-accept-schema
+        in: header
+        description: 'The ontology schema to be used for the request.
+
+          If not specified, the default schema ApiV2Complex will be used.'
+        required: false
+        schema:
+          type: string
+      - name: schema
+        in: query
+        description: 'The ontology schema to be used for the request.
+
+          If not specified, the default schema ApiV2Complex will be used.'
+        required: false
+        schema:
+          type: string
+      - name: x-knora-json-ld-rendering
+        in: header
+        description: 'The JSON-LD rendering to be used for the request (flat or hierarchical).
+
+          If not specified, hierarchical JSON-LD will be used.'
+        required: false
+        schema:
+          type: string
+      - name: markup
+        in: query
+        description: The markup rendering to be used for the request (XML or standoff).
+        required: false
+        schema:
+          type: string
+      - name: x-knora-accept-markup
+        in: header
+        description: The markup rendering to be used for the request (XML or standoff).
+        required: false
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: version date
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourcesBatchRequest'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers:
+            Content-Type:
+              required: true
+              schema:
+                type: string
+          content:
+            application/ld+json:
+              schema:
+                type: string
+            text/turtle:
+              schema:
+                type: string
+            application/trig:
+              schema:
+                type: string
+            application/rdf+xml:
+              schema:
+                type: string
+            application/n-quads:
+              schema:
+                type: string
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OntologyConstraintException'
+                - $ref: '#/components/schemas/DuplicateValueException'
+                - $ref: '#/components/schemas/ValidationException'
+                - $ref: '#/components/schemas/BadRequestException'
+                - $ref: '#/components/schemas/GravsearchException'
+                - $ref: '#/components/schemas/EditConflictException'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadCredentialsException'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2370,6 +2656,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2482,6 +2774,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2594,6 +2892,130 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - httpAuth: []
+      - httpAuth1: []
+  /v2/resources/authorship:
+    put:
+      tags:
+      - API v2
+      description: Update a resource's authorship (data side). Requires Modify object access permission on the resource.
+      operationId: putV2ResourcesAuthorship
+      parameters:
+      - name: x-knora-accept-schema
+        in: header
+        description: 'The ontology schema to be used for the request.
+
+          If not specified, the default schema ApiV2Complex will be used.'
+        required: false
+        schema:
+          type: string
+      - name: schema
+        in: query
+        description: 'The ontology schema to be used for the request.
+
+          If not specified, the default schema ApiV2Complex will be used.'
+        required: false
+        schema:
+          type: string
+      - name: x-knora-json-ld-rendering
+        in: header
+        description: 'The JSON-LD rendering to be used for the request (flat or hierarchical).
+
+          If not specified, hierarchical JSON-LD will be used.'
+        required: false
+        schema:
+          type: string
+      - name: markup
+        in: query
+        description: The markup rendering to be used for the request (XML or standoff).
+        required: false
+        schema:
+          type: string
+      - name: x-knora-accept-markup
+        in: header
+        description: The markup rendering to be used for the request (XML or standoff).
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers:
+            Content-Type:
+              required: true
+              schema:
+                type: string
+          content:
+            application/ld+json:
+              schema:
+                type: string
+            text/turtle:
+              schema:
+                type: string
+            application/trig:
+              schema:
+                type: string
+            application/rdf+xml:
+              schema:
+                type: string
+            application/n-quads:
+              schema:
+                type: string
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OntologyConstraintException'
+                - $ref: '#/components/schemas/DuplicateValueException'
+                - $ref: '#/components/schemas/ValidationException'
+                - $ref: '#/components/schemas/BadRequestException'
+                - $ref: '#/components/schemas/GravsearchException'
+                - $ref: '#/components/schemas/EditConflictException'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadCredentialsException'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2739,12 +3161,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTimeoutException'
       security:
       - httpAuth: []
       - httpAuth1: []
@@ -2868,12 +3302,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTimeoutException'
       security:
       - httpAuth: []
       - httpAuth1: []
@@ -3000,6 +3446,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3123,6 +3575,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3182,7 +3640,7 @@ paths:
         schema:
           type: string
       requestBody:
-        description: The Gravsearch query. See https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/query-language/
+        description: The Gravsearch query. See https://docs.dasch.swiss/DSP-API/03-endpoints/api-v2/query-language/
         content:
           text/plain:
             schema:
@@ -3242,6 +3700,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3260,7 +3724,7 @@ paths:
       parameters:
       - name: p1
         in: path
-        description: The Gravsearch query. See https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/query-language/
+        description: The Gravsearch query. See https://docs.dasch.swiss/DSP-API/03-endpoints/api-v2/query-language/
         required: true
         schema:
           type: string
@@ -3360,6 +3824,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3419,7 +3889,7 @@ paths:
         schema:
           type: string
       requestBody:
-        description: The Gravsearch query. See https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/query-language/
+        description: The Gravsearch query. See https://docs.dasch.swiss/DSP-API/03-endpoints/api-v2/query-language/
         content:
           text/plain:
             schema:
@@ -3479,6 +3949,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3497,7 +3973,7 @@ paths:
       parameters:
       - name: p1
         in: path
-        description: The Gravsearch query. See https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/query-language/
+        description: The Gravsearch query. See https://docs.dasch.swiss/DSP-API/03-endpoints/api-v2/query-language/
         required: true
         schema:
           type: string
@@ -3597,6 +4073,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3724,6 +4206,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3851,6 +4339,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3969,6 +4463,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4096,6 +4596,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4196,6 +4702,77 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - httpAuth: []
+      - httpAuth1: []
+  /v2/standoff/canonicalize:
+    post:
+      tags:
+      - API v2
+      description: 'Experimental -- may change or be removed without notice; do not depend on it for production integrations. Returns the canonical form of the given standard-mapping rich-text XML: the exact XML dsp-api would return when reading such a value back. This conversion is idempotent, so a client can compare the canonical form of its own source against the `textValueAsXml` of a stored value to decide whether a rich-text value has actually changed. (Raw input is only isomorphic to what dsp-api stores, not byte-identical, which makes a direct string comparison unreliable.) Only the standard mapping is supported. Requires authentication.'
+      operationId: postV2StandoffCanonicalize
+      requestBody:
+        description: The rich-text XML to canonicalize, interpreted with the standard standoff mapping.
+        content:
+          text/plain:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: 'The canonical XML: the input round-tripped through standoff markup and back.'
+          content:
+            application/xml:
+              schema:
+                type: string
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OntologyConstraintException'
+                - $ref: '#/components/schemas/DuplicateValueException'
+                - $ref: '#/components/schemas/ValidationException'
+                - $ref: '#/components/schemas/BadRequestException'
+                - $ref: '#/components/schemas/GravsearchException'
+                - $ref: '#/components/schemas/EditConflictException'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadCredentialsException'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4307,6 +4884,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4415,6 +4998,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4433,6 +5022,7 @@ paths:
       parameters:
       - name: allLanguages
         in: query
+        description: If true, return rdfs:label and rdfs:comment as JSON-LD arrays of language-tagged objects (sorted alphabetically by tag). Default false preserves the legacy single-string shape.
         required: false
         schema:
           default: false
@@ -4527,6 +5117,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4550,6 +5146,7 @@ paths:
           type: string
       - name: allLanguages
         in: query
+        description: If true, return rdfs:label and rdfs:comment as JSON-LD arrays of language-tagged objects (sorted alphabetically by tag). Default false preserves the legacy single-string shape.
         required: false
         schema:
           default: false
@@ -4644,6 +5241,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4767,6 +5370,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4790,6 +5399,7 @@ paths:
           type: string
       - name: allLanguages
         in: query
+        description: If true, return rdfs:label and rdfs:comment as JSON-LD arrays of language-tagged objects (sorted alphabetically by tag). Default false preserves the legacy single-string shape.
         required: false
         schema:
           default: false
@@ -4884,6 +5494,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4995,6 +5611,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5018,6 +5640,7 @@ paths:
           type: string
       - name: allLanguages
         in: query
+        description: If true, return rdfs:label and rdfs:comment as JSON-LD arrays of language-tagged objects (sorted alphabetically by tag). Default false preserves the legacy single-string shape.
         required: false
         schema:
           default: false
@@ -5112,6 +5735,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5227,6 +5856,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5338,6 +5973,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5449,6 +6090,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5565,6 +6212,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5681,6 +6334,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5797,6 +6456,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5913,6 +6578,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -6029,6 +6700,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -6141,6 +6818,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -6153,7 +6836,7 @@ paths:
     post:
       tags:
       - API v2
-      description: Add cardinalities to a class. Requires ProjectAdmin permissions for the ontology's project. For more info check out the <a href="https://docs.dasch.swiss/knora-api-v2/ontologies.html#add-cardinalities-to-a-class">documentation</a>.
+      description: Add cardinalities to a class. Requires ProjectAdmin permissions for the ontology's project. For more info check out the <a href="https://docs.dasch.swiss/DSP-API/03-endpoints/api-v2/ontology-information/#adding-cardinalities-to-a-class">documentation</a>.
       operationId: postV2OntologiesCardinalities
       parameters:
       - name: x-knora-accept-schema
@@ -6252,6 +6935,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -6363,6 +7052,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -6475,6 +7170,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -6586,6 +7287,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -6698,6 +7405,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -6810,6 +7523,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -6921,6 +7640,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -7033,6 +7758,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -7145,6 +7876,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -7257,6 +7994,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -7268,22 +8011,53 @@ paths:
       - httpAuth1: []
 components:
   schemas:
-    LoginPayload:
-      title: LoginPayload
-      oneOf:
-      - $ref: '#/components/schemas/EmailPassword'
-      - $ref: '#/components/schemas/IriPassword'
-      - $ref: '#/components/schemas/UsernamePassword'
-    ExportFormat:
-      title: ExportFormat
-      default: CSV
-      type: string
-      enum:
-      - CSV
-      - JSON
-      - TSV
+    SearchTimeoutException:
+      title: SearchTimeoutException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    OntologyConstraintException:
+      title: OntologyConstraintException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
     EditConflictException:
       title: EditConflictException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    ListResponseDto:
+      title: ListResponseDto
+      type: object
+      required:
+      - count
+      properties:
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceInfoDto'
+        count:
+          type: integer
+          format: int32
+    ForbiddenException:
+      title: ForbiddenException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    GravsearchException:
+      title: GravsearchException
       type: object
       required:
       - message
@@ -7302,30 +8076,48 @@ components:
           type: string
         password:
           type: string
-    ValidationException:
-      title: ValidationException
+    CreateStandoffMappingForm:
+      title: CreateStandoffMappingForm
       type: object
       required:
-      - msg
+      - json
+      - xml
       properties:
-        msg:
+        json:
           type: string
-    CheckResponse:
-      title: CheckResponse
+        xml:
+          type: string
+    ErrorResponse:
+      title: ErrorResponse
       type: object
       required:
       - message
       properties:
         message:
           type: string
-    Username:
-      title: Username
+    BadRequestException:
+      title: BadRequestException
       type: object
       required:
-      - value
+      - message
       properties:
-        value:
+        message:
           type: string
+    ReorderValuesResponse:
+      title: ReorderValuesResponse
+      type: object
+      required:
+      - resourceIri
+      - propertyIri
+      - valuesReordered
+      properties:
+        resourceIri:
+          type: string
+        propertyIri:
+          type: string
+        valuesReordered:
+          type: integer
+          format: int32
     UsernamePassword:
       title: UsernamePassword
       type: object
@@ -7337,16 +8129,53 @@ components:
           $ref: '#/components/schemas/Username'
         password:
           type: string
-    CreateStandoffMappingForm:
-      title: CreateStandoffMappingForm
+    ValidationException:
+      title: ValidationException
       type: object
       required:
-      - json
-      - xml
+      - msg
       properties:
-        json:
+        msg:
           type: string
-        xml:
+    ExportFormat:
+      title: ExportFormat
+      default: CSV
+      type: string
+      enum:
+      - CSV
+      - JSON
+      - TSV
+    LoginPayload:
+      title: LoginPayload
+      oneOf:
+      - $ref: '#/components/schemas/EmailPassword'
+      - $ref: '#/components/schemas/IriPassword'
+      - $ref: '#/components/schemas/UsernamePassword'
+    ResourcesBatchRequest:
+      title: ResourcesBatchRequest
+      type: object
+      properties:
+        resourceIris:
+          type: array
+          maxItems: 100
+          minItems: 1
+          items:
+            type: string
+    Username:
+      title: Username
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    TokenResponse:
+      title: TokenResponse
+      type: object
+      required:
+      - token
+      properties:
+        token:
           type: string
     ResourceInfoDto:
       title: ResourceInfoDto
@@ -7370,18 +8199,6 @@ components:
           format: date-time
         isDeleted:
           type: boolean
-    LogoutResponse:
-      title: LogoutResponse
-      type: object
-      required:
-      - status
-      - message
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
     NotFoundException:
       title: NotFoundException
       type: object
@@ -7390,39 +8207,16 @@ components:
       properties:
         message:
           type: string
-    ReorderValuesResponse:
-      title: ReorderValuesResponse
-      type: object
-      required:
-      - resourceIri
-      - propertyIri
-      - valuesReordered
-      properties:
-        resourceIri:
-          type: string
-        propertyIri:
-          type: string
-        valuesReordered:
-          type: integer
-          format: int32
-    ForbiddenException:
-      title: ForbiddenException
+    ConflictException:
+      title: ConflictException
       type: object
       required:
       - message
       properties:
         message:
           type: string
-    OntologyConstraintException:
-      title: OntologyConstraintException
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    BadRequestException:
-      title: BadRequestException
+    CheckResponse:
+      title: CheckResponse
       type: object
       required:
       - message
@@ -7431,35 +8225,6 @@ components:
           type: string
     BadCredentialsException:
       title: BadCredentialsException
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    ListResponseDto:
-      title: ListResponseDto
-      type: object
-      required:
-      - count
-      properties:
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceInfoDto'
-        count:
-          type: integer
-          format: int32
-    GravsearchException:
-      title: GravsearchException
       type: object
       required:
       - message
@@ -7478,6 +8243,18 @@ components:
           pattern: ^.+@.+$
         password:
           type: string
+    LogoutResponse:
+      title: LogoutResponse
+      type: object
+      required:
+      - status
+      - message
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
     DuplicateValueException:
       title: DuplicateValueException
       type: object
@@ -7485,14 +8262,6 @@ components:
       - message
       properties:
         message:
-          type: string
-    TokenResponse:
-      title: TokenResponse
-      type: object
-      required:
-      - token
-      properties:
-        token:
           type: string
     ReorderValuesRequest:
       title: ReorderValuesRequest

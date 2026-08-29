@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: DSP Admin API API
-  version: v35.10.0
+  title: DSP Admin API
+  version: v37.8.0
   summary: DSP-API is part of the DaSCH Service Platform, a repository for the long-term preservation and reuse of data in the humanities.
   contact:
     name: DaSCH
@@ -16,7 +16,7 @@ paths:
     get:
       tags:
       - Admin API
-      description: Returns the permission code and the project's restricted view settings for a given shortcode and filename. Publicly accessible.
+      description: Returns the permission code and the project's restricted view settings for a given filename. Publicly accessible. The `{shortcode}` path segment is not authoritative and does not affect the result — the file is identified by its filename alone (internal filenames are globally-unique asset IDs); the segment is retained only for URL compatibility.
       operationId: getAdminFilesProjectshortcodeFilename
       parameters:
       - name: projectShortcode
@@ -68,6 +68,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -130,6 +136,7 @@ paths:
                     - http://rdfh.ch/licenses/cc-0-1.0
                     - http://rdfh.ch/licenses/cc-by-nc-4.0
                     - http://rdfh.ch/licenses/cc-by-sa-4.0
+                    defaultDataAuthorship: []
                   status: true
                   selfjoin: false
         '400':
@@ -162,6 +169,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -236,6 +249,7 @@ paths:
                     - http://rdfh.ch/licenses/cc-0-1.0
                     - http://rdfh.ch/licenses/cc-by-nc-4.0
                     - http://rdfh.ch/licenses/cc-by-sa-4.0
+                    defaultDataAuthorship: []
                   status: true
                   selfjoin: false
         '400':
@@ -268,6 +282,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -338,6 +358,7 @@ paths:
                     - http://rdfh.ch/licenses/cc-0-1.0
                     - http://rdfh.ch/licenses/cc-by-nc-4.0
                     - http://rdfh.ch/licenses/cc-by-sa-4.0
+                    defaultDataAuthorship: []
                   status: true
                   selfjoin: false
         '400':
@@ -370,6 +391,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -451,6 +478,7 @@ paths:
                     - http://rdfh.ch/licenses/cc-0-1.0
                     - http://rdfh.ch/licenses/cc-by-nc-4.0
                     - http://rdfh.ch/licenses/cc-by-sa-4.0
+                    defaultDataAuthorship: []
                   status: true
                   selfjoin: false
         '400':
@@ -483,6 +511,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -552,6 +586,7 @@ paths:
                     - http://rdfh.ch/licenses/cc-0-1.0
                     - http://rdfh.ch/licenses/cc-by-nc-4.0
                     - http://rdfh.ch/licenses/cc-by-sa-4.0
+                    defaultDataAuthorship: []
                   status: true
                   selfjoin: false
         '400':
@@ -584,6 +619,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -662,6 +703,7 @@ paths:
                       - http://rdfh.ch/licenses/cc-0-1.0
                       - http://rdfh.ch/licenses/cc-by-nc-4.0
                       - http://rdfh.ch/licenses/cc-by-sa-4.0
+                      defaultDataAuthorship: []
                     status: true
                     selfjoin: false
                   projects:
@@ -695,6 +737,7 @@ paths:
                     - http://rdfh.ch/licenses/cc-0-1.0
                     - http://rdfh.ch/licenses/cc-by-nc-4.0
                     - http://rdfh.ch/licenses/cc-by-sa-4.0
+                    defaultDataAuthorship: []
                   permissions:
                     groupsPerProject: {}
                     administrativePermissionsPerProject: {}
@@ -728,6 +771,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -804,6 +853,7 @@ paths:
                     - http://rdfh.ch/licenses/cc-0-1.0
                     - http://rdfh.ch/licenses/cc-by-nc-4.0
                     - http://rdfh.ch/licenses/cc-by-sa-4.0
+                    defaultDataAuthorship: []
                   status: true
                   selfjoin: false
         '400':
@@ -836,6 +886,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -903,6 +959,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -957,6 +1019,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1016,6 +1084,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1077,6 +1151,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1141,6 +1221,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1199,6 +1285,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1258,6 +1350,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1314,6 +1412,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1371,6 +1475,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1428,6 +1538,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1490,6 +1606,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1555,6 +1677,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1620,6 +1748,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1685,6 +1819,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1744,6 +1884,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1815,6 +1961,140 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - httpAuth: []
+      - httpAuth1: []
+  /admin/maintenance/users/replace-iri:
+    post:
+      tags:
+      - Admin API
+      description: 'Replace a user IRI across the entire database (admin graph + all project data graphs). SystemAdmin only. Irreversible -- no undo mechanism. Not idempotent: retrying after success returns 404.'
+      operationId: postAdminMaintenanceUsersReplace-iri
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplaceUserIriRequest'
+        required: true
+      responses:
+        '204':
+          description: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OntologyConstraintException'
+                - $ref: '#/components/schemas/DuplicateValueException'
+                - $ref: '#/components/schemas/ValidationException'
+                - $ref: '#/components/schemas/BadRequestException'
+                - $ref: '#/components/schemas/GravsearchException'
+                - $ref: '#/components/schemas/EditConflictException'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadCredentialsException'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - httpAuth: []
+      - httpAuth1: []
+  /admin/maintenance/projects/{projectShortcode}/replace-user-iri:
+    post:
+      tags:
+      - Admin API
+      description: 'Re-attribute all references to a user IRI within a single project''s data graph. Both user accounts remain intact. SystemAdmin only. Not idempotent: retrying after success returns 404.'
+      operationId: postAdminMaintenanceProjectsProjectshortcodeReplace-user-iri
+      parameters:
+      - name: projectShortcode
+        in: path
+        description: The shortcode of a project. Must be a 4 digit hexadecimal String.
+        required: true
+        schema:
+          type: string
+        example: '0001'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplaceUserIriRequest'
+        required: true
+      responses:
+        '204':
+          description: ''
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OntologyConstraintException'
+                - $ref: '#/components/schemas/DuplicateValueException'
+                - $ref: '#/components/schemas/ValidationException'
+                - $ref: '#/components/schemas/BadRequestException'
+                - $ref: '#/components/schemas/GravsearchException'
+                - $ref: '#/components/schemas/EditConflictException'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadCredentialsException'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1873,6 +2153,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -1933,6 +2219,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2000,6 +2292,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2060,6 +2358,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2120,6 +2424,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2195,6 +2505,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2261,6 +2577,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2327,6 +2649,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2393,6 +2721,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2460,6 +2794,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2521,6 +2861,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2579,6 +2925,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2760,6 +3112,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2824,6 +3182,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2923,6 +3287,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -2986,6 +3356,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3049,6 +3425,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3150,6 +3532,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3214,6 +3602,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3279,6 +3673,96 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - httpAuth: []
+      - httpAuth1: []
+  /admin/projects/shortcode/{projectShortcode}/legal-info/resource:
+    put:
+      tags:
+      - Admin API
+      description: 'Set the resource-side (data) legal info for this project: the data license (Creative Commons only), the copyright holder and the default authorship, each applied to every resource record in the project. Returns the saved values. The user must be a system or project admin.'
+      operationId: putAdminProjectsShortcodeProjectshortcodeLegal-infoResource
+      parameters:
+      - name: projectShortcode
+        in: path
+        description: The shortcode of a project. Must be a 4 digit hexadecimal String.
+        required: true
+        schema:
+          type: string
+        example: '0001'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceSideLegalInfo'
+            example:
+              dataLicense: http://rdfh.ch/licenses/cc-by-4.0
+              dataCopyrightHolder: University of Basel
+              defaultDataAuthorship:
+              - Lotte Reiniger
+              - Hilma af Klint
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceSideLegalInfo'
+              example:
+                dataLicense: http://rdfh.ch/licenses/cc-by-4.0
+                dataCopyrightHolder: University of Basel
+                defaultDataAuthorship:
+                - Lotte Reiniger
+                - Hilma af Klint
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OntologyConstraintException'
+                - $ref: '#/components/schemas/DuplicateValueException'
+                - $ref: '#/components/schemas/ValidationException'
+                - $ref: '#/components/schemas/BadRequestException'
+                - $ref: '#/components/schemas/GravsearchException'
+                - $ref: '#/components/schemas/EditConflictException'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadCredentialsException'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3331,6 +3815,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3386,6 +3876,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3438,6 +3934,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3495,6 +3997,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3557,6 +4065,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3616,6 +4130,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3676,6 +4196,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3733,6 +4259,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3790,6 +4322,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3847,6 +4385,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3926,6 +4470,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -3986,6 +4536,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4065,6 +4621,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4125,6 +4687,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4192,6 +4760,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4252,6 +4826,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4312,6 +4892,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4372,6 +4958,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4432,6 +5024,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4492,6 +5090,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4552,6 +5156,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4625,6 +5235,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4647,7 +5263,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       responses:
         '200':
           description: ''
@@ -4685,6 +5301,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4704,7 +5326,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       responses:
         '200':
           description: ''
@@ -4742,6 +5364,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4761,7 +5389,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       responses:
         '200':
           description: ''
@@ -4799,6 +5427,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4848,6 +5482,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4905,6 +5545,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4927,7 +5573,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       responses:
         '200':
           description: ''
@@ -4965,6 +5611,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -4986,7 +5638,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       responses:
         '200':
           description: ''
@@ -5024,6 +5676,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5085,6 +5743,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5145,6 +5809,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5167,7 +5837,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       - name: projectIri
         in: path
         description: The IRI of a project. Must be URL-encoded.
@@ -5212,6 +5882,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5233,7 +5909,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       - name: projectIri
         in: path
         description: The IRI of a project. Must be URL-encoded.
@@ -5278,6 +5954,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5300,7 +5982,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       - name: projectIri
         in: path
         description: The IRI of a project. Must be URL-encoded.
@@ -5345,6 +6027,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5366,7 +6054,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       - name: projectIri
         in: path
         description: The IRI of a project. Must be URL-encoded.
@@ -5411,6 +6099,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5433,7 +6127,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       - name: groupIri
         in: path
         description: The IRI of a group. Must be URL-encoded.
@@ -5478,6 +6172,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5499,7 +6199,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       - name: groupIri
         in: path
         description: The IRI of a group. Must be URL-encoded.
@@ -5544,6 +6244,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5566,7 +6272,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       requestBody:
         content:
           application/json:
@@ -5610,6 +6316,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5632,7 +6344,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       requestBody:
         content:
           application/json:
@@ -5676,6 +6388,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5698,7 +6416,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       requestBody:
         content:
           application/json:
@@ -5742,6 +6460,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5764,7 +6488,7 @@ paths:
         required: true
         schema:
           type: string
-        example: http://rdfh.ch/users/U16pbDgNSb6pQgDSP9L-VQ
+        example: http://rdfh.ch/users/bShDD8NjS3ix35MxqFCT1Q
       requestBody:
         content:
           application/json:
@@ -5808,6 +6532,273 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - httpAuth: []
+      - httpAuth1: []
+  /admin/projects/iri/{projectIri}/view-restrictions/summary:
+    get:
+      tags:
+      - Admin API
+      description: 'Per-audience counts of items a project''s audiences cannot fully see, grouped by resource class or property. Each audience reports `hidden` (permission code 0 — nothing is served) and `restrictedView` (code 1 — a degraded version is served) separately; the two are disjoint. Both are further split by unit: `resources` counts whole restricted resources, `items` counts restricted values inside resources. The two units are never summed — one resource with three hidden values is 1 resource and 3 items, not 4 of anything. When grouping by resource class, **every** class in the project is reported — including classes with no restrictions at all — each with `totalResources`: how many resources the project has in that class in total. That count is independent of the restrictions and of `itemType`; it is the denominator for `counts.<audience>.resources` (same unit), not for `items`. Summing it over the groups gives the project''s whole resource count. In property mode only properties that carry a restriction are reported and `totalResources` is absent, since a property has no resource population of its own. Counts are computed by the triplestore and are exact regardless of project size. The user must be project admin or system admin.'
+      operationId: getAdminProjectsIriProjectiriView-restrictionsSummary
+      parameters:
+      - name: projectIri
+        in: path
+        description: The IRI of a project. Must be URL-encoded.
+        required: true
+        schema:
+          type: string
+        example: http://rdfh.ch/projects/0001
+      - name: groupBy
+        in: query
+        description: Whether to group the matrix by resource class or by the property that carries the restriction.
+        required: false
+        schema:
+          $ref: '#/components/schemas/GroupBy'
+          default: ResourceClass
+      - name: itemType
+        in: query
+        description: Restrict the report to a single item type, or `all` for the combined view.
+        required: false
+        schema:
+          $ref: '#/components/schemas/ItemType'
+          default: All
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewRestrictionsSummary'
+              example:
+                projectIri: http://rdfh.ch/projects/0001
+                groupBy: ResourceClass
+                itemType: All
+                groups:
+                - id: http://www.knora.org/ontology/0001/anything#Thing
+                  label: Thing
+                  ontology: anything
+                  counts:
+                    anonymous:
+                      resources:
+                        hidden: 7
+                        restrictedView: 3
+                      items:
+                        hidden: 12
+                        restrictedView: 4
+                    authenticated:
+                      resources:
+                        hidden: 2
+                        restrictedView: 1
+                      items:
+                        hidden: 5
+                        restrictedView: 2
+                    projectMember:
+                      resources:
+                        hidden: 0
+                        restrictedView: 0
+                      items:
+                        hidden: 0
+                        restrictedView: 0
+                  totalResources: 120
+                totals:
+                  anonymous:
+                    resources:
+                      hidden: 7
+                      restrictedView: 3
+                    items:
+                      hidden: 12
+                      restrictedView: 4
+                  authenticated:
+                    resources:
+                      hidden: 2
+                      restrictedView: 1
+                    items:
+                      hidden: 5
+                      restrictedView: 2
+                  projectMember:
+                    resources:
+                      hidden: 0
+                      restrictedView: 0
+                    items:
+                      hidden: 0
+                      restrictedView: 0
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OntologyConstraintException'
+                - $ref: '#/components/schemas/DuplicateValueException'
+                - $ref: '#/components/schemas/ValidationException'
+                - $ref: '#/components/schemas/BadRequestException'
+                - $ref: '#/components/schemas/GravsearchException'
+                - $ref: '#/components/schemas/EditConflictException'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadCredentialsException'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+        '500':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - httpAuth: []
+      - httpAuth1: []
+  /admin/projects/iri/{projectIri}/view-restrictions/items:
+    get:
+      tags:
+      - Admin API
+      description: Paginated list of resources affected by a restriction under a given class (or property), each with its per-audience visibility and the nested restricted file values / values / comments. Ordered by label then IRI, so paging is stable across requests. The user must be project admin or system admin.
+      operationId: getAdminProjectsIriProjectiriView-restrictionsItems
+      parameters:
+      - name: projectIri
+        in: path
+        description: The IRI of a project. Must be URL-encoded.
+        required: true
+        schema:
+          type: string
+        example: http://rdfh.ch/projects/0001
+      - name: groupBy
+        in: query
+        description: Whether to group the matrix by resource class or by the property that carries the restriction.
+        required: false
+        schema:
+          $ref: '#/components/schemas/GroupBy'
+          default: ResourceClass
+      - name: group
+        in: query
+        description: The IRI of the class (or property, in property mode) whose affected items to page through.
+        required: true
+        schema:
+          type: string
+      - name: itemType
+        in: query
+        description: Restrict the report to a single item type, or `all` for the combined view.
+        required: false
+        schema:
+          $ref: '#/components/schemas/ItemType'
+          default: All
+      - name: page
+        in: query
+        description: The number of the desired page to be returned.
+        required: false
+        schema:
+          default: 1
+          type: integer
+          format: int32
+          minimum: 1
+      - name: page-size
+        in: query
+        description: The number of items per page to be returned.
+        required: false
+        schema:
+          default: 25
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResponse_RestrictedResource'
+              example:
+                data:
+                - resourceIri: http://rdfh.ch/0001/a-thing
+                  label: A thing
+                  resourceClassIri: http://www.knora.org/ontology/0001/anything#Thing
+                  resourceVisibility:
+                    anonymous: Hidden
+                    authenticated: Visible
+                    projectMember: Visible
+                  items:
+                  - type: File
+                    propertyIri: http://www.knora.org/ontology/knora-base#hasStillImageFileValue
+                    propertyLabel: Still image file
+                    valueIri: http://rdfh.ch/0001/a-thing/values/image
+                    visibility:
+                      anonymous: RestrictedView
+                      authenticated: Visible
+                      projectMember: Visible
+                pagination:
+                  pageSize: 25
+                  totalItems: 1
+                  totalPages: 1
+                  currentPage: 1
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/OntologyConstraintException'
+                - $ref: '#/components/schemas/DuplicateValueException'
+                - $ref: '#/components/schemas/ValidationException'
+                - $ref: '#/components/schemas/BadRequestException'
+                - $ref: '#/components/schemas/GravsearchException'
+                - $ref: '#/components/schemas/EditConflictException'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadCredentialsException'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundException'
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
         '500':
           description: ''
           content:
@@ -5819,258 +6810,36 @@ paths:
       - httpAuth1: []
 components:
   schemas:
-    UserDto:
-      title: UserDto
+    GivenName:
+      title: GivenName
       type: object
       required:
-      - id
-      - username
-      - email
-      - givenName
-      - familyName
-      - status
-      - lang
-      - permissions
+      - value
       properties:
-        id:
+        value:
           type: string
-        username:
-          type: string
-        email:
-          type: string
-        givenName:
-          type: string
-        familyName:
-          type: string
-        status:
+    CanDeleteListResponseADM:
+      title: CanDeleteListResponseADM
+      type: object
+      required:
+      - listIri
+      - canDeleteList
+      properties:
+        listIri:
+          $ref: '#/components/schemas/ListIri'
+        canDeleteList:
           type: boolean
-        lang:
-          type: string
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group'
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        permissions:
-          $ref: '#/components/schemas/PermissionsDataADM'
-    ProjectGetResponse:
-      title: ProjectGetResponse
-      type: object
-      required:
-      - project
-      properties:
-        project:
-          $ref: '#/components/schemas/Project'
-    Keyword:
-      title: Keyword
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    CopyrightHolderAddRequest:
-      title: CopyrightHolderAddRequest
+    GroupMembersGetResponseADM:
+      title: GroupMembersGetResponseADM
       type: object
       properties:
-        data:
-          type: array
-          uniqueItems: true
-          items:
-            type: string
-    Watermark:
-      title: Watermark
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: boolean
-    StringLiteralV2:
-      title: StringLiteralV2
-      oneOf:
-      - $ref: '#/components/schemas/LanguageTaggedStringLiteralV2'
-      - $ref: '#/components/schemas/PlainStringLiteralV2'
-    Shortname:
-      title: Shortname
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    UserProjectAdminMembershipsGetResponseADM:
-      title: UserProjectAdminMembershipsGetResponseADM
-      type: object
-      properties:
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-    UserResponse:
-      title: UserResponse
-      type: object
-      required:
-      - user
-      properties:
-        user:
-          $ref: '#/components/schemas/UserDto'
-    UsersResponse:
-      title: UsersResponse
-      type: object
-      properties:
-        users:
+        members:
           type: array
           items:
             $ref: '#/components/schemas/UserDto'
-    CreateAdministrativePermissionAPIRequestADM:
-      title: CreateAdministrativePermissionAPIRequestADM
+    Active:
+      title: Active
       type: object
-      required:
-      - forProject
-      - forGroup
-      properties:
-        id:
-          $ref: '#/components/schemas/PermissionIri'
-        forProject:
-          description: IRI for a project.
-          type: string
-        forGroup:
-          $ref: '#/components/schemas/GroupIri'
-        hasPermissions:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/PermissionADM'
-    ListADM:
-      title: ListADM
-      type: object
-      required:
-      - listinfo
-      properties:
-        listinfo:
-          $ref: '#/components/schemas/ListRootNodeInfoADM'
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListChildNodeADM'
-    SelfJoin:
-      title: SelfJoin
-      oneOf:
-      - $ref: '#/components/schemas/CanJoin'
-      - $ref: '#/components/schemas/CannotJoin'
-    CannotJoin:
-      title: CannotJoin
-      type: object
-    PasswordChangeRequest:
-      title: PasswordChangeRequest
-      type: object
-      required:
-      - requesterPassword
-      - newPassword
-      properties:
-        requesterPassword:
-          $ref: '#/components/schemas/Password'
-        newPassword:
-          $ref: '#/components/schemas/Password'
-    Pagination:
-      title: Pagination
-      type: object
-      required:
-      - pageSize
-      - totalItems
-      - totalPages
-      - currentPage
-      properties:
-        pageSize:
-          type: integer
-          format: int32
-        totalItems:
-          type: integer
-          format: int32
-        totalPages:
-          type: integer
-          format: int32
-        currentPage:
-          type: integer
-          format: int32
-    Username:
-      title: Username
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    Labels:
-      title: Labels
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/StringLiteralV2'
-    Group:
-      title: Group
-      type: object
-      required:
-      - id
-      - name
-      - status
-      - selfjoin
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        descriptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/StringLiteralV2'
-        project:
-          $ref: '#/components/schemas/Project'
-        status:
-          type: boolean
-        selfjoin:
-          type: boolean
-    ProjectOperationResponseADM:
-      title: ProjectOperationResponseADM
-      type: object
-      required:
-      - project
-      properties:
-        project:
-          $ref: '#/components/schemas/Project'
-    OntologyConstraintException:
-      title: OntologyConstraintException
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    PermissionInfoADM:
-      title: PermissionInfoADM
-      type: object
-      required:
-      - iri
-      - permissionType
-      properties:
-        iri:
-          $ref: '#/components/schemas/PermissionIri'
-        permissionType:
-          type: string
-    Shortcode:
-      title: Shortcode
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
     BasicUserInformationChangeRequest:
       title: BasicUserInformationChangeRequest
       type: object
@@ -6086,692 +6855,6 @@ components:
           $ref: '#/components/schemas/FamilyName'
         lang:
           type: string
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    LanguageTaggedStringLiteralV2:
-      title: LanguageTaggedStringLiteralV2
-      type: object
-      required:
-      - value
-      - language
-      properties:
-        value:
-          type: string
-        language:
-          type: string
-    ProjectLicenseDto:
-      title: ProjectLicenseDto
-      type: object
-      required:
-      - id
-      - uri
-      - labelEn
-      - isRecommended
-      - isEnabled
-      properties:
-        id:
-          type: string
-        uri:
-          type: string
-        labelEn:
-          type: string
-        isRecommended:
-          type: boolean
-        isEnabled:
-          type: boolean
-    ListName:
-      title: ListName
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    ListItemDeleteResponseADM:
-      title: ListItemDeleteResponseADM
-      oneOf:
-      - $ref: '#/components/schemas/ChildNodeDeleteResponseADM'
-      - $ref: '#/components/schemas/ListDeleteResponseADM'
-    Inactive:
-      title: Inactive
-      type: object
-    Description:
-      title: Description
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          $ref: '#/components/schemas/StringLiteralV2'
-    CanDeleteListResponseADM:
-      title: CanDeleteListResponseADM
-      type: object
-      required:
-      - listIri
-      - canDeleteList
-      properties:
-        listIri:
-          $ref: '#/components/schemas/ListIri'
-        canDeleteList:
-          type: boolean
-    ProjectRestrictedViewSettingsGetResponseADM:
-      title: ProjectRestrictedViewSettingsGetResponseADM
-      type: object
-      required:
-      - settings
-      properties:
-        settings:
-          $ref: '#/components/schemas/ProjectRestrictedViewSettingsADM'
-    Status:
-      title: Status
-      oneOf:
-      - $ref: '#/components/schemas/Active'
-      - $ref: '#/components/schemas/Inactive'
-    ListChangeLabelsRequest:
-      title: ListChangeLabelsRequest
-      type: object
-      required:
-      - labels
-      properties:
-        labels:
-          $ref: '#/components/schemas/Labels'
-    CanJoin:
-      title: CanJoin
-      type: object
-    SystemAdminChangeRequest:
-      title: SystemAdminChangeRequest
-      type: object
-      required:
-      - systemAdmin
-      properties:
-        systemAdmin:
-          $ref: '#/components/schemas/SystemAdmin'
-    Map_Seq_IRI:
-      title: Map_Seq_IRI
-      type: object
-      additionalProperties:
-        type: array
-        items:
-          type: string
-    GroupMembersGetResponseADM:
-      title: GroupMembersGetResponseADM
-      type: object
-      properties:
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDto'
-    EditConflictException:
-      title: EditConflictException
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    ListRootNodeInfoADM:
-      title: ListRootNodeInfoADM
-      type: object
-      required:
-      - id
-      - projectIri
-      - labels
-      - comments
-      - isRootNode
-      properties:
-        id:
-          type: string
-        projectIri:
-          type: string
-        name:
-          type: string
-        labels:
-          $ref: '#/components/schemas/StringLiteralSequenceV2'
-        comments:
-          $ref: '#/components/schemas/StringLiteralSequenceV2'
-        isRootNode:
-          type: boolean
-    UserProjectMembershipsGetResponseADM:
-      title: UserProjectMembershipsGetResponseADM
-      type: object
-      properties:
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-    ProjectRestrictedViewSettingsADM:
-      title: ProjectRestrictedViewSettingsADM
-      type: object
-      required:
-      - watermark
-      properties:
-        size:
-          type: string
-        watermark:
-          type: boolean
-    AdministrativePermissionsForProjectGetResponseADM:
-      title: AdministrativePermissionsForProjectGetResponseADM
-      type: object
-      properties:
-        administrativePermissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdministrativePermissionADM'
-    ValidationException:
-      title: ValidationException
-      type: object
-      required:
-      - msg
-      properties:
-        msg:
-          type: string
-    Active:
-      title: Active
-      type: object
-    Comments:
-      title: Comments
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/StringLiteralV2'
-    ListCreateRootNodeRequest:
-      title: ListCreateRootNodeRequest
-      type: object
-      required:
-      - comments
-      - labels
-      - projectIri
-      properties:
-        id:
-          $ref: '#/components/schemas/ListIri'
-        comments:
-          $ref: '#/components/schemas/Comments'
-        labels:
-          $ref: '#/components/schemas/Labels'
-        name:
-          $ref: '#/components/schemas/ListName'
-        projectIri:
-          description: IRI for a project.
-          type: string
-    PagedResponse_CopyrightHolder:
-      title: PagedResponse_CopyrightHolder
-      type: object
-      required:
-      - data
-      - pagination
-      properties:
-        data:
-          type: array
-          items:
-            type: string
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    NodeADM:
-      title: NodeADM
-      type: object
-      required:
-      - nodeinfo
-      properties:
-        nodeinfo:
-          $ref: '#/components/schemas/ListChildNodeInfoADM'
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListChildNodeADM'
-    ListsGetResponseADM:
-      title: ListsGetResponseADM
-      type: object
-      properties:
-        lists:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListRootNodeInfoADM'
-    Position:
-      title: Position
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: integer
-          format: int32
-    ForbiddenException:
-      title: ForbiddenException
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    ListItemGetResponseADM:
-      title: ListItemGetResponseADM
-      oneOf:
-      - $ref: '#/components/schemas/ListGetResponseADM'
-      - $ref: '#/components/schemas/ListNodeGetResponseADM'
-    ChangePermissionHasPermissionsApiRequestADM:
-      title: ChangePermissionHasPermissionsApiRequestADM
-      type: object
-      properties:
-        hasPermissions:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/PermissionADM'
-    NodePositionChangeResponseADM:
-      title: NodePositionChangeResponseADM
-      type: object
-      required:
-      - node
-      properties:
-        node:
-          $ref: '#/components/schemas/ListNodeADM'
-    GroupStatusUpdateRequest:
-      title: GroupStatusUpdateRequest
-      type: object
-      required:
-      - status
-      properties:
-        status:
-          $ref: '#/components/schemas/GroupStatus'
-    ListNodeCommentsDeleteResponseADM:
-      title: ListNodeCommentsDeleteResponseADM
-      type: object
-      required:
-      - nodeIri
-      - commentsDeleted
-      properties:
-        nodeIri:
-          type: string
-        commentsDeleted:
-          type: boolean
-    PlainStringLiteralV2:
-      title: PlainStringLiteralV2
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    ListChangeNameRequest:
-      title: ListChangeNameRequest
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          $ref: '#/components/schemas/ListName'
-    ChangeDoapRequest:
-      title: ChangeDoapRequest
-      type: object
-      properties:
-        forGroup:
-          $ref: '#/components/schemas/GroupIri'
-        forResourceClass:
-          type: string
-        forProperty:
-          type: string
-        hasPermissions:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/PermissionADM'
-    GroupName:
-      title: GroupName
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    AdministrativePermissionCreateResponseADM:
-      title: AdministrativePermissionCreateResponseADM
-      type: object
-      required:
-      - administrativePermission
-      properties:
-        administrativePermission:
-          $ref: '#/components/schemas/AdministrativePermissionADM'
-    GroupDescriptions:
-      title: GroupDescriptions
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/StringLiteralV2'
-    DefaultObjectAccessPermissionADM:
-      title: DefaultObjectAccessPermissionADM
-      type: object
-      required:
-      - iri
-      - forProject
-      properties:
-        iri:
-          $ref: '#/components/schemas/PermissionIri'
-        forProject:
-          description: IRI for a project.
-          type: string
-        forGroup:
-          $ref: '#/components/schemas/GroupIri'
-        forResourceClass:
-          type: string
-        forProperty:
-          type: string
-        hasPermissions:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/PermissionADM'
-    GroupsGetResponseADM:
-      title: GroupsGetResponseADM
-      type: object
-      properties:
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group'
-    SetRestrictedViewRequest:
-      title: SetRestrictedViewRequest
-      type: object
-      properties:
-        size:
-          $ref: '#/components/schemas/Size'
-        watermark:
-          $ref: '#/components/schemas/Watermark'
-    DefaultObjectAccessPermissionsForProjectGetResponseADM:
-      title: DefaultObjectAccessPermissionsForProjectGetResponseADM
-      type: object
-      properties:
-        defaultObjectAccessPermissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultObjectAccessPermissionADM'
-    GroupCreateRequest:
-      title: GroupCreateRequest
-      type: object
-      required:
-      - name
-      - descriptions
-      - project
-      - status
-      - selfjoin
-      properties:
-        id:
-          $ref: '#/components/schemas/GroupIri'
-        name:
-          $ref: '#/components/schemas/GroupName'
-        descriptions:
-          $ref: '#/components/schemas/GroupDescriptions'
-        project:
-          description: IRI for a project.
-          type: string
-        status:
-          $ref: '#/components/schemas/GroupStatus'
-        selfjoin:
-          $ref: '#/components/schemas/GroupSelfJoin'
-    ListCreateChildNodeRequest:
-      title: ListCreateChildNodeRequest
-      type: object
-      required:
-      - labels
-      - parentNodeIri
-      - projectIri
-      properties:
-        id:
-          $ref: '#/components/schemas/ListIri'
-        comments:
-          $ref: '#/components/schemas/Comments'
-        labels:
-          $ref: '#/components/schemas/Labels'
-        name:
-          $ref: '#/components/schemas/ListName'
-        parentNodeIri:
-          $ref: '#/components/schemas/ListIri'
-        position:
-          $ref: '#/components/schemas/Position'
-        projectIri:
-          description: IRI for a project.
-          type: string
-    ChangePermissionPropertyApiRequestADM:
-      title: ChangePermissionPropertyApiRequestADM
-      type: object
-      required:
-      - forProperty
-      properties:
-        forProperty:
-          type: string
-    GroupIri:
-      title: GroupIri
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    PermissionsDataADM:
-      title: PermissionsDataADM
-      type: object
-      required:
-      - groupsPerProject
-      - administrativePermissionsPerProject
-      properties:
-        groupsPerProject:
-          $ref: '#/components/schemas/Map_Seq_IRI'
-        administrativePermissionsPerProject:
-          $ref: '#/components/schemas/Map_Set_PermissionADM'
-    UserStatus:
-      title: UserStatus
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: boolean
-    ListDeleteResponseADM:
-      title: ListDeleteResponseADM
-      type: object
-      required:
-      - iri
-      - deleted
-      properties:
-        iri:
-          type: string
-        deleted:
-          type: boolean
-    ProjectUpdateRequest:
-      title: ProjectUpdateRequest
-      type: object
-      properties:
-        longname:
-          $ref: '#/components/schemas/Longname'
-        description:
-          type: array
-          items:
-            $ref: '#/components/schemas/Description'
-        keywords:
-          type: array
-          items:
-            $ref: '#/components/schemas/Keyword'
-        logo:
-          $ref: '#/components/schemas/Logo'
-        status:
-          $ref: '#/components/schemas/Status'
-        selfjoin:
-          $ref: '#/components/schemas/SelfJoin'
-    GroupUpdateRequest:
-      title: GroupUpdateRequest
-      type: object
-      properties:
-        name:
-          $ref: '#/components/schemas/GroupName'
-        descriptions:
-          $ref: '#/components/schemas/GroupDescriptions'
-        status:
-          $ref: '#/components/schemas/GroupStatus'
-        selfjoin:
-          $ref: '#/components/schemas/GroupSelfJoin'
-    PermissionCodeAndProjectRestrictedViewSettings:
-      title: PermissionCodeAndProjectRestrictedViewSettings
-      type: object
-      required:
-      - permissionCode
-      properties:
-        permissionCode:
-          type: integer
-          format: int32
-        restrictedViewSettings:
-          $ref: '#/components/schemas/ProjectRestrictedViewSettingsADM'
-    Size:
-      title: Size
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    Longname:
-      title: Longname
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    PermissionGetResponseADM:
-      title: PermissionGetResponseADM
-      oneOf:
-      - $ref: '#/components/schemas/AdministrativePermissionGetResponseADM'
-      - $ref: '#/components/schemas/DefaultObjectAccessPermissionGetResponseADM'
-    PermissionsForProjectGetResponseADM:
-      title: PermissionsForProjectGetResponseADM
-      type: object
-      properties:
-        permissions:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/PermissionInfoADM'
-    GivenName:
-      title: GivenName
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    SystemAdmin:
-      title: SystemAdmin
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: boolean
-    ListGetResponseADM:
-      title: ListGetResponseADM
-      type: object
-      required:
-      - list
-      properties:
-        list:
-          $ref: '#/components/schemas/ListADM'
-    BadCredentialsException:
-      title: BadCredentialsException
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    ListChildNodeADM:
-      title: ListChildNodeADM
-      type: object
-      required:
-      - id
-      - labels
-      - comments
-      - position
-      - hasRootNode
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        labels:
-          $ref: '#/components/schemas/StringLiteralSequenceV2'
-        comments:
-          $ref: '#/components/schemas/StringLiteralSequenceV2'
-        position:
-          type: integer
-          format: int32
-        hasRootNode:
-          type: string
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListChildNodeADM'
-    ProjectKeywordsGetResponse:
-      title: ProjectKeywordsGetResponse
-      type: object
-      properties:
-        keywords:
-          type: array
-          items:
-            type: string
-    GravsearchException:
-      title: GravsearchException
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    DuplicateValueException:
-      title: DuplicateValueException
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    ListChangeRequest:
-      title: ListChangeRequest
-      type: object
-      required:
-      - listIri
-      - projectIri
-      properties:
-        listIri:
-          $ref: '#/components/schemas/ListIri'
-        projectIri:
-          description: IRI for a project.
-          type: string
-        hasRootNode:
-          $ref: '#/components/schemas/ListIri'
-        position:
-          $ref: '#/components/schemas/Position'
-        name:
-          $ref: '#/components/schemas/ListName'
-        labels:
-          $ref: '#/components/schemas/Labels'
-        comments:
-          $ref: '#/components/schemas/Comments'
-    GroupSelfJoin:
-      title: GroupSelfJoin
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: boolean
     PermissionDeleteResponseADM:
       title: PermissionDeleteResponseADM
       type: object
@@ -6783,169 +6866,9 @@ components:
           $ref: '#/components/schemas/PermissionIri'
         deleted:
           type: boolean
-    UserGroupMembershipsGetResponseADM:
-      title: UserGroupMembershipsGetResponseADM
+    CannotJoin:
+      title: CannotJoin
       type: object
-      properties:
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group'
-    ListNodeADM:
-      title: ListNodeADM
-      oneOf:
-      - $ref: '#/components/schemas/ListChildNodeADM'
-      - $ref: '#/components/schemas/ListRootNodeADM'
-    CopyrightHolderReplaceRequest:
-      title: CopyrightHolderReplaceRequest
-      type: object
-      required:
-      - old-value
-      - new-value
-      properties:
-        old-value:
-          type: string
-        new-value:
-          type: string
-    UserCreateRequest:
-      title: UserCreateRequest
-      type: object
-      required:
-      - username
-      - email
-      - givenName
-      - familyName
-      - password
-      - status
-      - lang
-      - systemAdmin
-      properties:
-        id:
-          description: IRI for a user.
-          type: string
-        username:
-          $ref: '#/components/schemas/Username'
-        email:
-          type: string
-          pattern: ^.+@.+$
-        givenName:
-          $ref: '#/components/schemas/GivenName'
-        familyName:
-          $ref: '#/components/schemas/FamilyName'
-        password:
-          $ref: '#/components/schemas/Password'
-        status:
-          $ref: '#/components/schemas/UserStatus'
-        lang:
-          type: string
-        systemAdmin:
-          $ref: '#/components/schemas/SystemAdmin'
-    ListChangePositionRequest:
-      title: ListChangePositionRequest
-      type: object
-      required:
-      - position
-      - parentNodeIri
-      properties:
-        position:
-          $ref: '#/components/schemas/Position'
-        parentNodeIri:
-          $ref: '#/components/schemas/ListIri'
-    ProjectMembersGetResponseADM:
-      title: ProjectMembersGetResponseADM
-      type: object
-      properties:
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDto'
-    ListChangeCommentsRequest:
-      title: ListChangeCommentsRequest
-      type: object
-      required:
-      - comments
-      properties:
-        comments:
-          $ref: '#/components/schemas/Comments'
-    Map_Set_PermissionADM:
-      title: Map_Set_PermissionADM
-      type: object
-      additionalProperties:
-        type: array
-        uniqueItems: true
-        items:
-          $ref: '#/components/schemas/PermissionADM'
-    ListIri:
-      title: ListIri
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    Password:
-      title: Password
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    ChangePermissionGroupApiRequestADM:
-      title: ChangePermissionGroupApiRequestADM
-      type: object
-      required:
-      - forGroup
-      properties:
-        forGroup:
-          $ref: '#/components/schemas/GroupIri'
-    StringLiteralSequenceV2:
-      title: StringLiteralSequenceV2
-      type: object
-      properties:
-        stringLiterals:
-          type: array
-          items:
-            $ref: '#/components/schemas/StringLiteralV2'
-    ListChildNodeInfoADM:
-      title: ListChildNodeInfoADM
-      type: object
-      required:
-      - id
-      - labels
-      - comments
-      - position
-      - hasRootNode
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        labels:
-          $ref: '#/components/schemas/StringLiteralSequenceV2'
-        comments:
-          $ref: '#/components/schemas/StringLiteralSequenceV2'
-        position:
-          type: integer
-          format: int32
-        hasRootNode:
-          type: string
-    ListNodeGetResponseADM:
-      title: ListNodeGetResponseADM
-      type: object
-      required:
-      - node
-      properties:
-        node:
-          $ref: '#/components/schemas/NodeADM'
-    RestrictedViewResponse:
-      title: RestrictedViewResponse
-      type: object
-      properties:
-        size:
-          $ref: '#/components/schemas/Size'
-        watermark:
-          $ref: '#/components/schemas/Watermark'
     PagedResponse_ProjectLicenseDto:
       title: PagedResponse_ProjectLicenseDto
       type: object
@@ -6959,58 +6882,14 @@ components:
             $ref: '#/components/schemas/ProjectLicenseDto'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    AdministrativePermissionADM:
-      title: AdministrativePermissionADM
+    AdministrativePermissionGetResponseADM:
+      title: AdministrativePermissionGetResponseADM
       type: object
       required:
-      - iri
-      - forProject
-      - forGroup
+      - administrativePermission
       properties:
-        iri:
-          $ref: '#/components/schemas/PermissionIri'
-        forProject:
-          description: IRI for a project.
-          type: string
-        forGroup:
-          $ref: '#/components/schemas/GroupIri'
-        hasPermissions:
-          type: array
-          uniqueItems: true
-          items:
-            $ref: '#/components/schemas/PermissionADM'
-    StatusChangeRequest:
-      title: StatusChangeRequest
-      type: object
-      required:
-      - status
-      properties:
-        status:
-          $ref: '#/components/schemas/UserStatus'
-    PermissionIri:
-      title: PermissionIri
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    RootNodeInfoGetResponseADM:
-      title: RootNodeInfoGetResponseADM
-      type: object
-      required:
-      - listinfo
-      properties:
-        listinfo:
-          $ref: '#/components/schemas/ListRootNodeInfoADM'
-    ProjectsKeywordsGetResponse:
-      title: ProjectsKeywordsGetResponse
-      type: object
-      properties:
-        keywords:
-          type: array
-          items:
-            type: string
+        administrativePermission:
+          $ref: '#/components/schemas/AdministrativePermissionADM'
     Project:
       title: Project
       type: object
@@ -7058,22 +6937,384 @@ components:
           uniqueItems: true
           items:
             type: string
-    GroupGetResponseADM:
-      title: GroupGetResponseADM
+        dataLicense:
+          type: string
+        dataCopyrightHolder:
+          type: string
+        defaultDataAuthorship:
+          type: array
+          items:
+            type: string
+    ProjectsGetResponse:
+      title: ProjectsGetResponse
       type: object
-      required:
-      - group
       properties:
-        group:
-          $ref: '#/components/schemas/Group'
-    FamilyName:
-      title: FamilyName
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+    DefaultObjectAccessPermissionsForProjectGetResponseADM:
+      title: DefaultObjectAccessPermissionsForProjectGetResponseADM
+      type: object
+      properties:
+        defaultObjectAccessPermissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultObjectAccessPermissionADM'
+    Keyword:
+      title: Keyword
       type: object
       required:
       - value
       properties:
         value:
           type: string
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    ListADM:
+      title: ListADM
+      type: object
+      required:
+      - listinfo
+      properties:
+        listinfo:
+          $ref: '#/components/schemas/ListRootNodeInfoADM'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListChildNodeADM'
+    ChildNodeDeleteResponseADM:
+      title: ChildNodeDeleteResponseADM
+      type: object
+      required:
+      - node
+      properties:
+        node:
+          $ref: '#/components/schemas/ListNodeADM'
+    AdministrativePermissionCreateResponseADM:
+      title: AdministrativePermissionCreateResponseADM
+      type: object
+      required:
+      - administrativePermission
+      properties:
+        administrativePermission:
+          $ref: '#/components/schemas/AdministrativePermissionADM'
+    Password:
+      title: Password
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    ReplaceUserIriRequest:
+      title: ReplaceUserIriRequest
+      type: object
+      required:
+      - oldIri
+      - newIri
+      properties:
+        oldIri:
+          description: IRI for a user.
+          type: string
+        newIri:
+          description: IRI for a user.
+          type: string
+    Pagination:
+      title: Pagination
+      type: object
+      required:
+      - pageSize
+      - totalItems
+      - totalPages
+      - currentPage
+      properties:
+        pageSize:
+          type: integer
+          format: int32
+        totalItems:
+          type: integer
+          format: int32
+        totalPages:
+          type: integer
+          format: int32
+        currentPage:
+          type: integer
+          format: int32
+    ListChangeCommentsRequest:
+      title: ListChangeCommentsRequest
+      type: object
+      required:
+      - comments
+      properties:
+        comments:
+          $ref: '#/components/schemas/Comments'
+    ChangePermissionResourceClassApiRequestADM:
+      title: ChangePermissionResourceClassApiRequestADM
+      type: object
+      required:
+      - forResourceClass
+      properties:
+        forResourceClass:
+          type: string
+    ChangePermissionGroupApiRequestADM:
+      title: ChangePermissionGroupApiRequestADM
+      type: object
+      required:
+      - forGroup
+      properties:
+        forGroup:
+          $ref: '#/components/schemas/GroupIri'
+    ProjectKeywordsGetResponse:
+      title: ProjectKeywordsGetResponse
+      type: object
+      properties:
+        keywords:
+          type: array
+          items:
+            type: string
+    Watermark:
+      title: Watermark
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: boolean
+    Visibility:
+      title: Visibility
+      type: string
+      enum:
+      - Hidden
+      - RestrictedView
+      - Visible
+    CanJoin:
+      title: CanJoin
+      type: object
+    ListCreateChildNodeRequest:
+      title: ListCreateChildNodeRequest
+      type: object
+      required:
+      - labels
+      - parentNodeIri
+      - projectIri
+      properties:
+        id:
+          $ref: '#/components/schemas/ListIri'
+        comments:
+          $ref: '#/components/schemas/Comments'
+        labels:
+          $ref: '#/components/schemas/Labels'
+        name:
+          $ref: '#/components/schemas/ListName'
+        parentNodeIri:
+          $ref: '#/components/schemas/ListIri'
+        position:
+          $ref: '#/components/schemas/Position'
+        projectIri:
+          description: IRI for a project.
+          type: string
+    ListNodeGetResponseADM:
+      title: ListNodeGetResponseADM
+      type: object
+      required:
+      - node
+      properties:
+        node:
+          $ref: '#/components/schemas/NodeADM'
+    StringLiteralSequenceV2:
+      title: StringLiteralSequenceV2
+      type: object
+      properties:
+        stringLiterals:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringLiteralV2'
+    ProjectRestrictedViewSettingsGetResponseADM:
+      title: ProjectRestrictedViewSettingsGetResponseADM
+      type: object
+      required:
+      - settings
+      properties:
+        settings:
+          $ref: '#/components/schemas/ProjectRestrictedViewSettingsADM'
+    PagedResponse_CopyrightHolder:
+      title: PagedResponse_CopyrightHolder
+      type: object
+      required:
+      - data
+      - pagination
+      properties:
+        data:
+          type: array
+          items:
+            type: string
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    BadCredentialsException:
+      title: BadCredentialsException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    UserProjectMembershipsGetResponseADM:
+      title: UserProjectMembershipsGetResponseADM
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+    Description:
+      title: Description
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          $ref: '#/components/schemas/StringLiteralV2'
+    GroupDescriptions:
+      title: GroupDescriptions
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringLiteralV2'
+    NodePositionChangeResponseADM:
+      title: NodePositionChangeResponseADM
+      type: object
+      required:
+      - node
+      properties:
+        node:
+          $ref: '#/components/schemas/ListNodeADM'
+    Logo:
+      title: Logo
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    ProjectGetResponse:
+      title: ProjectGetResponse
+      type: object
+      required:
+      - project
+      properties:
+        project:
+          $ref: '#/components/schemas/Project'
+    SystemAdmin:
+      title: SystemAdmin
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: boolean
+    PagedResponse_Authorship:
+      title: PagedResponse_Authorship
+      type: object
+      required:
+      - data
+      - pagination
+      properties:
+        data:
+          type: array
+          items:
+            type: string
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ListChildNodeADM:
+      title: ListChildNodeADM
+      type: object
+      required:
+      - id
+      - labels
+      - comments
+      - position
+      - hasRootNode
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        labels:
+          $ref: '#/components/schemas/StringLiteralSequenceV2'
+        comments:
+          $ref: '#/components/schemas/StringLiteralSequenceV2'
+        position:
+          type: integer
+          format: int32
+        hasRootNode:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListChildNodeADM'
+    PlainStringLiteralV2:
+      title: PlainStringLiteralV2
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    PasswordChangeRequest:
+      title: PasswordChangeRequest
+      type: object
+      required:
+      - requesterPassword
+      - newPassword
+      properties:
+        requesterPassword:
+          $ref: '#/components/schemas/Password'
+        newPassword:
+          $ref: '#/components/schemas/Password'
+    DefaultObjectAccessPermissionCreateResponseADM:
+      title: DefaultObjectAccessPermissionCreateResponseADM
+      type: object
+      required:
+      - defaultObjectAccessPermission
+      properties:
+        defaultObjectAccessPermission:
+          $ref: '#/components/schemas/DefaultObjectAccessPermissionADM'
+    PermissionInfoADM:
+      title: PermissionInfoADM
+      type: object
+      required:
+      - iri
+      - permissionType
+      properties:
+        iri:
+          $ref: '#/components/schemas/PermissionIri'
+        permissionType:
+          type: string
+    Longname:
+      title: Longname
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    GroupStatusUpdateRequest:
+      title: GroupStatusUpdateRequest
+      type: object
+      required:
+      - status
+      properties:
+        status:
+          $ref: '#/components/schemas/GroupStatus'
     CreateDefaultObjectAccessPermissionAPIRequestADM:
       title: CreateDefaultObjectAccessPermissionAPIRequestADM
       type: object
@@ -7096,127 +7337,58 @@ components:
           uniqueItems: true
           items:
             $ref: '#/components/schemas/PermissionADM'
-    GroupStatus:
-      title: GroupStatus
+    PermissionIri:
+      title: PermissionIri
       type: object
       required:
       - value
       properties:
         value:
-          type: boolean
-    ProjectsGetResponse:
-      title: ProjectsGetResponse
+          type: string
+    UserProjectAdminMembershipsGetResponseADM:
+      title: UserProjectAdminMembershipsGetResponseADM
       type: object
       properties:
         projects:
           type: array
           items:
             $ref: '#/components/schemas/Project'
-    ChildNodeInfoGetResponseADM:
-      title: ChildNodeInfoGetResponseADM
-      type: object
-      required:
-      - nodeinfo
-      properties:
-        nodeinfo:
-          $ref: '#/components/schemas/ListChildNodeInfoADM'
-    AdministrativePermissionGetResponseADM:
-      title: AdministrativePermissionGetResponseADM
-      type: object
-      required:
-      - administrativePermission
-      properties:
-        administrativePermission:
-          $ref: '#/components/schemas/AdministrativePermissionADM'
-    NotFoundException:
-      title: NotFoundException
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    BadRequestException:
-      title: BadRequestException
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-    ProjectAdminMembersGetResponseADM:
-      title: ProjectAdminMembersGetResponseADM
+    ProjectUpdateRequest:
+      title: ProjectUpdateRequest
       type: object
       properties:
-        members:
+        longname:
+          $ref: '#/components/schemas/Longname'
+        description:
           type: array
           items:
-            $ref: '#/components/schemas/UserDto'
-    Logo:
-      title: Logo
-      type: object
-      required:
-      - value
-      properties:
-        value:
-          type: string
-    PermissionADM:
-      title: PermissionADM
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        additionalInformation:
-          type: string
-        permissionCode:
-          type: integer
-          format: int32
-    ListRootNodeADM:
-      title: ListRootNodeADM
-      type: object
-      required:
-      - id
-      - projectIri
-      - labels
-      - comments
-      - isRootNode
-      properties:
-        id:
-          type: string
-        projectIri:
-          type: string
-        name:
-          type: string
-        labels:
-          $ref: '#/components/schemas/StringLiteralSequenceV2'
-        comments:
-          $ref: '#/components/schemas/StringLiteralSequenceV2'
-        children:
+            $ref: '#/components/schemas/Description'
+        keywords:
           type: array
           items:
-            $ref: '#/components/schemas/ListChildNodeADM'
-        isRootNode:
+            $ref: '#/components/schemas/Keyword'
+        logo:
+          $ref: '#/components/schemas/Logo'
+        status:
+          $ref: '#/components/schemas/Status'
+        selfjoin:
+          $ref: '#/components/schemas/SelfJoin'
+    ListDeleteResponseADM:
+      title: ListDeleteResponseADM
+      type: object
+      required:
+      - iri
+      - deleted
+      properties:
+        iri:
+          type: string
+        deleted:
           type: boolean
-    ChangePermissionResourceClassApiRequestADM:
-      title: ChangePermissionResourceClassApiRequestADM
+    Inactive:
+      title: Inactive
       type: object
-      required:
-      - forResourceClass
-      properties:
-        forResourceClass:
-          type: string
-    ChildNodeDeleteResponseADM:
-      title: ChildNodeDeleteResponseADM
-      type: object
-      required:
-      - node
-      properties:
-        node:
-          $ref: '#/components/schemas/ListNodeADM'
-    PagedResponse_Authorship:
-      title: PagedResponse_Authorship
+    PagedResponse_RestrictedResource:
+      title: PagedResponse_RestrictedResource
       type: object
       required:
       - data
@@ -7225,30 +7397,397 @@ components:
         data:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/RestrictedResource'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    NodeInfoGetResponseADM:
-      title: NodeInfoGetResponseADM
+    GroupCreateRequest:
+      title: GroupCreateRequest
+      type: object
+      required:
+      - name
+      - descriptions
+      - project
+      - status
+      - selfjoin
+      properties:
+        id:
+          $ref: '#/components/schemas/GroupIri'
+        name:
+          $ref: '#/components/schemas/GroupName'
+        descriptions:
+          $ref: '#/components/schemas/GroupDescriptions'
+        project:
+          description: IRI for a project.
+          type: string
+        status:
+          $ref: '#/components/schemas/GroupStatus'
+        selfjoin:
+          $ref: '#/components/schemas/GroupSelfJoin'
+    StatusChangeRequest:
+      title: StatusChangeRequest
+      type: object
+      required:
+      - status
+      properties:
+        status:
+          $ref: '#/components/schemas/UserStatus'
+    ProjectMembersGetResponseADM:
+      title: ProjectMembersGetResponseADM
+      type: object
+      properties:
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDto'
+    UserResponse:
+      title: UserResponse
+      type: object
+      required:
+      - user
+      properties:
+        user:
+          $ref: '#/components/schemas/UserDto'
+    ProjectRestrictedViewSettingsADM:
+      title: ProjectRestrictedViewSettingsADM
+      type: object
+      required:
+      - watermark
+      properties:
+        size:
+          type: string
+        watermark:
+          type: boolean
+    ChangeDoapRequest:
+      title: ChangeDoapRequest
+      type: object
+      properties:
+        forGroup:
+          $ref: '#/components/schemas/GroupIri'
+        forResourceClass:
+          type: string
+        forProperty:
+          type: string
+        hasPermissions:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/PermissionADM'
+    ProjectLicenseDto:
+      title: ProjectLicenseDto
+      type: object
+      required:
+      - id
+      - uri
+      - labelEn
+      - isRecommended
+      - isEnabled
+      properties:
+        id:
+          type: string
+        uri:
+          type: string
+        labelEn:
+          type: string
+        isRecommended:
+          type: boolean
+        isEnabled:
+          type: boolean
+    UserStatus:
+      title: UserStatus
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: boolean
+    DefaultObjectAccessPermissionADM:
+      title: DefaultObjectAccessPermissionADM
+      type: object
+      required:
+      - iri
+      - forProject
+      properties:
+        iri:
+          $ref: '#/components/schemas/PermissionIri'
+        forProject:
+          description: IRI for a project.
+          type: string
+        forGroup:
+          $ref: '#/components/schemas/GroupIri'
+        forResourceClass:
+          type: string
+        forProperty:
+          type: string
+        hasPermissions:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/PermissionADM'
+    GroupSelfJoin:
+      title: GroupSelfJoin
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: boolean
+    ListChildNodeInfoADM:
+      title: ListChildNodeInfoADM
+      type: object
+      required:
+      - id
+      - labels
+      - comments
+      - position
+      - hasRootNode
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        labels:
+          $ref: '#/components/schemas/StringLiteralSequenceV2'
+        comments:
+          $ref: '#/components/schemas/StringLiteralSequenceV2'
+        position:
+          type: integer
+          format: int32
+        hasRootNode:
+          type: string
+    UsersResponse:
+      title: UsersResponse
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDto'
+    ChangePermissionPropertyApiRequestADM:
+      title: ChangePermissionPropertyApiRequestADM
+      type: object
+      required:
+      - forProperty
+      properties:
+        forProperty:
+          type: string
+    GroupStatus:
+      title: GroupStatus
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: boolean
+    ProjectAdminMembersGetResponseADM:
+      title: ProjectAdminMembersGetResponseADM
+      type: object
+      properties:
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDto'
+    GroupsGetResponseADM:
+      title: GroupsGetResponseADM
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+    ValidationException:
+      title: ValidationException
+      type: object
+      required:
+      - msg
+      properties:
+        msg:
+          type: string
+    ProjectOperationResponseADM:
+      title: ProjectOperationResponseADM
+      type: object
+      required:
+      - project
+      properties:
+        project:
+          $ref: '#/components/schemas/Project'
+    RestrictionGroup:
+      title: RestrictionGroup
+      type: object
+      required:
+      - id
+      - label
+      - counts
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        ontology:
+          type: string
+        propertyName:
+          type: string
+        counts:
+          $ref: '#/components/schemas/AudienceCounts'
+        totalResources:
+          type: integer
+          format: int32
+    RestrictedResource:
+      title: RestrictedResource
+      type: object
+      required:
+      - resourceIri
+      - label
+      - resourceClassIri
+      - resourceVisibility
+      properties:
+        resourceIri:
+          type: string
+        label:
+          type: string
+        resourceClassIri:
+          type: string
+        resourceVisibility:
+          $ref: '#/components/schemas/ItemVisibility'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RestrictedItem'
+    ListNodeCommentsDeleteResponseADM:
+      title: ListNodeCommentsDeleteResponseADM
+      type: object
+      required:
+      - nodeIri
+      - commentsDeleted
+      properties:
+        nodeIri:
+          type: string
+        commentsDeleted:
+          type: boolean
+    CreateAdministrativePermissionAPIRequestADM:
+      title: CreateAdministrativePermissionAPIRequestADM
+      type: object
+      required:
+      - forProject
+      - forGroup
+      properties:
+        id:
+          $ref: '#/components/schemas/PermissionIri'
+        forProject:
+          description: IRI for a project.
+          type: string
+        forGroup:
+          $ref: '#/components/schemas/GroupIri'
+        hasPermissions:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/PermissionADM'
+    AudienceCounts:
+      title: AudienceCounts
+      type: object
+      required:
+      - anonymous
+      - authenticated
+      - projectMember
+      properties:
+        anonymous:
+          $ref: '#/components/schemas/UnitCounts'
+        authenticated:
+          $ref: '#/components/schemas/UnitCounts'
+        projectMember:
+          $ref: '#/components/schemas/UnitCounts'
+    ListName:
+      title: ListName
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    LanguageTaggedStringLiteralV2:
+      title: LanguageTaggedStringLiteralV2
+      type: object
+      required:
+      - value
+      - language
+      properties:
+        value:
+          type: string
+        language:
+          type: string
+    GroupName:
+      title: GroupName
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    ListItemDeleteResponseADM:
+      title: ListItemDeleteResponseADM
       oneOf:
-      - $ref: '#/components/schemas/ChildNodeInfoGetResponseADM'
-      - $ref: '#/components/schemas/RootNodeInfoGetResponseADM'
-    DefaultObjectAccessPermissionGetResponseADM:
-      title: DefaultObjectAccessPermissionGetResponseADM
+      - $ref: '#/components/schemas/ChildNodeDeleteResponseADM'
+      - $ref: '#/components/schemas/ListDeleteResponseADM'
+    ChangePermissionHasPermissionsApiRequestADM:
+      title: ChangePermissionHasPermissionsApiRequestADM
+      type: object
+      properties:
+        hasPermissions:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/PermissionADM'
+    SelfJoin:
+      title: SelfJoin
+      oneOf:
+      - $ref: '#/components/schemas/CanJoin'
+      - $ref: '#/components/schemas/CannotJoin'
+    CopyrightHolderReplaceRequest:
+      title: CopyrightHolderReplaceRequest
       type: object
       required:
-      - defaultObjectAccessPermission
+      - old-value
+      - new-value
       properties:
-        defaultObjectAccessPermission:
-          $ref: '#/components/schemas/DefaultObjectAccessPermissionADM'
-    DefaultObjectAccessPermissionCreateResponseADM:
-      title: DefaultObjectAccessPermissionCreateResponseADM
+        old-value:
+          type: string
+        new-value:
+          type: string
+    PermissionCodeAndProjectRestrictedViewSettings:
+      title: PermissionCodeAndProjectRestrictedViewSettings
       type: object
       required:
-      - defaultObjectAccessPermission
+      - permissionCode
       properties:
-        defaultObjectAccessPermission:
-          $ref: '#/components/schemas/DefaultObjectAccessPermissionADM'
+        permissionCode:
+          type: integer
+          format: int32
+        restrictedViewSettings:
+          $ref: '#/components/schemas/ProjectRestrictedViewSettingsADM'
+    ListsGetResponseADM:
+      title: ListsGetResponseADM
+      type: object
+      properties:
+        lists:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListRootNodeInfoADM'
+    ListIri:
+      title: ListIri
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    Shortname:
+      title: Shortname
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
     ProjectCreateRequest:
       title: ProjectCreateRequest
       type: object
@@ -7291,6 +7830,666 @@ components:
           uniqueItems: true
           items:
             type: string
+    Map_Set_PermissionADM:
+      title: Map_Set_PermissionADM
+      type: object
+      additionalProperties:
+        type: array
+        uniqueItems: true
+        items:
+          $ref: '#/components/schemas/PermissionADM'
+    ListGetResponseADM:
+      title: ListGetResponseADM
+      type: object
+      required:
+      - list
+      properties:
+        list:
+          $ref: '#/components/schemas/ListADM'
+    ListChangeNameRequest:
+      title: ListChangeNameRequest
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          $ref: '#/components/schemas/ListName'
+    UserDto:
+      title: UserDto
+      type: object
+      required:
+      - id
+      - username
+      - email
+      - givenName
+      - familyName
+      - status
+      - lang
+      - permissions
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        givenName:
+          type: string
+        familyName:
+          type: string
+        status:
+          type: boolean
+        lang:
+          type: string
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        permissions:
+          $ref: '#/components/schemas/PermissionsDataADM'
+    ChildNodeInfoGetResponseADM:
+      title: ChildNodeInfoGetResponseADM
+      type: object
+      required:
+      - nodeinfo
+      properties:
+        nodeinfo:
+          $ref: '#/components/schemas/ListChildNodeInfoADM'
+    NodeADM:
+      title: NodeADM
+      type: object
+      required:
+      - nodeinfo
+      properties:
+        nodeinfo:
+          $ref: '#/components/schemas/ListChildNodeInfoADM'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListChildNodeADM'
+    PermissionsDataADM:
+      title: PermissionsDataADM
+      type: object
+      required:
+      - groupsPerProject
+      - administrativePermissionsPerProject
+      properties:
+        groupsPerProject:
+          $ref: '#/components/schemas/Map_Seq_IRI'
+        administrativePermissionsPerProject:
+          $ref: '#/components/schemas/Map_Set_PermissionADM'
+    Comments:
+      title: Comments
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringLiteralV2'
+    GroupIri:
+      title: GroupIri
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    FamilyName:
+      title: FamilyName
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    ItemVisibility:
+      title: ItemVisibility
+      type: object
+      required:
+      - anonymous
+      - authenticated
+      - projectMember
+      properties:
+        anonymous:
+          $ref: '#/components/schemas/Visibility'
+        authenticated:
+          $ref: '#/components/schemas/Visibility'
+        projectMember:
+          $ref: '#/components/schemas/Visibility'
+    ItemType:
+      title: ItemType
+      type: string
+      enum:
+      - All
+      - Comment
+      - File
+      - Resource
+      - Value
+    RestrictedViewResponse:
+      title: RestrictedViewResponse
+      type: object
+      properties:
+        size:
+          $ref: '#/components/schemas/Size'
+        watermark:
+          $ref: '#/components/schemas/Watermark'
+    RestrictionCounts:
+      title: RestrictionCounts
+      type: object
+      required:
+      - hidden
+      - restrictedView
+      properties:
+        hidden:
+          type: integer
+          format: int32
+        restrictedView:
+          type: integer
+          format: int32
+    ListChangeLabelsRequest:
+      title: ListChangeLabelsRequest
+      type: object
+      required:
+      - labels
+      properties:
+        labels:
+          $ref: '#/components/schemas/Labels'
+    Username:
+      title: Username
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    AdministrativePermissionsForProjectGetResponseADM:
+      title: AdministrativePermissionsForProjectGetResponseADM
+      type: object
+      properties:
+        administrativePermissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdministrativePermissionADM'
+    GroupGetResponseADM:
+      title: GroupGetResponseADM
+      type: object
+      required:
+      - group
+      properties:
+        group:
+          $ref: '#/components/schemas/Group'
+    Labels:
+      title: Labels
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringLiteralV2'
+    UserCreateRequest:
+      title: UserCreateRequest
+      type: object
+      required:
+      - username
+      - email
+      - givenName
+      - familyName
+      - password
+      - status
+      - lang
+      - systemAdmin
+      properties:
+        id:
+          description: IRI for a user.
+          type: string
+        username:
+          $ref: '#/components/schemas/Username'
+        email:
+          type: string
+          pattern: ^.+@.+$
+        givenName:
+          $ref: '#/components/schemas/GivenName'
+        familyName:
+          $ref: '#/components/schemas/FamilyName'
+        password:
+          $ref: '#/components/schemas/Password'
+        status:
+          $ref: '#/components/schemas/UserStatus'
+        lang:
+          type: string
+        systemAdmin:
+          $ref: '#/components/schemas/SystemAdmin'
+    CopyrightHolderAddRequest:
+      title: CopyrightHolderAddRequest
+      type: object
+      properties:
+        data:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    ViewRestrictionsSummary:
+      title: ViewRestrictionsSummary
+      type: object
+      required:
+      - projectIri
+      - groupBy
+      - itemType
+      - totals
+      properties:
+        projectIri:
+          type: string
+        groupBy:
+          $ref: '#/components/schemas/GroupBy'
+        itemType:
+          $ref: '#/components/schemas/ItemType'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/RestrictionGroup'
+        totals:
+          $ref: '#/components/schemas/AudienceCounts'
+    ListChangePositionRequest:
+      title: ListChangePositionRequest
+      type: object
+      required:
+      - position
+      - parentNodeIri
+      properties:
+        position:
+          $ref: '#/components/schemas/Position'
+        parentNodeIri:
+          $ref: '#/components/schemas/ListIri'
+    DuplicateValueException:
+      title: DuplicateValueException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    UserGroupMembershipsGetResponseADM:
+      title: UserGroupMembershipsGetResponseADM
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+    GroupUpdateRequest:
+      title: GroupUpdateRequest
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/GroupName'
+        descriptions:
+          $ref: '#/components/schemas/GroupDescriptions'
+        status:
+          $ref: '#/components/schemas/GroupStatus'
+        selfjoin:
+          $ref: '#/components/schemas/GroupSelfJoin'
+    Size:
+      title: Size
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    PermissionGetResponseADM:
+      title: PermissionGetResponseADM
+      oneOf:
+      - $ref: '#/components/schemas/AdministrativePermissionGetResponseADM'
+      - $ref: '#/components/schemas/DefaultObjectAccessPermissionGetResponseADM'
+    ResourceSideLegalInfo:
+      title: ResourceSideLegalInfo
+      type: object
+      properties:
+        dataLicense:
+          type: string
+        dataCopyrightHolder:
+          type: string
+        defaultDataAuthorship:
+          type: array
+          items:
+            type: string
+    OntologyConstraintException:
+      title: OntologyConstraintException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    UnitCounts:
+      title: UnitCounts
+      type: object
+      required:
+      - resources
+      - items
+      properties:
+        resources:
+          $ref: '#/components/schemas/RestrictionCounts'
+        items:
+          $ref: '#/components/schemas/RestrictionCounts'
+    EditConflictException:
+      title: EditConflictException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    ForbiddenException:
+      title: ForbiddenException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    SetRestrictedViewRequest:
+      title: SetRestrictedViewRequest
+      type: object
+      properties:
+        size:
+          $ref: '#/components/schemas/Size'
+        watermark:
+          $ref: '#/components/schemas/Watermark'
+    Group:
+      title: Group
+      type: object
+      required:
+      - id
+      - name
+      - status
+      - selfjoin
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        descriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/StringLiteralV2'
+        project:
+          $ref: '#/components/schemas/Project'
+        status:
+          type: boolean
+        selfjoin:
+          type: boolean
+    Position:
+      title: Position
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: integer
+          format: int32
+    GravsearchException:
+      title: GravsearchException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    AdministrativePermissionADM:
+      title: AdministrativePermissionADM
+      type: object
+      required:
+      - iri
+      - forProject
+      - forGroup
+      properties:
+        iri:
+          $ref: '#/components/schemas/PermissionIri'
+        forProject:
+          description: IRI for a project.
+          type: string
+        forGroup:
+          $ref: '#/components/schemas/GroupIri'
+        hasPermissions:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/PermissionADM'
+    SystemAdminChangeRequest:
+      title: SystemAdminChangeRequest
+      type: object
+      required:
+      - systemAdmin
+      properties:
+        systemAdmin:
+          $ref: '#/components/schemas/SystemAdmin'
+    DefaultObjectAccessPermissionGetResponseADM:
+      title: DefaultObjectAccessPermissionGetResponseADM
+      type: object
+      required:
+      - defaultObjectAccessPermission
+      properties:
+        defaultObjectAccessPermission:
+          $ref: '#/components/schemas/DefaultObjectAccessPermissionADM'
+    BadRequestException:
+      title: BadRequestException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    ListRootNodeADM:
+      title: ListRootNodeADM
+      type: object
+      required:
+      - id
+      - projectIri
+      - labels
+      - comments
+      - isRootNode
+      properties:
+        id:
+          type: string
+        projectIri:
+          type: string
+        name:
+          type: string
+        labels:
+          $ref: '#/components/schemas/StringLiteralSequenceV2'
+        comments:
+          $ref: '#/components/schemas/StringLiteralSequenceV2'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListChildNodeADM'
+        isRootNode:
+          type: boolean
+    RootNodeInfoGetResponseADM:
+      title: RootNodeInfoGetResponseADM
+      type: object
+      required:
+      - listinfo
+      properties:
+        listinfo:
+          $ref: '#/components/schemas/ListRootNodeInfoADM'
+    ListItemGetResponseADM:
+      title: ListItemGetResponseADM
+      oneOf:
+      - $ref: '#/components/schemas/ListGetResponseADM'
+      - $ref: '#/components/schemas/ListNodeGetResponseADM'
+    GroupBy:
+      title: GroupBy
+      type: string
+      enum:
+      - Property
+      - ResourceClass
+    PermissionADM:
+      title: PermissionADM
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        additionalInformation:
+          type: string
+        permissionCode:
+          type: integer
+          format: int32
+    ListRootNodeInfoADM:
+      title: ListRootNodeInfoADM
+      type: object
+      required:
+      - id
+      - projectIri
+      - labels
+      - comments
+      - isRootNode
+      properties:
+        id:
+          type: string
+        projectIri:
+          type: string
+        name:
+          type: string
+        labels:
+          $ref: '#/components/schemas/StringLiteralSequenceV2'
+        comments:
+          $ref: '#/components/schemas/StringLiteralSequenceV2'
+        isRootNode:
+          type: boolean
+    StringLiteralV2:
+      title: StringLiteralV2
+      oneOf:
+      - $ref: '#/components/schemas/LanguageTaggedStringLiteralV2'
+      - $ref: '#/components/schemas/PlainStringLiteralV2'
+    ListCreateRootNodeRequest:
+      title: ListCreateRootNodeRequest
+      type: object
+      required:
+      - comments
+      - labels
+      - projectIri
+      properties:
+        id:
+          $ref: '#/components/schemas/ListIri'
+        comments:
+          $ref: '#/components/schemas/Comments'
+        labels:
+          $ref: '#/components/schemas/Labels'
+        name:
+          $ref: '#/components/schemas/ListName'
+        projectIri:
+          description: IRI for a project.
+          type: string
+    NodeInfoGetResponseADM:
+      title: NodeInfoGetResponseADM
+      oneOf:
+      - $ref: '#/components/schemas/ChildNodeInfoGetResponseADM'
+      - $ref: '#/components/schemas/RootNodeInfoGetResponseADM'
+    ListChangeRequest:
+      title: ListChangeRequest
+      type: object
+      required:
+      - listIri
+      - projectIri
+      properties:
+        listIri:
+          $ref: '#/components/schemas/ListIri'
+        projectIri:
+          description: IRI for a project.
+          type: string
+        hasRootNode:
+          $ref: '#/components/schemas/ListIri'
+        position:
+          $ref: '#/components/schemas/Position'
+        name:
+          $ref: '#/components/schemas/ListName'
+        labels:
+          $ref: '#/components/schemas/Labels'
+        comments:
+          $ref: '#/components/schemas/Comments'
+    Shortcode:
+      title: Shortcode
+      type: object
+      required:
+      - value
+      properties:
+        value:
+          type: string
+    NotFoundException:
+      title: NotFoundException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    ConflictException:
+      title: ConflictException
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+    Status:
+      title: Status
+      oneOf:
+      - $ref: '#/components/schemas/Active'
+      - $ref: '#/components/schemas/Inactive'
+    Map_Seq_IRI:
+      title: Map_Seq_IRI
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    ProjectsKeywordsGetResponse:
+      title: ProjectsKeywordsGetResponse
+      type: object
+      properties:
+        keywords:
+          type: array
+          items:
+            type: string
+    RestrictedItem:
+      title: RestrictedItem
+      type: object
+      required:
+      - type
+      - visibility
+      properties:
+        type:
+          $ref: '#/components/schemas/ItemType'
+        propertyIri:
+          type: string
+        propertyLabel:
+          type: string
+        valueIri:
+          type: string
+        visibility:
+          $ref: '#/components/schemas/ItemVisibility'
+    PermissionsForProjectGetResponseADM:
+      title: PermissionsForProjectGetResponseADM
+      type: object
+      properties:
+        permissions:
+          type: array
+          uniqueItems: true
+          items:
+            $ref: '#/components/schemas/PermissionInfoADM'
+    ListNodeADM:
+      title: ListNodeADM
+      oneOf:
+      - $ref: '#/components/schemas/ListChildNodeADM'
+      - $ref: '#/components/schemas/ListRootNodeADM'
   securitySchemes:
     httpAuth:
       type: http

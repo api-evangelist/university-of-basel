@@ -192,6 +192,16 @@ apis:
     url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v3/project-migration/
   - type: Overlay
     url: overlays/university-of-basel-ontology-mappings-overlay.yaml
+- aid: university-of-basel:university-of-basel-experimental-api
+  name: University of Basel Experimental API
+  description: The Experimental API from University of Basel — 1 operation(s) for experimental.
+  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+  baseURL: https://edoc.unibas.ch/server/api
+  tags:
+  - Experimental
+  properties:
+  - type: OpenAPI
+    url: openapi/university-of-basel-experimental-api-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/university-of-basel-agentic-access.yml

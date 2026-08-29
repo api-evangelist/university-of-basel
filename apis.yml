@@ -12,6 +12,18 @@ description: >-
   the Basel institution zone. Source code is published across multiple verified GitHub organizations including
   IT Services (ITS-Unibas) and DaSCH (dasch-swiss).
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 specificationVersion: '0.23'
 accessModel:
   pricing: free

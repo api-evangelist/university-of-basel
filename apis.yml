@@ -1,65 +1,80 @@
 aid: university-of-basel
 name: University of Basel
+x-type: university
+x-category: Public Research University
 description: >-
-  The University of Basel (Universität Basel) is the oldest university in Switzerland, founded in 1460,
-  and is ranked #85 in the QS World University Rankings 2025. Its public, machine-readable developer footprint
-  is concentrated in scholarly and research infrastructure rather than a single central developer portal.
-  The university operates "edoc", its open-access institutional repository running DSpace-CRIS 7.6.2,
-  which exposes a public DSpace REST API and an OAI-PMH 2.0 metadata interface. The Swiss National Data
-  and Service Center for the Humanities (DaSCH), hosted at the University of Basel, develops and operates
-  the DSP-API, an open-source RDF-based humanities research data API. Library discovery is delivered through
-  the SLSP swisscovery (Alma/Primo) platform, which offers a standards-based SRU search interface for
-  the Basel institution zone. Source code is published across multiple verified GitHub organizations including
-  IT Services (ITS-Unibas) and DaSCH (dasch-swiss).
+  The University of Basel (Universität Basel) is the oldest university in Switzerland, founded in
+  1460, and a canton-funded public research university. It operates no developer portal, no
+  self-serve API program and no public product API; every machine-readable surface it runs is
+  scholarly infrastructure, federated identity, or the back end of one of its own administrative
+  systems. Exactly one OpenAPI contract is served under unibas.ch — the REST back end of UNIverse,
+  the research information system, which publishes an OpenAPI 3.1.0 description and a Swagger UI
+  anonymously while enforcing a bearer token on every data path. Beyond it, verified live on the
+  university's own hosts: "edoc", the open-access institutional repository running
+  DSpace-CRIS 7.6.2, which answers on both a DSpace REST API and an OAI-PMH 2.0 interface carrying
+  eleven metadata formats and an OpenAIRE-CRIS profile; a SWITCHaai / eduGAIN SAML 2.0 identity
+  provider scoped to unibas.ch, alongside thirty-two registered service providers under the same
+  domain; an OpenID Connect issuer at the sciCORE scientific computing centre; and an LTI launch
+  endpoint on ADAM, the university's ILIAS learning platform. Library discovery is a tenancy, not a
+  Basel system — swisscovery is operated by SLSP on Ex Libris Alma, with Basel holding the
+  41SLSP_UBS institution zone. The DaSCH Service Platform API (api.dasch.swiss), previously
+  catalogued here as Basel's, is not: DaSCH is a legally independent association hosted at the
+  university, and that contract and its derived artifacts were removed in the 2026-08-30 pass.
 type: Index
 deliveryModel:
-  model: saas
+  model: self-hosted
   open_source: false
-  commercial: true
-  callable_host: false
-  label: Hosted service · you call their endpoint
-  confidence: medium
-  source:
-  - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
-specificationVersion: '0.23'
-accessModel:
-  pricing: free
-  onboarding: self-serve
-  trial: false
-  try_now: true
-  public: false
-  label: Free · Self-serve signup
+  commercial: false
+  callable_host: true
+  label: Institution-operated endpoints · no product API
   confidence: high
   source:
-  - plans
-  - authentication
-  generated: '2026-07-22'
-  method: derived
+  - probed
+  generated: '2026-08-30'
+  method: probed
+accessModel:
+  pricing: free
+  onboarding: none
+  trial: false
+  try_now: true
+  public: true
+  label: Free · anonymous read on the repository and metadata surfaces
+  confidence: high
+  source:
+  - probed
+  generated: '2026-08-30'
+  method: probed
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/university-of-basel.png
 url: >-
   https://raw.githubusercontent.com/api-evangelist/university-of-basel/refs/heads/main/apis.yml
 tags:
-- Education
-- Higher Education
 - University
+- Higher Education
+- Education
 - Switzerland
+- Basel
 - Research Data
-- Open Access
+- Research Information
 - Institutional Repository
+- Open Access
+- OAI-PMH
+- Identity Federation
 - Library
-- Digital Humanities
+- Research Computing
 apis:
 - aid: university-of-basel:edoc-rest
   name: edoc DSpace REST API
+  x-operator: institution
   description: >-
-    Public DSpace REST API for "edoc", the open-access institutional repository of the University of Basel,
-    running DSpace-CRIS 7.6.2. The API root reports the repository name and server endpoints and exposes
-    items, collections, communities, and metadata. Verified live (HTTP 200).
+    Public DSpace REST API for "edoc", the open-access institutional repository of the University of
+    Basel, running DSpace-CRIS 7.6.2 (cris-2023.02.06) on the university's own host. The API root
+    reports dspaceName "edoc: Open Access Repository University of Basel" and links the full HAL
+    surface — items, collections, communities, bitstreams, the metadata-field registry and the
+    discovery/search endpoints. The software is DSpace's and no contract is published for it; the
+    deployment, the host and the content are Basel's. Anonymous read verified live 2026-08-30
+    (HTTP 200).
   humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
   baseURL: https://edoc.unibas.ch/server/api
   tags:
@@ -71,12 +86,19 @@ apis:
   properties:
   - type: Documentation
     url: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+  - type: APIReference
+    url: https://edoc.unibas.ch/server/api
+  - type: Conformance
+    url: conformance/university-of-basel-conformance.yml
 - aid: university-of-basel:edoc-oai
   name: edoc OAI-PMH
+  x-operator: institution
   description: >-
-    OAI-PMH 2.0 metadata harvesting interface for the University of Basel edoc repository. The Identify
-    verb reports repositoryName "edoc: Open Access Repository University of Basel" and adminEmail openaccess@unibas.ch.
-    Includes an OpenAIRE-CRIS metadata stream. Verified live (HTTP 200).
+    OAI-PMH 2.0 metadata harvesting interface for edoc. Identify reports repositoryName "edoc: Open
+    Access Repository University of Basel", repositoryIdentifier edoc.unibas.ch and adminEmail
+    openaccess@unibas.ch, and carries an OpenAIRE-CRIS 1.1 service description. ListMetadataFormats
+    returns eleven prefixes — oai_dc, qdc, mods, mets, didl, ore, rdf, marc, dim, etdms, uketd_dc.
+    Institution-operated on Basel's own host. Verified live 2026-08-30 (HTTP 200).
   humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
   baseURL: https://edoc.unibas.ch/server/oai/request
   tags:
@@ -86,16 +108,137 @@ apis:
   - Institutional Repository
   - Harvesting
   properties:
-  - type: Documentation
-    url: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
   - type: APIReference
     url: https://edoc.unibas.ch/server/oai/request?verb=Identify
-- aid: university-of-basel:swisscovery-sru
-  name: swisscovery (SLSP Alma) SRU
+  - type: Documentation
+    url: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
+  - type: Conformance
+    url: conformance/university-of-basel-conformance.yml
+- aid: university-of-basel:switchaai-idp
+  name: University of Basel SWITCHaai / eduGAIN Identity Provider
+  x-operator: institution
   description: >-
-    Standards-based SRU (Search/Retrieve via URL) interface to the SLSP swisscovery / Alma discovery system
-    for the University of Basel institution zone (41SLSP_UBS). Allows programmatic search and retrieval
-    of library catalogue records for the Basel library network. Verified live (HTTP 200).
+    Basel's SAML 2.0 identity provider, entityID https://aai-logon.unibas.ch/idp/shibboleth,
+    registered in the SWITCHaai federation and exported to eduGAIN. Its metadata declares
+    shibmd:Scope unibas.ch, swissEduPersonHomeOrganization unibas.ch,
+    swissEduPersonHomeOrganizationType "university", REFEDS Research & Scholarship, the GÉANT Data
+    Protection Code of Conduct v1, MyAcademicID ESI, and REFEDS Sirtfi assurance certification. The
+    same aggregate carries thirty-two Basel-operated service providers under unibas.ch — ADAM,
+    forschdb2, grants, drittmittel, personeninfo, oauth-logon and the faculty systems. The
+    federation aggregate is published by SWITCH; the entity, its keys and its endpoints are the
+    university's. Metadata verified live 2026-08-30 (HTTP 200, 21.3 MB aggregate); the IdP host
+    itself publishes no public DNS record, so the metadata is the readable surface.
+  humanURL: https://its.unibas.ch/en/
+  baseURL: https://aai-logon.unibas.ch/idp/shibboleth
+  tags:
+  - Identity Federation
+  - SAML
+  - Shibboleth
+  - eduGAIN
+  - SWITCHaai
+  properties:
+  - type: x-saml-metadata
+    url: https://metadata.aai.switch.ch/metadata.switchaai.xml
+  - type: Documentation
+    url: https://www.switch.ch/aai/
+  - type: Conformance
+    url: conformance/university-of-basel-conformance.yml
+- aid: university-of-basel:scicore-oidc
+  name: sciCORE OpenID Connect Issuer
+  x-operator: institution
+  description: >-
+    OpenID Connect issuer operated by sciCORE, the University of Basel's centre for scientific
+    computing, at https://iam.scicore.unibas.ch/realms/switch-eduid — a Keycloak realm that brokers
+    SWITCH edu-ID into the university's research-computing services. The discovery document is
+    served anonymously and declares the full endpoint set (authorization, token, introspection,
+    userinfo, JWKS, device and CIBA), ten grant types including client_credentials, device_code,
+    jwt-bearer and token-exchange, and thirteen scopes. Host is under unibas.ch and resolves to the
+    university's own network (131.152.224.47). Verified live 2026-08-30 (HTTP 200).
+  humanURL: https://scicore.unibas.ch/
+  baseURL: https://iam.scicore.unibas.ch/realms/switch-eduid
+  tags:
+  - OpenID Connect
+  - OAuth
+  - Identity
+  - Research Computing
+  properties:
+  - type: APIReference
+    url: >-
+      https://iam.scicore.unibas.ch/realms/switch-eduid/.well-known/openid-configuration
+  - type: Documentation
+    url: https://scicore.unibas.ch/
+  - type: Authentication
+    url: authentication/university-of-basel-authentication.yml
+- aid: university-of-basel:adam-lti
+  name: ADAM (ILIAS) LTI launch endpoint
+  x-operator: institution
+  description: >-
+    LTI launch endpoint on ADAM, the University of Basel's ILIAS learning management system, at
+    https://adam.unibas.ch/lti.php. It answers an unauthenticated GET with the ILIAS LTI error
+    string rather than a 404 — a control request to a non-existent path on the same host returns
+    404 — which establishes an LTI consumer/provider entry point is deployed and reachable. No
+    documentation, tool-configuration URL or JWKS is published publicly; launches require an
+    institutional LTI credential. ILIAS is open-source software; the deployment and host
+    (fip-adam-001.its.unibas.ch) are Basel IT Services'. Verified live 2026-08-30 (HTTP 200).
+  humanURL: https://adam.unibas.ch/
+  baseURL: https://adam.unibas.ch/lti.php
+  tags:
+  - LTI
+  - Learning Management
+  - ILIAS
+  - Education
+  properties:
+  - type: Website
+    url: https://adam.unibas.ch/
+  - type: Conformance
+    url: conformance/university-of-basel-conformance.yml
+- aid: university-of-basel:universe-research-information
+  name: UNIverse Research Information System API
+  x-operator: institution
+  description: >-
+    The REST backend of UNIverse (universe.unibas.ch), the University of Basel's research
+    information system, at https://universe-intern.unibas.ch/api. It is the only OpenAPI contract
+    the university itself serves: OpenAPI 3.1.0, title "Super MedMe API", version 1.16.2.191, 1,671
+    paths and 1,170 schemas, one securityScheme ("Bearer Token"), covering publications, books,
+    persons, departments, reviewers, stakeholder review workflow and room/meeting administration.
+    The contract names no vendor — no info.contact, no license, and its only server is the
+    unibas.ch host itself, which resolves into the university's own network
+    (lzm-medme-fe-prod1.meddek.unibas.ch, 131.152.217.196). A springdoc Swagger UI is served
+    alongside it. Verified live 2026-08-30: the contract and Swagger UI answer 200 anonymously, and
+    a data path answers 401 with {"timestamp":…,"status":401,"error":"Unauthorized","path":…},
+    which establishes the token is enforced rather than merely declared.
+  humanURL: https://universe.unibas.ch/
+  baseURL: https://universe-intern.unibas.ch/api
+  tags:
+  - Research Information
+  - CRIS
+  - Publications
+  - OpenAPI
+  - Internal
+  properties:
+  - type: APIReference
+    url: https://universe-intern.unibas.ch/api/v3/api-docs
+  - type: Documentation
+    url: https://universe-intern.unibas.ch/api/swagger-ui/index.html
+  - type: Website
+    url: https://universe.unibas.ch/
+  x-harvest-decision: >-
+    The contract is NOT mirrored into openapi/ and no artifacts are derived from it, by choice.
+    The host is named "intern", the system is an internal research-administration application of
+    the Medical Faculty holding person-level records, and the university runs a public
+    vulnerability disclosure program. The surface is recorded because it is anonymously reachable
+    and it is the institution's own engineering; copying 1.4 MB of its endpoint documentation into
+    a public catalog repository is a separate act that a human should authorize. A later pass must
+    not "complete" this entry by harvesting it.
+- aid: university-of-basel:swisscovery-sru
+  name: swisscovery (SLSP / Ex Libris Alma) SRU — Basel institution zone
+  x-operator: tenant
+  description: >-
+    SRU (Search/Retrieve via URL) interface to swisscovery, the Swiss national library discovery
+    platform, scoped to the University of Basel institution zone 41SLSP_UBS. The catalogue records
+    and the institution zone are Basel's; the platform, the host and the SRU contract belong to
+    Swiss Library Service Platform AG running Ex Libris Alma. Recorded as a tenancy, not as a Basel
+    API. Explain response verified live 2026-08-30 (HTTP 200, 190 KB).
   humanURL: https://ub.unibas.ch/en/basel-library-network/
   baseURL: https://swisscovery.slsp.ch/view/sru/41SLSP_UBS
   tags:
@@ -108,199 +251,173 @@ apis:
   - type: Documentation
     url: >-
       https://ub.unibas.ch/en/search-find/library-catalogues/swisscovery-registration-and-help/
-- aid: university-of-basel:university-of-basel-admin-api-api
-  name: DaSCH DSP-API — Admin API
-  description: >-
-    The DSP-API Admin API: projects, users, groups, lists, permissions and per-project legal information.
-    66 operations, split by tag from the first-party DSP-API OpenAPI 3.1 contract published at https://api.dasch.swiss/api/docs/docs.yaml.
-    Served at api.dasch.swiss, the host named in the contract’s own servers[] block.
-  humanURL: https://docs.dasch.swiss/latest/DSP-API/
-  baseURL: https://api.dasch.swiss
-  tags:
-  - Admin API
-  properties:
-  - type: OpenAPI
-    url: openapi/university-of-basel-admin-api-api-openapi.yml
-  - type: Documentation
-    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-admin/overview/
-  - type: Overlay
-    url: overlays/university-of-basel-admin-api-overlay.yaml
-- aid: university-of-basel:university-of-basel-api-v2-api
-  name: DaSCH DSP-API — API v2
-  description: >-
-    The DSP-API v2 content surface: reading, searching, creating and editing RDF resources and values,
-    the Gravsearch graph query language, ontology management, standoff text markup, TEI rendering, IIIF
-    manifests and ARK permalinks. 56 operations, split by tag from the first-party DSP-API OpenAPI 3.1
-    contract.
-  humanURL: https://docs.dasch.swiss/latest/DSP-API/
-  baseURL: https://api.dasch.swiss
-  tags:
-  - API v2
-  properties:
-  - type: OpenAPI
-    url: openapi/university-of-basel-api-v2-api-openapi.yml
-  - type: Documentation
-    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/introduction/
-  - type: Overlay
-    url: overlays/university-of-basel-api-v2-overlay.yaml
-- aid: university-of-basel:university-of-basel-api-v3-api
-  name: DaSCH DSP-API — API v3
-  description: >-
-    The emerging DSP-API v3 surface of client-optimized endpoints (ADR-0009): project export, import and
-    data-graph migration. 10 operations. Carries the estate’s only machine-readable error-code enum (V3ErrorCode).
-  humanURL: https://docs.dasch.swiss/latest/DSP-API/
-  baseURL: https://api.dasch.swiss
-  tags:
-  - API v3
-  properties:
-  - type: OpenAPI
-    url: openapi/university-of-basel-api-v3-api-openapi.yml
-  - type: Documentation
-    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v3/project-migration/
-  - type: Overlay
-    url: overlays/university-of-basel-api-v3-overlay.yaml
-- aid: university-of-basel:university-of-basel-management-api-api
-  name: DaSCH DSP-API — Management API
-  description: >-
-    The DSP-API instrumentation surface: GET /health, GET /version and the Prometheus metrics endpoint.
-    3 operations, all anonymous. GET /version returns the running webapi, Fuseki, Scala and Sipi versions
-    — a machine-readable runtime version signal.
-  humanURL: https://docs.dasch.swiss/latest/DSP-API/
-  baseURL: https://api.dasch.swiss
-  tags:
-  - Management API
-  properties:
-  - type: OpenAPI
-    url: openapi/university-of-basel-management-api-api-openapi.yml
-  - type: Documentation
-    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/instrumentation/introduction/
-  - type: Overlay
-    url: overlays/university-of-basel-management-api-overlay.yaml
-- aid: university-of-basel:university-of-basel-ontology-mappings-api
-  name: DaSCH DSP-API — Ontology Mappings
-  description: >-
-    DSP-API v3 ontology mapping operations: add or remove a single rdfs:subClassOf or rdfs:subPropertyOf
-    triple linking a project class or property to an external IRI. 2 operations, both documented as idempotent.
-  humanURL: https://docs.dasch.swiss/latest/DSP-API/
-  baseURL: https://api.dasch.swiss
-  tags:
-  - Ontology Mappings
-  properties:
-  - type: OpenAPI
-    url: openapi/university-of-basel-ontology-mappings-api-openapi.yml
-  - type: Documentation
-    url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v3/project-migration/
-  - type: Overlay
-    url: overlays/university-of-basel-ontology-mappings-overlay.yaml
-- aid: university-of-basel:university-of-basel-experimental-api
-  name: University of Basel Experimental API
-  description: The Experimental API from University of Basel — 1 operation(s) for experimental.
-  humanURL: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
-  baseURL: https://edoc.unibas.ch/server/api
-  tags:
-  - Experimental
-  properties:
-  - type: OpenAPI
-    url: openapi/university-of-basel-experimental-api-openapi.yml
+  - type: Website
+    url: https://swisscovery.slsp.ch/discovery/search?vid=41SLSP_UBS:UBS
 common:
-- type: CapabilityMap
-  url: capabilities/university-of-basel-capability-edges.yml
-  name: University of Basel Business Capability Map
-- type: AgenticAccess
-  url: agentic-access/university-of-basel-agentic-access.yml
-- type: DomainSecurity
-  url: security/university-of-basel-domain-security.yml
-- type: Authentication
-  url: authentication/university-of-basel-authentication.yml
 - type: Website
   url: https://www.unibas.ch/en
-- type: DeveloperPortal
-  url: https://docs.dasch.swiss/latest/DSP-API/
-- type: GitHub
+- type: Blog
+  url: https://www.unibas.ch/en/News-Events/News.html
+- type: TermsOfService
+  url: https://www.unibas.ch/en/Legal-notice.html
+- type: PrivacyPolicy
+  url: https://www.unibas.ch/en/Legal-notice/Data-Protection.html
+- type: Support
+  url: https://its.unibas.ch/en/contact/
+- type: GitHubOrganization
   url: https://github.com/ITS-Unibas
 - type: SourceCode
-  url: https://github.com/dasch-swiss
+  url: https://github.com/RISE-UNIBAS
 - type: LinkedIn
   url: https://www.linkedin.com/school/university-of-basel/
+- type: ResearchRepository
+  url: https://edoc.unibas.ch/
+- type: LibraryCatalog
+  url: https://swisscovery.slsp.ch/discovery/search?vid=41SLSP_UBS:UBS
+- type: CourseCatalog
+  url: https://vorlesungsverzeichnis.unibas.ch/en/course-directory
+- type: IdentityFederation
+  url: https://metadata.aai.switch.ch/metadata.switchaai.xml
+- type: ResearchComputing
+  url: https://scicore.unibas.ch/
+- type: AIPolicy
+  url: >-
+    https://www.unibas.ch/en/Studies/Learning-and-Teaching/AI-in-learning-and-teaching.html
+- type: Authentication
+  url: authentication/university-of-basel-authentication.yml
+- type: Conformance
+  url: conformance/university-of-basel-conformance.yml
+- type: DomainSecurity
+  url: security/university-of-basel-domain-security.yml
+- type: Security
+  url: security/university-of-basel-vulnerability-disclosure.yml
+- type: VulnerabilityDisclosure
+  url: security/university-of-basel-vulnerability-disclosure.yml
 - type: Plans
   url: plans/university-of-basel-plans-pricing.yml
 - type: RateLimits
   url: rate-limits/university-of-basel-rate-limits.yml
 - type: FinOps
   url: finops/university-of-basel-finops.yml
-- type: Review
-  url: review.yml
-- type: Packages
-  url: packages/university-of-basel-packages.yml
-- type: SDKs
-  url: packages/university-of-basel-packages.yml
-- type: CLI
-  url: cli/university-of-basel-cli.yml
-- type: Conformance
-  url: conformance/university-of-basel-conformance.yml
-- type: ErrorCatalog
-  url: errors/university-of-basel-problem-types.yml
-- type: Lifecycle
-  url: lifecycle/university-of-basel-lifecycle.yml
-- type: Conventions
-  url: conventions/university-of-basel-conventions.yml
-- type: Sandbox
-  url: sandbox/university-of-basel-sandbox.yml
-- type: ChangeLog
-  url: changelog/university-of-basel-changelog.yml
-- type: DataModel
-  url: data-model/university-of-basel-data-model.yml
 - type: LLMsTxt
   url: llms/university-of-basel-llms.txt
 - type: AgentSkill
   url: skills/_index.yml
-- type: Security
-  url: security/university-of-basel-vulnerability-disclosure.yml
-- type: VulnerabilityDisclosure
-  url: security/university-of-basel-vulnerability-disclosure.yml
-- type: Vocabulary
-  url: vocabulary/university-of-basel-vocabulary.yml
-- type: JSONSchema
-  url: json-schema/university-of-basel-project-schema.json
-- type: JSONStructure
-  url: json-structure/university-of-basel-project-structure.json
-- type: JSONLDContext
-  url: json-ld/university-of-basel-context.jsonld
-- type: SpectralRules
-  url: rules/university-of-basel-rules.yml
-- type: Examples
-  url: examples/university-of-basel-getProjects-example.json
-- type: StatusPage
-  url: https://status.dasch.swiss/
-- type: APIReference
-  url: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/openapi/
-- type: Documentation
-  url: https://docs.dasch.swiss/latest/DSP-API/
-- type: GettingStarted
-  url: https://docs.dasch.swiss/latest/DSP-API/01-introduction/what-is-dsp/
-- type: Support
-  url: https://www.dasch.swiss/contact
-- type: Blog
-  url: https://www.dasch.swiss/news
-- type: GitHubOrganization
-  url: https://github.com/dasch-swiss
-- type: Pricing
-  url: https://www.dasch.swiss/services/pricing
-- type: TermsOfService
-  url: https://www.dasch.swiss/legal-notice
-- type: PrivacyPolicy
-  url: https://www.dasch.swiss/privacy-policy-en
-- type: Roadmap
-  url: https://www.dasch.swiss/about-us/platform-2025-2028
-- type: FAQ
-  url: https://www.dasch.swiss/faq
+- type: Review
+  url: review.yml
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Six institution-operated surfaces and one tenancy were verified live on 2026-08-30, and the
+    thinness beyond them is the institution's, not a fetch failure. The find of the pass is
+    universe-intern.unibas.ch/api — the REST backend of the UNIverse research information system,
+    which serves an OpenAPI 3.1.0 contract (1,671 paths, 1,170 schemas) and a springdoc Swagger UI
+    anonymously while enforcing a bearer token on data paths (401 with a structured envelope). It
+    was reached by reading the API base out of the public Angular bundle of universe.unibas.ch,
+    whose own paths all return a soft-200 SPA shell. It is the only OpenAPI the university itself
+    serves, and it is deliberately not mirrored into this repository — see the entry's
+    x-harvest-decision. Also institution-operated and verified: edoc.unibas.ch/server/api (DSpace-CRIS 7.6.2, HTTP 200, anonymous read, 540 metadata
+    fields readable including person.identifier.orcid and the cris.orcid.* sync registry);
+    edoc.unibas.ch/server/oai/request (OAI-PMH 2.0, eleven metadata formats, OpenAIRE-CRIS 1.1
+    service description); the SWITCHaai/eduGAIN SAML identity provider
+    https://aai-logon.unibas.ch/idp/shibboleth, read from the 21.3 MB SWITCHaai aggregate and
+    confirmed present in the 93 MB eduGAIN aggregate, with Sirtfi, REFEDS R&S and GÉANT CoCo entity
+    categories and 32 Basel service providers alongside it;
+    iam.scicore.unibas.ch/realms/switch-eduid (Keycloak OIDC discovery, HTTP 200); and
+    adam.unibas.ch/lti.php (ILIAS LTI launch, HTTP 200 against a 404 control on the same host).
+    Tenant, not Basel's: swisscovery.slsp.ch/view/sru/41SLSP_UBS (SLSP AG on Ex Libris Alma) and
+    the e-manuscripta.ch/bau consortium platform. Removed this pass as vendor-attributed: the DaSCH
+    DSP-API estate — DaSCH is a legally independent association (legal notice: DaSCH, Kornhausgasse
+    7, 4051 Basel; about-us: "an association ... acting independently of any single Higher
+    Education Institution") that the University of Basel hosts and part-funds, and whose contract
+    names DaSCH as contact and api.dasch.swiss as its only server. Confirmed absent: no DNS for
+    data.unibas.ch, api.unibas.ch, developer.unibas.ch, opendata.unibas.ch, research.unibas.ch or
+    aai.unibas.ch; www.unibas.ch/llms.txt 404 and /.well-known/security.txt 503; no public API for
+    the Vorlesungsverzeichnis course directory, and none on the public faces of universe.unibas.ch
+    or forschdb2.unibas.ch, whose Angular front ends answer every probed API path with the same
+    384 KB SPA shell at HTTP 200; ub.unibas.ch/digi/ 403 from nginx. Seen
+    but not verifiable: the UB Basel IIIF stack (ub-sipi.ub.unibas.ch answers a IIIF-shaped path
+    with 403 rather than 404, ub-iiifpresentation.ub.unibas.ch resolves into the university network)
+    — no public manifest or collection URL could be reached, so no surface was recorded for it.
+  assessed: '2026-08-30'
+  method: pipeline-university
+  evidence:
+  - url: https://edoc.unibas.ch/server/api
+    status: 200
+  - url: https://edoc.unibas.ch/server/api/core/metadatafields?size=1000
+    status: 200
+  - url: https://edoc.unibas.ch/server/oai/request?verb=Identify
+    status: 200
+  - url: https://edoc.unibas.ch/server/oai/request?verb=ListMetadataFormats
+    status: 200
+  - url: https://metadata.aai.switch.ch/metadata.switchaai.xml
+    status: 200
+  - url: https://mds.edugain.org/edugain-v2.xml
+    status: 200
+  - url: >-
+      https://iam.scicore.unibas.ch/realms/switch-eduid/.well-known/openid-configuration
+    status: 200
+  - url: https://adam.unibas.ch/lti.php
+    status: 200
+  - url: https://adam.unibas.ch/notarealendpoint.php
+    status: 404
+  - url: https://universe-intern.unibas.ch/api/v3/api-docs
+    status: 200
+  - url: https://universe-intern.unibas.ch/api/swagger-ui/index.html
+    status: 200
+  - url: https://universe-intern.unibas.ch/api/v2/publications
+    status: 401
+  - url: https://universe.unibas.ch/api/v1/persons
+    status: 200
+  - url: https://swisscovery.slsp.ch/view/sru/41SLSP_UBS?version=1.2&operation=explain
+    status: 200
+  - url: https://api.datacite.org/providers/ilen
+    status: 200
+  - url: https://api.crossref.org/members/27920
+    status: 200
+  - url: https://www.dasch.swiss/legal-notice
+    status: 200
+  - url: https://www.dasch.swiss/about-us
+    status: 200
+  - url: https://scicore.unibas.ch/
+    status: 200
+  - url: https://vorlesungsverzeichnis.unibas.ch/en/course-directory
+    status: 200
+  - url: https://forschdb2.unibas.ch/v3/api-docs
+    status: 301
+  - url: https://ub.unibas.ch/digi/
+    status: 403
+  - url: https://ub-sipi.ub.unibas.ch/bau/info.json
+    status: 403
+  - url: https://www.unibas.ch/llms.txt
+    status: 404
+  - url: https://www.unibas.ch/.well-known/security.txt
+    status: 503
+  - url: https://api.unibas.ch/
+    status: 0
+  - url: https://data.unibas.ch/
+    status: 0
+  removed: 51
+  removed_note: >-
+    Six OpenAPI contracts and their pristine source (openapi/_original/university-of-basel-dsp-api
+    .yaml), eight apis[] entries, five overlays, eleven Postman/OpenCollection files, three JSON
+    Schemas, two JSON Structures, four examples, one JSON-LD context, two Spectral rulesets, and
+    the vocabulary, data-model, error catalog, conventions, lifecycle, changelog, CLI, packages,
+    sandbox, MCP candidate, capability-edge and agentic-access artifacts derived from them, plus
+    three DSP-API agent skills. Every one described api.dasch.swiss, whose contract declares
+    info.contact "DaSCH" / https://www.dasch.swiss/ and a single server https://api.dasch.swiss:443.
+    The eighth apis[] entry, "University of Basel Experimental API", additionally carried a
+    baseURL of https://edoc.unibas.ch/server/api against a spec whose own servers[] block said
+    api.dasch.swiss — a mislabel introduced when the contract was split by tag.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
-modified: '2026-08-27'
+modified: '2026-08-30'
 created: '2026-06-03'
 x-enrichment:
-  date: '2026-08-27'
+  date: '2026-08-30'
   status: enriched
-  artifacts_added: 23
-  pass: local-v1
+  artifacts_added: 0
+  artifacts_removed: 51
+  pass: pipeline-university

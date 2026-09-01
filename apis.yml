@@ -158,6 +158,11 @@ apis:
   baseURL: https://iam.scicore.unibas.ch/realms/switch-eduid
   tags:
   - OpenID Connect
+  - Authentication
+  - Identity
+  - Research Computing
+  tags_raw:
+  - OpenID Connect
   - OAuth
   - Identity
   - Research Computing

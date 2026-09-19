@@ -216,6 +216,12 @@ apis:
   baseURL: https://universe-intern.unibas.ch/api
   tags:
   - Research Information
+  - CRI
+  - Publications
+  - OpenAPI
+  - Internal
+  tags_raw:
+  - Research Information
   - CRIS
   - Publications
   - OpenAPI

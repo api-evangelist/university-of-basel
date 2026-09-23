@@ -1,68 +1,119 @@
-generated: '2026-08-27'
+generated: '2026-08-30'
 method: probed
 source: >-
-  Direct anonymous GETs against every host named in apis.yml (baseURL, Website, DeveloperPortal)
-  and every OpenAPI servers[] host, 2026-08-27.
+  Direct anonymous GETs of five /.well-known/ paths against every host the University of Basel
+  itself operates, 2026-08-30. Hosts re-derived after the DaSCH-attributed surfaces were removed
+  from this repository, so api.dasch.swiss and dasch.swiss are no longer probed here.
 note: >-
-  NO /.well-known/ document is served anywhere in the University of Basel API estate. Every path
-  returned 404 (or, on www.unibas.ch, a 503 from the Tomcat front end). edoc.unibas.ch answers every
-  /.well-known/* path with an HTTP 404 carrying the Angular single-page-app HTML shell, which is an
-  absence, not a document. No WellKnown or SecurityTxt pointer is emitted, because nothing was
-  served. Recorded as an honest negative probe.
+  ONE /.well-known/ document is served across the whole University of Basel estate, and it is not
+  at a host root: the sciCORE Keycloak realm publishes OpenID Connect discovery at
+  /realms/switch-eduid/.well-known/openid-configuration (HTTP 200, a real JSON document). Every
+  other probe is an absence. Two of those absences are dressed up as successes and must not be read
+  as documents: www.unibas.ch answers every /.well-known/ path with a Tomcat 503 error page, and
+  universe-intern.unibas.ch answers every /.well-known/ path with HTTP 200 carrying its Angular
+  single-page-app shell — including /.well-known/security.txt and /.well-known/agent-card.json,
+  which do not exist. A status code alone would have credited that host with five documents it does
+  not serve.
 hosts:
-- host: api.dasch.swiss
+- host: iam.scicore.unibas.ch
   documents:
-  - path: /.well-known/security.txt
-    status: 404
+  - path: /realms/switch-eduid/.well-known/openid-configuration
+    status: 200
+    found: true
+    note: >-
+      Real OIDC discovery document — issuer, authorization/token/introspection/userinfo/JWKS/device
+      and CIBA endpoints, ten grant types, thirteen scopes.
   - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/security.txt
     status: 404
   - path: /.well-known/oauth-authorization-server
     status: 404
   - path: /.well-known/api-catalog
     status: 404
   - path: /.well-known/agent-card.json
-    status: 404
-  - path: /.well-known/agent.json
     status: 404
 - host: edoc.unibas.ch
   documents:
   - path: /.well-known/security.txt
     status: 404
-    note: HTML SPA shell body, not a document
+    note: Angular SPA shell body, not a document
   - path: /.well-known/openid-configuration
     status: 404
-    note: HTML SPA shell body, not a document
   - path: /.well-known/oauth-authorization-server
     status: 404
-    note: HTML SPA shell body, not a document
   - path: /.well-known/api-catalog
     status: 404
-    note: HTML SPA shell body, not a document
   - path: /.well-known/agent-card.json
     status: 404
-    note: HTML SPA shell body, not a document
-  - path: /.well-known/agent.json
-    status: 404
-    note: HTML SPA shell body, not a document
 - host: www.unibas.ch
   documents:
   - path: /.well-known/security.txt
     status: 503
-    note: Tomcat "HTTP Status 503 - Service Unavailable" page
+    note: Tomcat "HTTP Status 503 - Service Unavailable" page — an absence, not an outage of a document
+  - path: /.well-known/openid-configuration
+    status: 503
+  - path: /.well-known/oauth-authorization-server
+    status: 503
   - path: /.well-known/api-catalog
     status: 503
-    note: Tomcat "HTTP Status 503 - Service Unavailable" page
+  - path: /.well-known/agent-card.json
+    status: 503
+- host: universe-intern.unibas.ch
+  soft_200: true
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    found: false
+    note: SPA shell catch-all — 200 with HTML, no security.txt exists
+  - path: /.well-known/openid-configuration
+    status: 200
+    found: false
+    note: SPA shell catch-all
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    found: false
+    note: SPA shell catch-all
+  - path: /.well-known/api-catalog
+    status: 200
+    found: false
+    note: SPA shell catch-all
+  - path: /.well-known/agent-card.json
+    status: 200
+    found: false
+    note: SPA shell catch-all
+- host: adam.unibas.ch
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
 - host: ub.unibas.ch
   documents:
   - path: /.well-known/security.txt
     status: 404
-- host: dasch.swiss
-  documents:
-  - path: /.well-known/security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
     status: 404
 summary:
-  hosts_probed: 5
-  documents_found: 0
+  hosts_probed: 6
+  paths_probed: 31
+  documents_found: 1
+  soft_200_hosts: 1
+  security_txt: false
+  agent_card: false
+  api_catalog: false
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

@@ -64,27 +64,45 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-The University of Basel (Universität Basel), founded in 1460, is the oldest university in Switzerland and is ranked #85 in the QS World University Rankings 2025. This repository catalogs the institution's public, machine-readable developer/API footprint as an [APIs.json](https://apisjson.org) provider profile for the API Evangelist network. Basel does not operate a single central developer portal; instead its public APIs are concentrated in scholarly and research-data infrastructure — the edoc institutional repository, the DaSCH Service Platform API, and the SLSP swisscovery library discovery platform.
+The University of Basel (Universität Basel), founded in 1460, is the oldest university in Switzerland. This repository catalogs the institution's public, machine-readable footprint as an [APIs.json](https://apisjson.org) provider profile for the API Evangelist network. Basel operates no developer portal and no public product API. What it does operate is scholarly infrastructure, federated identity, and the back ends of its own administrative systems — and telling those apart from the vendor and national-infrastructure services running under its name is the whole job here.
 
 - APIs.json: https://raw.githubusercontent.com/api-evangelist/university-of-basel/refs/heads/main/apis.yml
 - Run it with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=university-of-basel-api-evangelist&utm_content=repo
 
 ## Type
 
-- Type: Index
+- Type: university (Public Research University)
 - Position: Consumer
 - Access: 3rd-Party
 
 ## Tags
 
-Education, Higher Education, University, Switzerland, Research Data, Open Access, Institutional Repository, Library, Digital Humanities
+University, Higher Education, Education, Switzerland, Basel, Research Data, Research Information, Institutional Repository, Open Access, OAI-PMH, Identity Federation, Library, Research Computing
 
-## APIs
+## Surfaces, and who operates them
 
-- **edoc DSpace REST API** — Public DSpace REST API for the University of Basel open-access repository (DSpace-CRIS 7.6.2). Base: `https://edoc.unibas.ch/server/api`. Docs: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
-- **edoc OAI-PMH** — OAI-PMH 2.0 metadata harvesting interface for edoc, including an OpenAIRE-CRIS stream. Base: `https://edoc.unibas.ch/server/oai/request`. Docs: https://ub.unibas.ch/en/services/dh-digital-services/edoc/
-- **DaSCH DSP-API** — Open-source RDF-based humanities research data API (formerly Knora) developed at the University of Basel by DaSCH. Base: `https://api.dasch.swiss`. Docs: https://docs.dasch.swiss/latest/DSP-API/ — Code: https://github.com/dasch-swiss/dsp-api
-- **swisscovery (SLSP Alma) SRU** — Standards-based SRU search/retrieve interface to the SLSP swisscovery/Alma catalogue for the Basel institution zone (41SLSP_UBS). Base: `https://swisscovery.slsp.ch/view/sru/41SLSP_UBS`. Docs: https://ub.unibas.ch/en/search-find/library-catalogues/swisscovery-registration-and-help/
+Every entry carries an `x-operator` in `apis.yml`. At a university that matters more than the artifact count: an institution is a federation of buyers, and most of what appears under its name is somebody else's engineering.
+
+**Institution-operated**
+
+- **UNIverse Research Information System API** — the REST back end of `universe.unibas.ch`, serving an OpenAPI 3.1.0 contract (1,671 paths, 1,170 schemas) and a Swagger UI anonymously, with a bearer token enforced on data paths (401). Base: `https://universe-intern.unibas.ch/api`. The only contract the university itself serves. It is deliberately **not** mirrored into this repository — see `x-harvest-decision` on the entry.
+- **edoc DSpace REST API** — the open-access institutional repository, DSpace-CRIS 7.6.2. Base: `https://edoc.unibas.ch/server/api`
+- **edoc OAI-PMH** — OAI-PMH 2.0, eleven metadata formats plus an OpenAIRE-CRIS context. Base: `https://edoc.unibas.ch/server/oai/request`
+- **SWITCHaai / eduGAIN Identity Provider** — SAML 2.0, entityID `https://aai-logon.unibas.ch/idp/shibboleth`, scope `unibas.ch`, Sirtfi certified, with 32 Basel service providers alongside it in the federation aggregate.
+- **sciCORE OpenID Connect Issuer** — Keycloak realm at the university's scientific computing centre. Base: `https://iam.scicore.unibas.ch/realms/switch-eduid`
+- **ADAM (ILIAS) LTI launch endpoint** — `https://adam.unibas.ch/lti.php`
+
+**Tenant — Basel's data, somebody else's contract**
+
+- **swisscovery (SLSP / Ex Libris Alma) SRU** — Basel holds the 41SLSP_UBS institution zone; SLSP AG runs the platform. Base: `https://swisscovery.slsp.ch/view/sru/41SLSP_UBS`
+
+**Removed 2026-08-30 — not Basel's**
+
+The DaSCH Service Platform API (`api.dasch.swiss`) was catalogued here as Basel's from 2026-06-03 until 2026-08-30. It is not. DaSCH is a legally independent association — its legal notice names DaSCH at Kornhausgasse 7, 4051 Basel, and its about page states it acts "independently of any single Higher Education Institution" — which the University of Basel hosts and part-funds. The contract names DaSCH as `info.contact` and `api.dasch.swiss` as its only server. Six OpenAPI contracts, eight `apis[]` entries and 45 derived artifacts were removed. The hosting relationship is a real institutional fact and is recorded in the profile description and in `x-coverage`; the engineering credit is not Basel's to take.
+
+## Standards actually spoken
+
+Verified against live documents, not prose: OAI-PMH 2.0, ORCID, DataCite (provider ILEN), Crossref (member 27920), SAML 2.0, Shibboleth/SWITCHaai/eduGAIN, LTI, OpenID Connect Discovery, OpenAPI 3.1, HAL. See [conformance/university-of-basel-conformance.yml](conformance/university-of-basel-conformance.yml). Probed and absent: SCIM, OneRoster, Ed-Fi, Caliper, QTI.
 
 ## Plans
 
@@ -101,19 +119,23 @@ See [finops/university-of-basel-finops.yml](finops/university-of-basel-finops.ym
 ## Timestamps
 
 - Created: 2026-06-03
-- Modified: 2026-06-03
+- Modified: 2026-08-30
 
 ## Common Properties
 
 - Website: https://www.unibas.ch/en
-- Developer Portal: https://docs.dasch.swiss/latest/DSP-API/
-- GitHub: https://github.com/ITS-Unibas
-- Source Code: https://github.com/dasch-swiss
+- GitHub Organization: https://github.com/ITS-Unibas
+- Source Code: https://github.com/RISE-UNIBAS
+- Research Repository: https://edoc.unibas.ch/
+- Identity Federation: https://metadata.aai.switch.ch/metadata.switchaai.xml
+- Research Computing: https://scicore.unibas.ch/
+- Course Catalog: https://vorlesungsverzeichnis.unibas.ch/en/course-directory
+- AI Policy: https://www.unibas.ch/en/Studies/Learning-and-Teaching/AI-in-learning-and-teaching.html
 - LinkedIn: https://www.linkedin.com/school/university-of-basel/
 
 ## Notes
 
-All APIs and properties listed were confirmed against live URLs during research; no endpoints were fabricated. The edoc REST API and OAI-PMH interface both returned HTTP 200, with the OAI Identify verb reporting "edoc: Open Access Repository University of Basel". The DSP-API documentation and `dasch-swiss/dsp-api` repository resolve (HTTP 200), and the live `api.dasch.swiss/v2/ontologies` path returns HTTP 405 on GET (a verb/method is required), which confirms the endpoint exists. The SLSP swisscovery SRU endpoint for the Basel zone resolves (HTTP 200). The UNIverse research portal resolves but exposes no separately documented public API. The LinkedIn school page returns the standard HTTP 999 anti-bot status; the page exists.
+Every URL in this profile was fetched and its status recorded on 2026-08-30; nothing was credited from link presence alone. Two soft-200 traps were caught and are recorded as absences rather than documents: `universe.unibas.ch` and `forschdb2.unibas.ch` return the same 384 KB Angular shell at HTTP 200 on every probed API path, and `universe-intern.unibas.ch` returns HTTP 200 with that shell on every `/.well-known/` path including `security.txt`. Confirmed absent by DNS: `api.unibas.ch`, `data.unibas.ch`, `developer.unibas.ch`, `opendata.unibas.ch`, `research.unibas.ch`. The University of Basel runs a public vulnerability disclosure program on Intigriti but publishes no `/.well-known/security.txt` anywhere.
 
 ## Maintainers
 

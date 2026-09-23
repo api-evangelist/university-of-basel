@@ -3,9 +3,70 @@ name: University of Basel
 description: University of Basel public developer/API footprint review for APIs.json cataloging.
 url: https://raw.githubusercontent.com/api-evangelist/university-of-basel/refs/heads/main/review.yml
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 reviews:
+  - date: '2026-08-30'
+    rating: 3
+    summary: >-
+      Re-profiled under the university pipeline, which settles WHO OPERATES each surface before
+      saving anything. The 2026-06-03 review credited the University of Basel with the DaSCH
+      Service Platform API. That was wrong. DaSCH is a legally independent association — its own
+      legal notice names DaSCH at Kornhausgasse 7, 4051 Basel, and its about page says it acts
+      "independently of any single Higher Education Institution" — which the university hosts and
+      part-funds. Its contract names DaSCH as info.contact and api.dasch.swiss as its only server.
+      Six OpenAPI contracts, eight apis[] entries and 45 artifacts derived from them were removed.
+      What replaced them is smaller and actually Basel's: the edoc repository on two interfaces, a
+      SWITCHaai/eduGAIN SAML identity provider with 32 service providers beside it, a sciCORE
+      OpenID Connect issuer, an ILIAS LTI endpoint, and — the find of the pass — the UNIverse
+      research information system, which serves a live OpenAPI 3.1 contract and a Swagger UI
+      anonymously while enforcing a bearer token on data. The rating is unchanged because the
+      footprint is genuinely comparable in size; it is simply now the university's own.
+    endpoints:
+      - url: https://edoc.unibas.ch/server/api
+        status: 200
+        note: DSpace REST API root; DSpace 7.6.2 / cris-2023.02.06. Institution-operated.
+      - url: https://edoc.unibas.ch/server/oai/request?verb=Identify
+        status: 200
+        note: OAI-PMH 2.0; eleven metadata formats plus an OpenAIRE-CRIS context.
+      - url: https://edoc.unibas.ch/server/api/core/metadatafields?size=1000
+        status: 200
+        note: 540 fields including person.identifier.orcid and the cris.orcid.sync-* family.
+      - url: https://metadata.aai.switch.ch/metadata.switchaai.xml
+        status: 200
+        note: >-
+          Carries entityID https://aai-logon.unibas.ch/idp/shibboleth (Sirtfi, REFEDS R&S, scope
+          unibas.ch) and 32 Basel service providers.
+      - url: https://mds.edugain.org/edugain-v2.xml
+        status: 200
+        note: Same Basel entityID present in the eduGAIN interfederation aggregate.
+      - url: https://iam.scicore.unibas.ch/realms/switch-eduid/.well-known/openid-configuration
+        status: 200
+        note: Keycloak OIDC discovery at Basel's scientific computing centre.
+      - url: https://universe-intern.unibas.ch/api/v3/api-docs
+        status: 200
+        note: >-
+          OpenAPI 3.1.0 "Super MedMe API" v1.16.2.191, 1,671 paths, servers[0] on unibas.ch. The
+          only contract the university itself serves. Not mirrored into this repo by choice.
+      - url: https://universe-intern.unibas.ch/api/v2/publications
+        status: 401
+        note: Structured 401 envelope — the bearer token is enforced, not merely declared.
+      - url: https://adam.unibas.ch/lti.php
+        status: 200
+        note: ILIAS LTI launch endpoint; control path on the same host returns 404.
+      - url: https://swisscovery.slsp.ch/view/sru/41SLSP_UBS
+        status: 200
+        note: TENANT — SLSP AG on Ex Libris Alma; Basel holds the 41SLSP_UBS institution zone.
+      - url: https://www.dasch.swiss/legal-notice
+        status: 200
+        note: Names DaSCH as the operating entity. Basis for removing the DSP-API estate.
+      - url: https://universe.unibas.ch/
+        status: 200
+        note: Soft-200 SPA shell on every path; the real API base was read from its JS bundle.
+      - url: https://api.unibas.ch/
+        status: 0
+        note: No DNS. Same for data., developer., opendata., research. and aai.unibas.ch.
   - date: '2026-06-03'
+
     rating: 3
     summary: >-
       University of Basel has no single central developer portal, but multiple

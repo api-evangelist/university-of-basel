@@ -1,102 +1,115 @@
-generated: '2026-08-27'
-method: searched
+generated: '2026-08-30'
+method: probed
 source: >-
-  https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/authentication/ (HTTP 200) and
-  https://docs.dasch.swiss/latest/DSP-API/05-internals/design/principles/authentication/, read
-  against the securitySchemes of https://api.dasch.swiss/api/docs/docs.yaml (v37.8.0); plus live
-  probes of https://edoc.unibas.ch/server/api/authn/status.
+  Live anonymous probes of every University of Basel institution-operated surface on 2026-08-30:
+  https://edoc.unibas.ch/server/api and /server/api/authn, the OAI-PMH interface at
+  /server/oai/request, the sciCORE OIDC discovery document at
+  https://iam.scicore.unibas.ch/realms/switch-eduid/.well-known/openid-configuration, the SWITCHaai
+  federation metadata for entityID https://aai-logon.unibas.ch/idp/shibboleth, and
+  https://adam.unibas.ch/lti.php.
 provider: University of Basel
 providerId: university-of-basel
-docs: https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/authentication/
 summary:
   types:
-  - http
-  oauth2: false
-  openid_connect: false
+  - none
+  - http_bearer
+  - openid_connect
+  - saml
+  oauth2: true
+  openid_connect: true
+  saml: true
   mtls: false
   api_keys: false
+  bearer_token: true
   anonymous_read: true
+description: >-
+  The University of Basel issues no API keys and runs no developer credentialing of any kind. The
+  one contract it serves — the UNIverse research information API — declares a bearer token and
+  enforces it, but publishes no way for an outside developer to obtain one. Its open
+  read surfaces — the edoc DSpace REST API and the edoc OAI-PMH interface — are open to anonymous
+  callers with no token, no registration and no referer or origin check. Everything that IS
+  authenticated at Basel is federated identity for people rather than credentials for machines:
+  a SWITCHaai/eduGAIN SAML 2.0 identity provider scoped to unibas.ch, and an OpenID Connect issuer
+  at sciCORE that brokers SWITCH edu-ID into research-computing services. Neither is a public API
+  authorization server a third-party developer can register a client with; both are institutional
+  single sign-on, readable from outside only through their published metadata.
 schemes:
-- name: httpAuth
-  type: http
-  scheme: bearer
-  bearer_format: JWT
-  surface: university-of-basel:dsp-api
+- name: anonymous
+  type: none
+  surface: university-of-basel:edoc-rest
   status: current
   description: >-
-    The supported authentication method. A client POSTs credentials to /v2/authentication and
-    receives a JSON Web Token, then sends it on every secured request as
-    `Authorization: Bearer <token>`.
-  obtain:
-    method: POST
-    path: /v2/authentication
-    request: '{"identifier_type": "iri|email|username", "password": "<password>"}'
-    response: '{"token": "eyJ0eXAiOiJ..."}'
-  verify:
-    method: GET
-    path: /v2/authentication
-  revoke:
-    method: DELETE
-    path: /v2/authentication
-    effect: >-
-      Invalidates the access token server-side; a later request presenting the same token is
-      rejected. A genuine logout, not just a client-side discard.
-  sources:
-  - https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/authentication/
-  - openapi/_original/university-of-basel-dsp-api.yaml
-- name: httpAuth1
-  type: http
-  scheme: basic
-  surface: university-of-basel:dsp-api
-  status: deprecated
-  description: >-
-    HTTP Basic is still declared as a securityScheme in the contract, but the documentation states
-    plainly: "Any other method of authentication is deprecated." Treat bearer JWT as the only
-    supported path.
-  sources:
-  - openapi/_original/university-of-basel-dsp-api.yaml
-  - https://docs.dasch.swiss/latest/DSP-API/03-endpoints/api-v2/authentication/
-anonymous:
-  supported: true
-  operations: 54
-  note: >-
-    54 GET operations in the DSP-API contract are marked "Publicly accessible" and need no
-    credential — including project listing, full-text search, Gravsearch, ontology reads, IIIF
-    manifests, TEI rendering, /health and /version. This is the single largest agent-reachable
-    surface in the estate.
-other_surfaces:
-- api: university-of-basel:edoc-rest
-  host: edoc.unibas.ch
-  scheme: password realm
+    https://edoc.unibas.ch/server/api and its discovery, browse and metadata-registry endpoints
+    answer HTTP 200 to an unauthenticated GET. Writes and the /server/api/authn endpoints require a
+    Basel account; no self-service registration exists for outside developers.
   evidence:
-    url: https://edoc.unibas.ch/server/api/authn/status
+    url: https://edoc.unibas.ch/server/api
     status: 200
-    header: 'www-authenticate: password realm="DSpace REST API"'
-    body_fragment: '{"authenticated": false, "authenticationMethod": null, "type": "status"}'
-  note: >-
-    DSpace 7 short-lived JWT obtained from POST /server/api/authn/login, with a
-    DSPACE-XSRF-TOKEN CSRF header. Reads of public items need no credential. Only `password` is
-    advertised on the public REST surface — no Shibboleth method is exposed there.
-- api: university-of-basel:edoc-oai
-  host: edoc.unibas.ch
-  scheme: none
-  note: OAI-PMH is anonymous by protocol.
-- api: university-of-basel:swisscovery-sru
-  host: swisscovery.slsp.ch
-  scheme: none
-  note: >-
-    The SRU explain and search operations for institution zone 41SLSP_UBS answer anonymously
-    (probed 200 on 2026-08-27).
-scopes:
-  published: false
-  note: >-
-    No OAuth scopes exist. Authorization is enforced by the DSP permissions system — administrative
-    permissions and default object access permissions bound to a group within a project — not by
-    token scope. See data-model/university-of-basel-data-model.yml.
-well_known:
-  openid_configuration: false
-  oauth_authorization_server: false
-  note: Both paths return 404 on every host in the estate. See well-known/.
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+- name: anonymous
+  type: none
+  surface: university-of-basel:edoc-oai
+  status: current
+  description: >-
+    OAI-PMH is unauthenticated by protocol. Every verb — Identify, ListMetadataFormats, ListSets,
+    ListRecords — answers anonymously.
+  evidence:
+    url: https://edoc.unibas.ch/server/oai/request?verb=Identify
+    status: 200
+- name: saml2
+  type: saml
+  surface: university-of-basel:switchaai-idp
+  status: current
+  description: >-
+    SAML 2.0 web browser SSO for people, federated through SWITCHaai and eduGAIN. Relying parties
+    consume the IdP through the federation aggregate rather than through a per-service credential.
+    The descriptor carries REFEDS Sirtfi assurance and REFEDS Research & Scholarship, so attribute
+    release to R&S-tagged services is pre-agreed.
+  evidence:
+    url: https://metadata.aai.switch.ch/metadata.switchaai.xml
+    status: 200
+- name: openid-connect
+  type: openid_connect
+  surface: university-of-basel:scicore-oidc
+  status: current
+  description: >-
+    Keycloak realm switch-eduid at iam.scicore.unibas.ch. Discovery is public; client registration
+    is not — no dynamic client registration endpoint is advertised, so a client must be created by
+    sciCORE. Grant types advertised: authorization_code, client_credentials, implicit, password,
+    refresh_token, device_code, jwt-bearer, token-exchange, uma-ticket and CIBA. Scopes advertised:
+    openid, profile, email, phone, address, roles, organization, offline_access, service_account,
+    basic, acr, web-origins, microprofile-jwt.
+  evidence:
+    url: >-
+      https://iam.scicore.unibas.ch/realms/switch-eduid/.well-known/openid-configuration
+    status: 200
+- name: bearer-token
+  type: http
+  scheme: bearer
+  surface: university-of-basel:universe-research-information
+  status: current
+  description: >-
+    The UNIverse research information API declares a single securityScheme named "Bearer Token".
+    It is enforced: an anonymous GET of a data path returns HTTP 401 with
+    {"timestamp":…,"status":401,"error":"Unauthorized","path":"/v2/publications"}. Tokens are
+    issued to the university's own applications; no registration or issuance flow is published.
+  evidence:
+    url: https://universe-intern.unibas.ch/api/v2/publications
+    status: 401
+- name: lti
+  type: lti
+  surface: university-of-basel:adam-lti
+  status: current
+  description: >-
+    ADAM's LTI launch endpoint validates a signed launch from a configured tool consumer. Without
+    one it returns the ILIAS connection error. No public JWKS or tool-configuration document is
+    served, so the LTI version could not be determined from outside.
+  evidence:
+    url: https://adam.unibas.ch/lti.php
+    status: 200
+notes: >-
+  No API key issuance, mTLS surface or signed-request scheme is published anywhere under
+  unibas.ch, and no authorization server accepts an outside client: the sciCORE Keycloak realm is
+  the only OAuth 2.0 / OIDC endpoint set on a Basel host and it advertises no dynamic client
+  registration. The bearer-JWT scheme previously recorded in this file belonged to DSP-API
+  (api.dasch.swiss), which is operated by DaSCH and was removed from this repository on
+  2026-08-30.

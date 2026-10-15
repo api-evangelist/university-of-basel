@@ -1,0 +1,41 @@
+edges:
+- partner_name: eduGAIN
+  partner: null
+  type: register
+  channel: standard-directory
+  relationship: network-participant
+  direction: partner-built
+  evidence: https://technical.edugain.org/api.php?action=list_entities&type=idp&format=json
+  category: research and education identity federation
+  contract_reference:
+    network: eduGAIN (GÉANT interfederation)
+    spec_file: null
+    roles:
+    - identity-provider
+    role: identity-provider
+    federations:
+    - SWITCHAAI
+    matched_by: domain+idp-scope:unibas.ch
+    entities:
+    - entity_id: https://aai-logon.unibas.ch/idp/shibboleth
+      role: identity-provider
+      federation: SWITCHAAI
+      display_name: Universität Basel
+      entity_categories:
+      - '4'
+      - '11'
+      - '45'
+      - '65'
+      - '76'
+      - '129'
+      sirtfi: true
+      coco: false
+    detected_by: sweep-higher-ed.py
+    detected: '2026-10-15'
+  detected_by: sweep-higher-ed.py
+  first_seen: '2026-10-15'
+generated: '2026-10-15'
+method: searched
+checked:
+- https://technical.edugain.org/api.php?action=list_entities&type=idp&format=json
+- https://technical.edugain.org/api.php?action=list_entities&type=sp&format=json

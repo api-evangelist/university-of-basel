@@ -189,6 +189,11 @@ apis:
   baseURL: https://adam.unibas.ch/lti.php
   tags:
   - LTI
+  - LMS
+  - ILIAS
+  - Education
+  tags_raw:
+  - LTI
   - Learning Management
   - ILIAS
   - Education

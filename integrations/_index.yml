@@ -39,3 +39,28 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: university-of-basel-linked-art-community
+  label: Linked Art community
+  partner_name: Linked Art community
+  category: cultural heritage linked data community
+  type: register
+  channel: standard-directory
+  evidence: https://linked.art/community/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Linked Art community institutions (linked.art/community/)
+    standard: Linked Art
+    spec_file: null
+    role: linked-art-institution
+    registered_name: University of Basel (Digital Humanities Lab)
+    register_id: https://linked.art/community/#institutions
+    matched_domain: unibas.ch
+    matched_by: domain
+    signal_note: 'participation only: an institution in the Linked Art community (names only on the page)'
+    detected_by: sweep-iiif-cultural-heritage.py
+    detected: '2026-10-21'
+    identity: wikidata Q372608 'University of Basel' P856 https://www.unibas.ch/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  status: not-a-workflow
+  arazzo: null

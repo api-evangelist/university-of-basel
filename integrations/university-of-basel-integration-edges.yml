@@ -34,8 +34,42 @@ edges:
     detected: '2026-10-15'
   detected_by: sweep-higher-ed.py
   first_seen: '2026-10-15'
+- partner_name: Linked Art community
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://linked.art/community/
+  category: cultural heritage linked data community
+  contract_reference:
+    register: Linked Art community institutions (linked.art/community/)
+    standard: Linked Art
+    spec_file: null
+    role: linked-art-institution
+    registered_name: University of Basel (Digital Humanities Lab)
+    register_id: https://linked.art/community/#institutions
+    matched_domain: unibas.ch
+    matched_by: domain
+    signal_note: 'participation only: an institution in the Linked Art community (names only on the page)'
+    detected_by: sweep-iiif-cultural-heritage.py
+    detected: '2026-10-21'
+    identity: wikidata Q372608 'University of Basel' P856 https://www.unibas.ch/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  detected_by: sweep-iiif-cultural-heritage.py
+  first_seen: '2026-10-21'
 generated: '2026-10-15'
 method: searched
 checked:
 - https://technical.edugain.org/api.php?action=list_entities&type=idp&format=json
 - https://technical.edugain.org/api.php?action=list_entities&type=sp&format=json
+- https://github.com/IIIF/awesome-iiif/blob/main/implementations.md
+- https://github.com/IIIF/awesome-iiif/blob/main/readme.md
+- https://iiif.io/community/consortium/members/
+- https://linked.art/community/
+source:
+- https://iiif.io/community/consortium/members/
+- https://github.com/IIIF/awesome-iiif/blob/main/readme.md
+- https://github.com/IIIF/awesome-iiif/blob/main/implementations.md
+- https://linked.art/community/
